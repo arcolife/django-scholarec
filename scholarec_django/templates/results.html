@@ -7,7 +7,7 @@
     <meta name="description" content="scholarec">
     <meta name="author" content="arcolife">
     
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
       padding-top: 60px;
@@ -80,8 +80,8 @@
       }      
     </style>
     
-    <link href="css/bootstrap-responsive.css" rel="stylesheet">  
-    <script type="text/javascript" src="js/jquery/jquery.min.js"></script>
+    <link href="/static/css/bootstrap-responsive.css" rel="stylesheet">  
+    <script type="text/javascript" src="/static/js/jquery/jquery.min.js"></script>
   </head>
 
   <body>
@@ -111,13 +111,13 @@
 	  <div class="hero-unit">
 	    <div class="row-fluid">
 	      <p>
-		<a href="results_simple.html" title="simply rendered results">
+		<a href="/static/json/results.json" title="simply rendered results">
 		  Click to view plain simple results
 		</a>
 	      </p>
 	      <p>
 		<script type="text/javascript">
-		  $.getJSON( "json/test.json", function( data ) {
+		  $.getJSON( "/static/json/test.json", function( data ) {
 		  var items = [];
 		  $.each( data, function( key, val ) {
 		  items.push( "<li id='" + key + "'>" + val + "</li>" );
@@ -203,7 +203,7 @@
       <!-- javascript
 	   ================================================== -->
       <!-- Placed at the end of the document so the pages load faster -->
-      <script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
+      <script type="text/javascript" src="/static/js/bootstrap/bootstrap.min.js"></script>
     </div>
   </body>
 </html>

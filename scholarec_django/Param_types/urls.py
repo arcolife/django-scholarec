@@ -6,4 +6,5 @@ from django.core.urlresolvers import reverse
 
 urlpatterns = patterns('',
                        (r'^home/', TemplateView.as_view(template_name="home.html")),
+                       #(r'^index/', TemplateView.as_view(template_name="index.html")),
                    )

@@ -7,6 +7,7 @@ from django.contrib import admin
 admin.autodiscover()
 import settings
 
+from scholarec import views
 # import your urls from each app here, as needed
 import Param_types.urls
 
@@ -21,6 +22,15 @@ urlpatterns = patterns('',
                        url(r'^admin/', include(admin.site.urls)),
                        
                        # catch all, redirect to Param_types home view
-                       url(r'^.*/$', TemplateView.as_view(template_name="home.html")),
+                       #url(r'^.*/$', TemplateView.as_view(template_name="home.html")),
+                       #(r'^$', 'Param_types.views.index'),
                        
+                       #(r'^$', TemplateView.as_view(template_name="index.html",
+                       #                content_type='text/plain')),
+
+                       (r'^$', views.index),
+                       (r'^results/$', views.results),
+                       (r'^authors/$', views.authors),
+                       (r'^citations/$', views.citations),
+                       (r'^references/$', views.references),
                    )
