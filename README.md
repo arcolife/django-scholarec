@@ -1,5 +1,5 @@
-scholarec v0.1
-==============
+scholarec
+=========
 Recommendation of Scholarly Works 
 ---------------------------------
 
