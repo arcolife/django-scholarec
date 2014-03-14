@@ -16,7 +16,7 @@ $ ./manage.py runserver
 
 **FAQ**
 
-Q. How do I include schoalarec package's git repo in requirements.txt?
+Q. How do I include scholarec package's git repo in requirements.txt?
 
 A. Simply include "-e git://github.com/arcolife/scholarec.git#egg=scholarec"
 
