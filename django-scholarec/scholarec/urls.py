@@ -28,7 +28,7 @@ urlpatterns = patterns('',
                        #(r'^$', TemplateView.as_view(template_name="index.html",
                        #                content_type='text/plain')),
 
-                       (r'^$', views.index),
+                       (r'^$', views.home),
                        (r'^results/$', views.results),
                        (r'^authors/$', views.authors),
                        (r'^citations/$', views.citations),
