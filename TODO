@@ -1,0 +1,13 @@
+- integrate django-social-auth #partial
+  - integrate Twitter #done
+  - integrate Facebook
+  - integrate Github
+  - integrate Google #partial
+  - integrate sign-in page
+  - integrate session trackers / cookies
+- Connect Social Auth to HomePage
+- Add query_parse statements to models.py
+- Display JSON data file in browser #partial
+- Refactor HTML code #partial
+- Refine database and replace mockup viz
+- Integrate Search URL box with DB
