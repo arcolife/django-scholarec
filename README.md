@@ -10,7 +10,10 @@ on how to install scholarec for use in this django project.
 
 Then, go to 'django-scholarec/', and run:
 
-$ ./manage.py runserver
+```
+    $ ./manage.py syncdb
+    $ ./manage.py runserver
+```
 
 ***
 
