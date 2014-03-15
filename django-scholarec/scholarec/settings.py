@@ -180,7 +180,7 @@ AUTHENTICATION_BACKENDS = (
     'social.backends.mailru.MailruOAuth2',
     'social.backends.mendeley.MendeleyOAuth',
     'social.backends.mendeley.MendeleyOAuth2',
-   'social.backends.mixcloud.MixcloudOAuth2',
+    'social.backends.mixcloud.MixcloudOAuth2',
     'social.backends.odnoklassniki.OdnoklassnikiOAuth2',
     'social.backends.open_id.OpenIdAuth',
     'social.backends.openstreetmap.OpenStreetMapOAuth',
@@ -244,8 +244,13 @@ READABILITY_CONSUMER_SECRET  = ''
 READABILITY_CONSUMER_SECRET  = ''
 '''
 
-SOCIAL_AUTH_TWITTER_KEY = '' #consumer key
-SOCIAL_AUTH_TWITTER_SECRET = '' #consumer secret key here
+# SOCIAL_AUTH_FACEBOOK_APP_ID = '1416022405315039'
+# SOCIAL_AUTH_FACEBOOK_SECRET='3f95657ba49c251e959c4d18a5df4e37'
+# SOCIAL_AUTH_FACEBOOK_APP_NAMESPACE = 'scholarec'
+# SOCIAL_AUTH_FACEBOOK_EXTENDED_PERMISSIONS = ['email']
+
+SOCIAL_AUTH_TWITTER_KEY = '' # consumer key here
+SOCIAL_AUTH_TWITTER_SECRET = '' # consumer secret key here
 
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/done/'
