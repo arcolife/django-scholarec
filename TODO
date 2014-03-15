@@ -1,10 +1,21 @@
 - integrate django-social-auth #partial
   - integrate Twitter #done
-  - integrate Facebook
+  - integrate Facebook #partial
+    - resolve invalid App Id
+  - Integrate Fedora (FAS) #partial
+    - resolve no redirect url
   - integrate Github
+    - resolve no such page error
+  - integrate Persona (Mozilla) #done
   - integrate Google #partial
+    - Google OpenId #done
+    - Google OAuth1 #partial
+      - Reset permissions (currently, profile, email, google drive)
+    - Google OAuth2 
+      -	Resolve Error: invalid_client. Bad request.
   - integrate sign-in page
   - integrate session trackers / cookies
+  - resolve no disconnect allowed issue
 - Connect Social Auth to HomePage
 - Add query_parse statements to models.py
 - Display JSON data file in browser #partial
