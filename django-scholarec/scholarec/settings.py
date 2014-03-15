@@ -249,8 +249,8 @@ READABILITY_CONSUMER_SECRET  = ''
 # SOCIAL_AUTH_FACEBOOK_APP_NAMESPACE = 'scholarec'
 # SOCIAL_AUTH_FACEBOOK_EXTENDED_PERMISSIONS = ['email']
 
-SOCIAL_AUTH_TWITTER_KEY = '' # consumer key here
-SOCIAL_AUTH_TWITTER_SECRET = '' # consumer secret key here
+SOCIAL_AUTH_TWITTER_KEY = '' # consumer key
+SOCIAL_AUTH_TWITTER_SECRET = '' # consumer secret key
 
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/done/'
