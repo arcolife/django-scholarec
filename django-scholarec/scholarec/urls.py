@@ -12,22 +12,19 @@ from scholarec import views
 import Param_types.urls
 
 urlpatterns = patterns('',
-                       
                        # urls specific to this app
+                       url('', include('social.apps.django_app.urls', namespace='social')),
                        url(r'^Param_types/', include(Param_types.urls)),
-                       
                        # Uncomment the admin/doc line below to enable admin documentation:
                        #url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-                       
                        url(r'^admin/', include(admin.site.urls)),
-                       
                        # catch all, redirect to Param_types home view
+                       
                        #url(r'^.*/$', TemplateView.as_view(template_name="home.html")),
                        #(r'^$', 'Param_types.views.index'),
-                       
                        #(r'^$', TemplateView.as_view(template_name="index.html",
                        #                content_type='text/plain')),
-
+                       
                        (r'^$', views.home),
                        (r'^results/$', views.results),
                        (r'^authors/$', views.authors),
