@@ -1,0 +1,324 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  
+
+  <title>No Page Name Present, Bug a Developer!</title>
+
+  
+  
+  <script type='text/javascript'>window.mod_pagespeed_start = Number(new Date());</script><style media="screen">html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outline:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}</style>
+  <link rel="stylesheet" type="text/css" media="screen" href="http://1-ps.googleusercontent.com/x/s.google-melange.appspot.com/www.google-melange.com/soc/content/2-1-20140311/css/gsoc/A.960.css.pagespeed.cf.f3gFvCoRTN.css"/>
+  <style media="screen">body{background:url(http://1-ps.googleusercontent.com/x/s.google-melange.appspot.com/www.google-melange.com/soc/content/2-1-20140311/images/gsoc/xbody-bg.png.pagespeed.ic.H4GGWxA8fa.png) repeat;color:#000;font:13px/1.5em Arial,'Helvetica Neue',Helvetica,sans-serif}img.alignright{float:right;padding:0 0 5px 10px}img.alignleft{float:left;padding:0 10px 5px 0}.disabled{color:gray!important}::selection{background:#efac4c;color:#fff}::-moz-selection{background:#efac4c;color:#fff}</style>
+  <link rel="stylesheet" type="text/css" media="screen" href="http://1-ps.googleusercontent.com/x/s.google-melange.appspot.com/www.google-melange.com/soc/content/2-1-20140311/css/gsoc/A.typography.css.pagespeed.cf.y61jUfbnXO.css"/>
+  <link rel="stylesheet" type="text/css" media="screen" href="http://1-ps.googleusercontent.com/x/s.google-melange.appspot.com/www.google-melange.com/soc/content/2-1-20140311/css/gsoc/A.structure.css.pagespeed.cf.iG24AfetbL.css"/>
+  <style media="screen">#menu-container{margin-right:0}#main-menu{background-color:#eeab4c;float:left;margin-right:0;width:220px}#main-menu ul{margin:13px 0}#main-menu ul li{font-size:15px;font-weight:bold;margin:0 0 3px 0;padding:0}#main-menu ul li a{color:#fff;display:block;margin:0;padding:4px 0 4px 20px;text-decoration:none}#main-menu ul li a:hover{background:#e67a25}#main-menu ul li ul{margin:0;padding:0}#main-menu ul li ul li{font-size:12px;margin:0}#main-menu ul li ul li a{display:block;margin:0;padding-left:40px}#main-menu ul li ul li a:hover{background:#e67a25}#main-menu ul li ul li.active{background:#e67a25}#main-menu ul li.active{background:#e67a25}#main-menu ul li.active ul{background-color:#eeab4c}#main-menu ul li.parent.active{padding-bottom:0}#main-menu ul#main-menu-list{margin-top:0;padding-bottom:13px;padding-top:13px}</style>
+  <style media="screen">#user-message{display:block;font-size:12px;margin:0 0 15px 0;padding:10px;text-align:center}#user-message.error{background:#f7eae1;border:1px solid #f86800;-moz-box-shadow:inset 0 0 10px #f8d6c0;-webkit-box-shadow:inset 0 0 10px #f8d6c0;box-shadow:inset 0 0 10px #f8d6c0}#user-message.error table.proposal-duplicates{background:#fff;border:1px solid #f58236;margin-top:10px}#user-message.error table.proposal-duplicates th{background:#f58236;border:none;color:#fff;font-size:12px;line-height:1.2em;padding:0;text-align:center;vertical-align:middle}#user-message.error table.proposal-duplicates td{background:#faf4f1;border:1px solid #efcab2;padding:2px 4px}#user-message.error table.proposal-duplicates td a{color:#188dd0;font-weight:bold;text-decoration:none}#user-message.error table.proposal-duplicates td a:hover{text-decoration:underline}</style>
+
+  <link rel="stylesheet" type="text/css" media="screen" href="http://1-ps.googleusercontent.com/x/s.google-melange.appspot.com/www.google-melange.com/soc/content/2-1-20140311/css/gsoc/A.buttons.css.pagespeed.cf.tnBQnVMeMa.css"/>
+  <link rel="stylesheet" type="text/css" media="screen" href="http://1-ps.googleusercontent.com/x/s.google-melange.appspot.com/www.google-melange.com/soc/content/2-1-20140311/css/gsoc/A.forms.css.pagespeed.cf.aXM2G2b92i.css"/>
+  <link rel="stylesheet" type="text/css" media="screen" href="http://1-ps.googleusercontent.com/x/s.google-melange.appspot.com/www.google-melange.com/soc/content/2-1-20140311/css/gsoc/A.uniform.default.css.pagespeed.cf.joNMBv61aq.css"/>
+
+<link rel="dns-prefetch" href="//1-ps.googleusercontent.com"></head>
+<body><noscript><meta HTTP-EQUIV="refresh" content="0;url='http://www.google-melange.com/gsoc/proposal/review/student/google/gsoc2014/arcolife/5629499534213120?ModPagespeed=noscript'" /><style><!--table,div,span,font,p{display:none} --></style><div style="display:block">Please click <a href="http://www.google-melange.com/gsoc/proposal/review/student/google/gsoc2014/arcolife/5629499534213120?ModPagespeed=noscript">here</a> if you are not redirected within a few seconds.</div></noscript>
+
+  
+  
+
+  <!-- TODO: Header should get logo, link and program name from context
+  extra (google) logo will be removed after update.-->
+  <div id="bg">
+  
+    <div id="page-header">
+  <div class="container_12">
+    <div class="grid_12">
+      
+      <div id="logged-in" class="top">
+        <span>
+          Logged in with account <strong>arcshams@gmail.com</strong>  - username: <strong>arcolife</strong>
+          <a href="http://www.google-melange.com/_ah/logout?continue=https://www.google.com/accounts/Logout%3Fcontinue%3Dhttps://appengine.google.com/_ah/logout%253Fcontinue%253Dhttp://www.google-melange.com/gsoc/proposal/review/student/google/gsoc2014/arcolife/5629499534213120%26service%3Dah">(logout)</a>
+        </span>
+      </div>
+      
+      <div id="gci" class="top">
+        <a href="/gci/homepage/google/gci2013">Looking for Google Code-in? Click here!</a>
+      </div>
+      <a href="/gsoc/homepage/google/gsoc2014"><script type="text/javascript" pagespeed_no_defer="">(function(){var f=window,g=document,h="documentElement",k="scrollTop",m="prototype",n="body",p="getAttribute",q=function(a,d){var b=f;if(b.addEventListener)b.addEventListener(a,d,!1);else if(b.attachEvent)b.attachEvent("on"+a,d);else{var c=b["on"+a];b["on"+a]=function(){d.call(this);c&&c.call(this)}}};f.pagespeed=f.pagespeed||{};var r=f.pagespeed,s=function(a){this.b=[];this.a=0;this.c=!1;this.i=a;this.e=null;this.g=0;this.d=!1},t=function(a,d){var b=d[p]("pagespeed_lazy_position");if(b)return parseInt(b,0);var b=d.offsetTop,c=d.offsetParent;c&&(b+=t(a,c));b=Math.max(b,0);d.setAttribute("pagespeed_lazy_position",b);return b};
+s[m].h=function(a){u(a);var d=this;f.setTimeout(function(){var b,c,e,x=a[p]("pagespeed_lazy_src");if(null!=x){if(!(c=d.c))if(d.d||0!=a.offsetHeight&&0!=a.offsetWidth){n:if(a.currentStyle)c=a.currentStyle.position;else{if(g.defaultView&&g.defaultView.getComputedStyle&&(c=g.defaultView.getComputedStyle(a,null))){c=c.getPropertyValue("position");break n}c=a.style&&a.style.position?a.style.position:""}if("relative"==c)c=!0;else{e=0;"number"==typeof f.pageYOffset?e=f.pageYOffset:g[n]&&g[n][k]?e=g[n][k]:
+g[h]&&g[h][k]&&(e=g[h][k]);b=f.innerHeight||g[h].clientHeight||g[n].clientHeight;c=e;e=e+b;var l=a.getBoundingClientRect();l?(e=l.top-b,c=l.bottom):(l=t(d,a),b=l+a.offsetHeight,e=l-e,c=b-c);c=e<=d.a&&0<=c+d.a}}else c=!1;c&&-1!=a.src.indexOf(d.i)?(c=a.parentNode,e=a.nextSibling,c&&c.removeChild(a),a.f&&(a.getAttribute=a.f),a.removeAttribute("onload"),a.removeAttribute("pagespeed_lazy_src"),a.removeAttribute("pagespeed_lazy_replaced_functions"),c&&c.insertBefore(a,e),a.src=x):d.b.push(a)}},0)};
+s[m].loadIfVisible=s[m].h;s[m].j=function(){this.c=!0;v(this)};s[m].loadAllImages=s[m].j;var v=function(a){var d=a.b,b=d.length;a.b=[];for(var c=0;c<b;++c)a.h(d[c])},w=function(a,d){return a.a?null!=a.a(d):null!=a[p](d)};s[m].k=function(){for(var a=g.getElementsByTagName("img"),d=0;d<a.length;++d){var b=a[d];w(b,"pagespeed_lazy_src")&&u(b)}};s[m].overrideAttributeFunctions=s[m].k;
+var u=function(a){w(a,"pagespeed_lazy_replaced_functions")||(a.f=a[p],a.getAttribute=function(a){"src"==a.toLowerCase()&&w(this,"pagespeed_lazy_src")&&(a="pagespeed_lazy_src");return this.f(a)},a.setAttribute("pagespeed_lazy_replaced_functions","1"))};
+r.l=function(a,d){var b=new s(d);r.lazyLoadImages=b;q("load",function(){b.d=!0;b.c=a;b.a=200;v(b)});0!=d.indexOf("data")&&((new Image).src=d);var c=function(){if(!(b.d&&a||b.e)){var c=200;200<(new Date).getTime()-b.g&&(c=0);b.e=f.setTimeout(function(){b.g=(new Date).getTime();v(b);b.e=null},c)}};q("scroll",c);q("resize",c)};r.lazyLoadInit=r.l;})();
+
+pagespeed.lazyLoadInit(true, "//1-ps.googleusercontent.com/h/www.gstatic.com/psa/static/1.gif");
+</script><img pagespeed_lazy_src="http://1-ps.googleusercontent.com/x/s.google-melange.appspot.com/www.google-melange.com/soc/content/2-1-20140311/images/gsoc/logo/920x156xbanner-gsoc2014.png.pagespeed.ic.gdr4t3Igca.png" width="920" height="156" alt="Google Summer of Code" src="//1-ps.googleusercontent.com/h/www.gstatic.com/psa/static/1.gif" onload="pagespeed.lazyLoadImages.loadIfVisible(this);"/></a>
+    </div>
+  </div>
+</div>
+<!-- .page-header -->
+
+  
+
+  
+    <div id="main">
+      <div class="container_12">
+        <div id="menu-container" class="grid_3">
+          <div id="main-menu">
+  
+    <ul id="main-menu-list">
+      
+      <li id="menu-home"><a href="/gsoc/homepage/google/gsoc2014">Home</a></li>
+      
+      
+      
+      <li id="menu-profile"><a href="/gsoc/profile/show/google/gsoc2014">My Profile</a></li>
+      
+      
+      <li id="menu-dashboard"><a href="/gsoc/dashboard/google/gsoc2014">My Dashboard</a></li>
+      
+      
+      
+      <li id="menu-about"><a href="/gsoc/document/show/gsoc_program/google/gsoc2014/about_page">About</a></li>
+      
+      
+      
+      
+      <li id="menu-events"><a href="/gsoc/events/google/gsoc2014">Events &amp; Timeline</a></li>
+      
+      
+      <li id="menu-connect"><a href="/gsoc/document/show/gsoc_program/google/gsoc2014/about_page">Connect With Us</a></li>
+      
+      
+      <li id="menu-search"><a href="/gsoc/search/google/gsoc2014">Search</a></li>
+      
+      
+      <li id="menu-help"><a href="/gsoc/document/show/gsoc_program/google/gsoc2014/help_page">FAQ</a></li>
+      
+      
+      <li id="menu-logout"><a href="http://www.google-melange.com/_ah/logout?continue=https://www.google.com/accounts/Logout%3Fcontinue%3Dhttps://appengine.google.com/_ah/logout%253Fcontinue%253Dhttp://www.google-melange.com/gsoc/proposal/review/student/google/gsoc2014/arcolife/5629499534213120%26service%3Dah">Logout</a></li>
+      
+    </ul>
+  
+</div>
+
+
+          
+  
+
+
+<div id="user-menu-container">
+  <div id="floatMenu">
+    <div id="user-menu-inner">
+      <p class="user-menu-inner-title">Proposal Actions</p>
+      <ul id="user-menu-list">
+        
+          
+
+<li id="user-menu-item-withdraw" class="on_off">
+  <p class="user-menu-row-title">Withdraw</p>
+  
+  <span id="user-menu-question">
+    <a class="load-tooltip" href="#withdraw-tooltip" rel="#withdraw-tooltip">
+      ?
+    </a>
+  </span>
+  <div id="withdraw-tooltip" class="tooltip">
+    Choosing Yes, notifies your organization that you have withdrawn this proposal and no longer wish to participate in the program with this proposal. The proposal is withdrawn when the button displays Yes in bright orange.
+  </div>
+  
+  
+  <input type="checkbox" id=withdraw class="on_off"/>
+</li>
+
+        
+        
+  
+
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+        </div>
+        <!-- #menu-container.grid_3 -->
+
+        <div class="grid_9">
+          
+          <div class="content">
+               
+            
+
+
+
+
+
+<h1 id="project-page-title">
+  Afterthought
+</h1>
+<h2 id="project-page-student-name">
+arcolife
+
+  <div id="edit-page" class="project-edit-link">
+    <a href="/gsoc/proposal/edit/google/gsoc2014/arcolife/5629499534213120">Edit proposal</a>
+  </div>
+
+</h2>
+
+<div class="project-short">
+  
+  
+
+  <p class="description"><strong>Organization:</strong> The Fedora Project </p>
+  <p class="description"><strong>Short description:</strong> Afterthought will be the tool to run (not predefined) jobs on *nix systems.</p>
+  
+  <p class="description">
+    <strong>Additional info:</strong>
+    <a href="https://fedoraproject.org/wiki/Summer_coding_ideas_for_2014#Afterthought">https://fedoraproject.org/wiki/Summer_coding_ideas_for_2014#Afterthought</a>
+  </p>
+  
+  
+</div>
+
+<div class="project-long">
+<p style="margin: 0.4em 0px 0.5em; line-height: 19.200000762939453px; font-family: sans-serif; font-size: 13px;"><span style="font-size: small;">Afterthought will be the tool to run (not predefined) jobs on *nix systems.</span></p>
+<p style="margin: 0.4em 0px 0.5em; line-height: 19.200000762939453px; font-family: sans-serif; font-size: 13px;"><span style="font-size: small;"><br/></span></p>
+<p style="margin: 0.4em 0px 0.5em; line-height: 19.200000762939453px; font-family: sans-serif; font-size: 13px;"><span style="text-decoration: underline;"><span style="font-size: small;">The Procedure:</span></span></p>
+<p style="margin: 0.4em 0px 0.5em; line-height: 19.200000762939453px; font-family: sans-serif; font-size: 13px;"><span style="font-size: small;">As of now, It would:</span></p>
+<ul>
+<li><span style="font-size: small;">Take an URI as argument</span></li>
+<li><span style="font-size: small;">Fetch the data of the URI</span></li>
+<li><span style="font-size: small;">Strip/parse the formatted data (with instruction sets)</span></li>
+<li><span style="font-size: small;">Execute the commands/jobs.</span></li>
+</ul>
+<p style="margin: 0.4em 0px 0.5em; line-height: 19.200000762939453px; font-family: sans-serif; font-size: 13px;"><span style="font-size: small;">By operation, one can simply consider it as a <em>dynamic</em>, <em>lazy-loaded</em> shell-script.<br/> </span></p>
+<p style="margin: 0.4em 0px 0.5em; line-height: 19.200000762939453px; font-family: sans-serif; font-size: 13px;"><span style="text-decoration: underline;"><span style="font-size: small;">Current Situation</span></span></p>
+<p style="margin: 0.4em 0px 0.5em; line-height: 19.200000762939453px; font-family: sans-serif; font-size: 13px;"><span style="font-size: small;">When running a script it follows the routines put in it at the creation time (which may have been obsoleted at the time of execution).</span></p>
+<p style="margin: 0.4em 0px 0.5em; line-height: 19.200000762939453px; font-family: sans-serif; font-size: 13px;"><span style="text-decoration: underline;"><span style="font-size: small;"><br/>Proposed Improvements</span></span></p>
+<p style="margin: 0.4em 0px 0.5em; line-height: 19.200000762939453px; font-family: sans-serif; font-size: 13px;"><span style="font-size: small;"><strong>Afterthought</strong> fetches the latest routines, which would be the latest route-to-follow for the operation - without the user needing to worry about it (or get the 'latest' script).</span></p>
+<p style="margin: 0.4em 0px 0.5em; line-height: 19.200000762939453px; font-family: sans-serif; font-size: 13px;"><span style="font-size: small;"> </span></p>
+<p style="margin: 0.4em 0px 0.5em; line-height: 19.200000762939453px; font-family: sans-serif; font-size: 13px;"><span style="text-decoration: underline;"><span style="font-size: small;">End Results:</span></span></p>
+<p style="margin: 0.4em 0px 0.5em; line-height: 19.200000762939453px; font-family: sans-serif; font-size: 13px;"><span style="font-size: small;">This makes task automation and server/application deployment way easier, and takes much less effort to maintain.</span></p>
+<p style="margin: 0.4em 0px 0.5em; line-height: 19.200000762939453px; font-family: sans-serif; font-size: 13px;"><span style="font-size: small;"><br/></span></p>
+<p style="margin: 0.4em 0px 0.5em; line-height: 19.200000762939453px; font-family: sans-serif; font-size: 13px;"><em><span style="font-size: small;">*knuckles-crack*</span></em></p>
+</div>
+
+
+
+
+<div class="project-comment-container">
+  
+  <div class="project-comment-box project-comment-public-container">
+    <a name="comments"></a><h3>0 comments</h3>
+    
+  </div>
+  <a name="comment"></a>
+  <form method="post" id="form" class="form-project-comment"><div style='display:none;'><input type='hidden' id='xsrftoken' name='xsrf_token' value='uNLsxlj_sb7I5NytIipQMjoxMzk0NjU4OTc2'/></div>
+  <fieldset id="form-project-comment-fieldset" class="fieldset-project-comment">
+  <legend><span>Leave a comment</span></legend>
+  
+    
+      <div id="form_row_content" class="row content">
+        <textarea class="textarea" cols="40" id="melange-content-textarea" name="content" rows="10">
+
+</textarea><span class="note"></span>
+      </div>
+    
+  
+  <div id="form-project-comment-fieldset-button-row" class="row button-row">
+    <input id="form-project-comment-submit" type="submit" value="Submit" class="submit"/>
+  </div>
+</fieldset>
+  </form>
+</div>
+
+          </div>
+          <!-- .content -->
+        </div>
+        <!-- .grid_9 -->
+      </div>
+    <!-- .container_12 -->
+    </div>
+    <!-- .main -->
+  
+
+    
+      <!-- footer -->
+<div id="footer">
+  <div class="container_12">
+    <div class="grid_3">&nbsp;</div>
+    <!-- .grid_3 -->
+    <div class="grid_9">
+        <div class="footer-menu">
+          <ul id="footer-menu-list">
+            
+              <li id="footer-menu-about"><a href="/gsoc/document/show/gsoc_program/google/gsoc2014/about_page">About</a></li>
+            
+            
+              <li id="footer-menu-contact"><a href="/gsoc/document/show/gsoc_program/google/gsoc2014/about_page">Contact</a></li>
+            
+            
+            
+              <li id="footer-menu-googlePlus" class="social"><a href="https://plus.google.com/102168248469649733567/posts" class="gp">Google+</a></li>
+            
+            
+            
+              <li id="footer-menu-blogger" class="social"><a href="http://google-opensource.blogspot.com/" class="bl">Blogger</a></li>
+            
+            
+              <li id="footer-menu-email" class="social"><a href="mailto:google-summer-of-code-discuss@googlegroups.com" class="em">Email</a></li>
+            
+            
+              <li id="footer-menu-irc" class="social"><a href="irc://irc.freenode.net/gsoc" class="irc">IRC</a></li>
+            
+            
+              <li id="footer-menu-privacy" class="last"><a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a></li>
+            
+          </ul>
+        </div>
+        <div class="footer-meta">
+          <span class="powered">Powered by <a href="http://code.google.com/p/soc/wiki/MelangeIntro" target="_blank">
+            <img pagespeed_lazy_src="http://1-ps.googleusercontent.com/x/s.google-melange.appspot.com/www.google-melange.com/soc/content/2-1-20140311/images/gsoc/75x19xmelange.png.pagespeed.ic.fNxPQc5rb7.png" height="19" width="75" alt="Melange" src="//1-ps.googleusercontent.com/h/www.gstatic.com/psa/static/1.gif" onload="pagespeed.lazyLoadImages.loadIfVisible(this);"/>
+          </a></span>
+          Empowered by <a href="http://www.echoditto.com/" target="_blank">
+            <img pagespeed_lazy_src="http://1-ps.googleusercontent.com/x/s.google-melange.appspot.com/www.google-melange.com/soc/content/2-1-20140311/images/gsoc/70x21xechoditto.png.pagespeed.ic.zbuzlhxzHs.png" height="21" width="70" alt="EchoDitto" src="//1-ps.googleusercontent.com/h/www.gstatic.com/psa/static/1.gif" onload="pagespeed.lazyLoadImages.loadIfVisible(this);"/>
+          </a>
+          <div class="version">Version 2-1-20140311</div>
+        </div>
+    </div>
+    <!-- .grid_9 -->
+  </div>
+  <!-- .container_12 -->
+</div>
+<!-- .footer -->
+
+    
+  </div>
+  <!-- #bg -->
+
+
+
+  
+  <script type="text/javascript" pagespeed_no_defer="">pagespeed.lazyLoadImages.overrideAttributeFunctions();</script><script type="text/javascript">var xsrf_token='uNLsxlj_sb7I5NytIipQMjoxMzk0NjU4OTc2';</script>
+  <script type='text/javascript' src="http://1-ps.googleusercontent.com/x/s.google-melange.appspot.com/www.google-melange.com/js/2-1-20140311/LABjs/LAB.js.pagespeed.jm.B19eZPl8Pn.js"></script>
+  
+  <script type="text/javascript">$LAB.script("/js/2-1-20140311/json/json2.js").script("https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js").wait(function(){jQuery(function(){jQuery(document).delegate("form","submit",function(e){var form=jQuery(this);if(form.hasClass("form_disabled")){e.preventDefault();return false;}
+else{form.addClass("form_disabled").find(":submit").addClass("disabled");}
+setTimeout(function(){form.removeClass("form_disabled").find(":submit").removeClass("disabled");},3000);});});}).script("/js/2-1-20140311/jquery/jquery-cookie.js").wait().script("/soc/content/2-1-20140311/js/melange.js").wait(function(){melange.init({app_version:"2-1-20140311",css_path:"soc/content/2-1-20140311/css/gsoc",google_api_key:"AIzaSyAKLqiqqMsr0-WhX_AWemELKnCosf8NMiY",is_local:false,});}).script("/soc/content/2-1-20140311/js/melange.dependency.js").wait(function(){var dep=melange.dependency.s;var tc=function(script,context){return new melange.dependency.templateWithContext(script,context);};var css=function(css_path){return new melange.dependency.cssFile(css_path);};melange.dependency.loadScripts([[dep.melange.analytics,null,function(){melange.analytics.initAnalytics('UA-4291635-4');}],[dep.uniform,dep.jqueryui.dialog,dep.melange.action,tc("/soc/content/2-1-20140311/js/templates/modules/gsoc/proposal/review.js",{manage_toggle_buttons:[{id:"withdraw",type:"on_off",on_check_url:"/gsoc/proposal/withdraw/google/gsoc2014/arcolife/5629499534213120",on_uncheck_url:"/gsoc/proposal/resubmit/google/gsoc2014/arcolife/5629499534213120",state:"unchecked",checked_label:"Yes",unchecked_label:"No"},],})]]);});</script>
+
+</body>
+</html>
+<script pagespeed_no_defer="" type="text/javascript">(function(){var e=window,f=Math,g="round",h="performance";e.pagespeed=e.pagespeed||{};var q=e.pagespeed;
+q.getResourceTimingData=function(){if(e[h]&&(e[h].getEntries||e[h].webkitGetEntries)){for(var r=0,s=0,k=0,t=0,l=0,u=0,m=0,v=0,n=0,w=0,p=0,c={},d=e[h].getEntries?e[h].getEntries():e[h].webkitGetEntries(),b=0;b<d.length;b++){var a=d[b].duration;0<a&&(r+=a,++k,s=f.max(s,a));a=d[b].connectEnd-d[b].connectStart;0<a&&(u+=a,++m);a=d[b].domainLookupEnd-d[b].domainLookupStart;0<a&&(t+=a,++l);a=d[b].initiatorType;c[a]?++c[a]:c[a]=1;a=d[b].requestStart-d[b].fetchStart;0<a&&(w+=a,++p);a=d[b].responseStart-d[b].requestStart;
+0<a&&(v+=a,++n)}return"&afd="+(k?f[g](r/k):0)+"&nfd="+k+"&mfd="+f[g](s)+"&act="+(m?f[g](u/m):0)+"&nct="+m+"&adt="+(l?f[g](t/l):0)+"&ndt="+l+"&abt="+(p?f[g](w/p):0)+"&nbt="+p+"&attfb="+(n?f[g](v/n):0)+"&nttfb="+n+(c.css?"&rit_css="+c.css:"")+(c.link?"&rit_link="+c.link:"")+(c.script?"&rit_script="+c.script:"")+(c.img?"&rit_img="+c.img:"")}return""};q.getResourceTimingData=q.getResourceTimingData;})();
+(function(){var c=encodeURIComponent,g=window,h="performance";g.pagespeed=g.pagespeed||{};var l=g.pagespeed,m=function(f,a,d,b){this.c=f;this.a=a;this.b=d;this.d=b};l.beaconUrl="";
+var n=function(f){var a=f.c,d=g.mod_pagespeed_start,b=Number(new Date)-d,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==f.a?"load:":"unload:"),a=a+b;if("beforeunload"!=f.a||!g.mod_pagespeed_loaded){a+="&r"+f.a+"=";if(g[h]){var b=g[h].timing,e=b.navigationStart,k=b.requestStart,a=a+(b[f.a+"EventStart"]-e),a=a+("&nav="+(b.fetchStart-e)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(k-e)),a=a+("&ttfb="+(b.responseStart-
+k)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-e));g[h].navigation&&(a+="&nt="+g[h].navigation.type);e=-1;b.msFirstPaint?e=b.msFirstPaint:g.chrome&&g.chrome.loadTimes&&(e=Math.floor(1E3*g.chrome.loadTimes().firstPaintTime));e=e-k;0<=e&&(a+="&fp="+e)}else a+=b;l.getResourceTimingData&&g.parent==g&&(a+=l.getResourceTimingData());a+=g.parent!=g?"&ifr=1":"&ifr=0";"load"==f.a&&(g.mod_pagespeed_loaded=!0,(b=g.mod_pagespeed_num_resources_prefetched)&&(a+=
+"&nrp="+b),(b=g.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(d-b)));l.panelLoader&&(d=l.panelLoader.getCsiTimingsString(),""!=d&&(a+="&b_csi="+d));l.criticalCss&&(d=l.criticalCss,a+="&ccis="+d.total_critical_inlined_size+"&cces="+d.total_original_external_size+"&ccos="+d.total_overhead_size+"&ccrl="+d.num_replaced_links+"&ccul="+d.num_unreplaced_links);""!=f.b&&(a+=f.b);document.referrer&&(a+="&ref="+c(document.referrer));a+="&url="+c(f.d);l.beaconUrl=a;(new Image).src=a}};
+l.e=function(f,a,d,b){var e=new m(f,a,d,b);g.addEventListener?g.addEventListener(a,function(){n(e)},!1):g.attachEvent("on"+a,function(){n(e)})};l.addInstrumentationInit=l.e;})();
+
+pagespeed.addInstrumentationInit('http://1-ps.googleusercontent.com/beacon?org=114_1_vo', 'load', '&s_ttfb=292&id=1394658976067335', 'http://www.google-melange.com/gsoc/proposal/review/student/google/gsoc2014/arcolife/5629499534213120');</script>

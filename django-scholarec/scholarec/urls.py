@@ -13,7 +13,13 @@ import Param_types.urls
 
 urlpatterns = patterns('',
                        # urls specific to this app
-                       url('', include('social.apps.django_app.urls', namespace='social')),
+                       
+                       # social_auth (pip installed)
+                       #url(r'', include('social_auth.urls')),
+                       
+                       # social auth git example app
+                       #url('', include('social.apps.django_app.urls', namespace='social')),
+                       
                        url(r'^Param_types/', include(Param_types.urls)),
                        # Uncomment the admin/doc line below to enable admin documentation:
                        #url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
@@ -30,4 +36,14 @@ urlpatterns = patterns('',
                        (r'^authors/$', views.authors),
                        (r'^citations/$', views.citations),
                        (r'^references/$', views.references),
+
+                       #url(r'^social-auth/', 'scholarec.app.views.social_auth'),
+                       url(r'^login/$', 'scholarec.app.views.login'),
+                       url(r'^signup-email/', 'scholarec.app.views.signup_email'),
+                       url(r'^email-sent/', 'scholarec.app.views.validation_sent'),
+                       url(r'^logout/$', 'scholarec.app.views.logout'),
+                       url(r'^done/$', 'scholarec.app.views.done', name='done'),
+                       url(r'^email/$', 'scholarec.app.views.require_email', name='require_email'),
+                       url(r'', include('social.apps.django_app.urls', namespace='social')),
+
                    )
