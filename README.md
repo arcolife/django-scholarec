@@ -8,7 +8,7 @@ Recommendation of Scholarly Works
 Refer to README.md at https://github.com/arcolife/scholarec/ for instructions 
 on how to install scholarec for use in this django project.
 
-Then, go to 'django-scholarec/', and run:
+Then, go to 'scholarec-web/', and run:
 
 ```
     $ ./manage.py syncdb

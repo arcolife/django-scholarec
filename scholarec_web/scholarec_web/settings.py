@@ -1,4 +1,4 @@
-# Django settings for scholarec
+# Django settings for scholarec_web
 import os
 import sys
 
@@ -103,10 +103,10 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'scholarec.urls'
+ROOT_URLCONF = 'scholarec_web.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'scholarec.wsgi.application'
+WSGI_APPLICATION = 'scholarec_web.wsgi.application'
 
 
 TEMPLATE_DIRS = (
@@ -114,7 +114,7 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(os.path.abspath(os.path.dirname(os.path.dirname(__file__))), \
-                 'scholarec/templates')
+                 'scholarec_web/templates')
 )
 
 INSTALLED_APPS = (
@@ -128,9 +128,9 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 
-    'Param_types',
+    'search',
     'social.apps.django_app.default',
-    'scholarec.app'
+    'scholarec_web.app'
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
@@ -260,7 +260,7 @@ SOCIAL_AUTH_STORAGE = 'social.apps.django_app.default.models.DjangoStorage'
 
 # SOCIAL_AUTH_EMAIL_FORM_URL = '/signup-email'
 SOCIAL_AUTH_EMAIL_FORM_HTML = 'email_signup.html'
-SOCIAL_AUTH_EMAIL_VALIDATION_FUNCTION = 'scholarec.app.mail.send_validation'
+SOCIAL_AUTH_EMAIL_VALIDATION_FUNCTION = 'scholarec_web.app.mail.send_validation'
 SOCIAL_AUTH_EMAIL_VALIDATION_URL = '/email-sent/'
 # SOCIAL_AUTH_USERNAME_FORM_URL = '/signup-username'                       
 SOCIAL_AUTH_USERNAME_FORM_HTML = 'username_signup.html'
@@ -276,7 +276,7 @@ SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.social_auth.auth_allowed',
     'social.pipeline.social_auth.social_user',
     'social.pipeline.user.get_username',
-    'scholarec.app.pipeline.require_email',
+    'scholarec_web.app.pipeline.require_email',
     'social.pipeline.mail.mail_validation',
     'social.pipeline.user.create_user',
     'social.pipeline.social_auth.associate_user',

@@ -7,9 +7,9 @@ from django.contrib import admin
 admin.autodiscover()
 import settings
 
-from scholarec import views
+from scholarec_web import views
 # import your urls from each app here, as needed
-import Param_types.urls
+import search.urls
 
 urlpatterns = patterns('',
                        # urls specific to this app
@@ -20,14 +20,14 @@ urlpatterns = patterns('',
                        # social auth git example app
                        #url('', include('social.apps.django_app.urls', namespace='social')),
                        
-                       url(r'^Param_types/', include(Param_types.urls)),
+                       url(r'search/', include(search.urls)),
                        # Uncomment the admin/doc line below to enable admin documentation:
                        #url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
                        url(r'^admin/', include(admin.site.urls)),
-                       # catch all, redirect to Param_types home view
+                       # catch all, redirect to search home view
                        
                        #url(r'^.*/$', TemplateView.as_view(template_name="home.html")),
-                       #(r'^$', 'Param_types.views.index'),
+                       #(r'^$', 'search.views.index'),
                        #(r'^$', TemplateView.as_view(template_name="index.html",
                        #                content_type='text/plain')),
                        
@@ -37,13 +37,13 @@ urlpatterns = patterns('',
                        (r'^citations/$', views.citations),
                        (r'^references/$', views.references),
 
-                       #url(r'^social-auth/', 'scholarec.app.views.social_auth'),
-                       url(r'^login/$', 'scholarec.app.views.login'),
-                       url(r'^signup-email/', 'scholarec.app.views.signup_email'),
-                       url(r'^email-sent/', 'scholarec.app.views.validation_sent'),
-                       url(r'^logout/$', 'scholarec.app.views.logout'),
-                       url(r'^done/$', 'scholarec.app.views.done', name='done'),
-                       url(r'^email/$', 'scholarec.app.views.require_email', name='require_email'),
+                       #url(r'^social-auth/', 'scholarec_web.app.views.social_auth'),
+                       url(r'^login/$', 'scholarec_web.app.views.login'),
+                       url(r'^signup-email/', 'scholarec_web.app.views.signup_email'),
+                       url(r'^email-sent/', 'scholarec_web.app.views.validation_sent'),
+                       url(r'^logout/$', 'scholarec_web.app.views.logout'),
+                       url(r'^done/$', 'scholarec_web.app.views.done', name='done'),
+                       url(r'^email/$', 'scholarec_web.app.views.require_email', name='require_email'),
                        url(r'', include('social.apps.django_app.urls', namespace='social')),
-
-                   )
+                       
+)
