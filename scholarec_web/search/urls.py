@@ -8,6 +8,6 @@ from search import views
 urlpatterns = patterns('',
                        #(r'^$', TemplateView.as_view(template_name="home.html")),
                        #(r'^test/', TemplateView.as_view(template_name="index.html")),
-                       (r'^$', views.home),
+                       (r'^$', views.search),
                        (r'^test/$', views.test),
 )

@@ -13,21 +13,37 @@
     <!-- Add fancyBox main JS and CSS files -->
     <script type="text/javascript" src="/static/js/jquery/jquery.fancybox.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/css/jquery.fancybox.css" media="screen" />
-    <script type="text/javascript" src="/static/js/jquery/jquery.fancybox-media.js"></script>	
   </head>
+
+  <script type="text/javascript">
+    function change_icon() {
+    $(".icon-search").hide();
+    $("#loading").show();
+    }
+  </script>
+
+  <script type="text/javascript">
+    (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/client:plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+    })();
+  </script>
+
   <body>
     <div class="header" id="home">
       <div class="header_top">
 	<div class="wrap">
 	  <div class="logo">
-	    <a href="index.html"></a>
+	    <a href="/"></a>
 	  </div>	
 	  <div class="menu">
 	    <ul>
 	      <li><a href="#home" class="scroll">Home</a></li>
+	      <li><a href="#customers" class="scroll">Search</a></li>
 	      <li><a href="#features" class="scroll">Articles</a></li>
 	      <li><a href="#dashboard" class="scroll">Sample</a></li>
-	      <li><a href="#customers" class="scroll">Search</a></li>
+	      <li><a href="#about" class="scroll">About Us</a></li>
 	      <li class="login" >
 		<div id="loginContainer"><a href="#" id="loginButton"><span>Login</span></a>
 		  <div id="loginBox">                
@@ -46,16 +62,48 @@
 		      </fieldset>
 		      <span><a href="#">Forgot your password?</a></span>
 		    </form>
+		    <form action="/login/">
+		      <input type="submit" id="login" value="Or Use OpenID">
+		    </form>
 		  </div>
 		</div>
 	      </li>
-	      <div class="clear"></div>
 	    </ul>
 	  </div>							
-	  <div class="clear"></div>
 	</div>
       </div>
-    </div>			      	
+    </div>		
+
+    <!-- GOOGLE+  Sign in Button
+    <div>
+      <span id="signinButton">
+	<span
+	   class="g-signin"
+	   data-callback="signinCallback"
+	   data-clientid="CLIENT_ID_HERE"
+	   data-cookiepolicy="single_host_origin"
+	   data-requestvisibleactions="http://schemas.google.com/AddActivity"
+	   data-scope="https://www.googleapis.com/auth/plus.login">
+	</span>
+      </span>    
+      <script type="text/javascript">
+	function signinCallback(authResult) {
+	if (authResult['status']['signed_in']) {
+	// Update the app to reflect a signed in user
+	// Hide the sign-in button now that the user is authorized, for example:
+	document.getElementById('signinButton').setAttribute('style', 'display: none');
+	} else {
+	// Update the app to reflect a signed out user
+	// Possible error values:
+	//   "user_signed_out" - User is signed-out
+	//   "access_denied" - User denied access to your app
+	//   "immediate_failed" - Could not automatically log in the user
+	console.log('Sign-in state: ' + authResult['error']);
+	}
+	}
+      </script>
+    </div> -->
+    
     <div class="main">
       <div class="content">	
 	<div class="content_top">  
@@ -63,13 +111,36 @@
             <div class="banner_desc">
               <h1>Recommender System for <span>Scientific Documents</span></h1>  
               <h3>ScholaRec provides everything you need to research<br /> Start searching here</h3>
-            </div>  
-            <!--<div class="ipad">
-            	<img src="img/ipad.png" alt="" />
-            </div>-->
+            </div>
             <div class="clear"></div>
           </div>
 	</div>
+    
+        <div class="content_bottom" id="customers">
+        <div class="wrapper">  	  
+	  <div style="text-align: centre;">
+	    <form action="/results/" method="get">
+	      <input id="search" name="q" type="text" placeholder="Keywords: Author, Title, Summary..." size=50>
+	      <button class="btn btn-large btn-inverse" id="artist_submit" type="submit" onclick="change_icon()">
+		<i class="icon-search"></i>
+		<img id="loading" src="/static/img/face-loader.gif" style="display: none;">
+		Search
+	      </button>
+
+	    </form>
+            <div id='search_stats'>
+	      894 thesis, 
+	      11892 authors, 
+	      15745 papers, 
+	      18250 articles 
+            </div>          
+	  </div>
+	</div>
+	<br>
+        <h4>Our success is measured through the success of our recommendation system.</h4>	  
+      </div>
+
+    
         <div class="features" id="features">
           <div class="wrap">                             	
             <h2>Access articles, reports and documents<span> here</span></h2>
@@ -151,79 +222,55 @@
         </div>
       </div>
       
-      <div class="content_bottom" id="customers">
-        <div class="wrap">  
-	  
-          <div id='top_menu_box' class='pg_block'>
-  	    <div id='top_menu'>
-    	      <form method='get' action="http://export.arxiv.org/api/query?search_query=all:electron&start=0&max_results=10">
-    		<input class="search" name="search_query=all:" type="text" value="for now, press enter to continue" size='80'><input class="button" type="button" onclick="document.location='http://export.arxiv.org/api/query?search_query=all:electron&start=0&max_results=10'" value='Search'>
-              </form>
+      <div class="footer" id="about">
+   	<div class="wrap">
+   	  <div class="section group example">
+	    <div class="col_1_of_4 span_1_of_4 list">
+	      <h3>Overview</h3>
+	      <ul>
+		<li><a href="http://work.arcolife.in/scholarec">About Us</a></li>
+	      </ul>				   
+ 	    </div>
+ 	    <div class="col_1_of_4 span_1_of_4 list">
+	      <h3>Latest papers</h3>
+	      <ul>
+		<li><a href="#">Research Publications</a></li>
+		<li><a href="#">Periodicals</a></li>
+		<li><a href="#">Reports</a></li>
+		
+ 	    </div>
+	    <div class="col_1_of_4 span_1_of_4 list">
+	      <h3>Topics</h3>
+	      <ul>
+		<li><a href="#">Computing</a></li>
+		<li><a href="#">Physics</a></li>
+		<li><a href="#"></a></li>
+		<li><a href="#"></a></li>
+		<li><a href="#"></a></li>				   
+	      </ul>				   
+ 	    </div>
+	    <div class="col_1_of_4 span_1_of_4 list">
 	      
-	      
-              <div id='search_stats'>
-		894 thesis, 
-		11892 authors, 
-		15745 papers, 
-		18250 articles 
-              </div>          
-              <h2><span></span></h2>
-              <h4>Our success is measured through the success of our recommendation system.</h4>
-              
-	      <div class="footer">
-   		<div class="wrap">
-   		  <div class="section group example">
-		    <div class="col_1_of_4 span_1_of_4 list">
-		      <h3>Overview</h3>
-		      <ul>
-			<li><a href="http://arcolife.github.io/scholarec">About Us</a></li>
-			
-		      </ul>				   
- 		    </div>
- 		    <div class="col_1_of_4 span_1_of_4 list">
-		      <h3>Latest papers</h3>
-		      <ul>
-			<li><a href="#">Research Publications</a></li>
-			<li><a href="#">Periodicals</a></li>
-			<li><a href="#">Reports</a></li>
-			
- 		    </div>
-		    <div class="col_1_of_4 span_1_of_4 list">
-		      <h3>Topics</h3>
-		      <ul>
-			<li><a href="#">Computing</a></li>
-			<li><a href="#">Physics</a></li>
-			<li><a href="#"></a></li>
-			<li><a href="#"></a></li>
-			<li><a href="#"></a></li>				   
-		      </ul>				   
- 		    </div>
-		    <div class="col_1_of_4 span_1_of_4 list">
-		      
-		      <h3>Stay in touch</h3>
-		      <ul>
-			<li class="googleplus"><a href="https://plus.google.com/+ArchitSharma1337/" target="_blank">
-			    <img src="/static/img/googleplus.png" alt="" /> Google+</a>
-			</li>
-			<li class="twitter"><a href="http://twitter.com/arcolife" target="_blank"> 
-			    <img src="/static/img/twitter.png" alt="" /> Twitter</a>
-			</li>
-			<li><a href="#" target="_blank"> <img src="/static/img/facebook.png" alt="" /> Facebook</a></li>
-			<div class="clear"></div>
-		      </ul>
-   	 	    </div>			   
- 		  </div>
-		  <div class="clear"></div>
-		</div>
-	      </div> 
-	    </div> 
-	    <div class="copy_right">
-	      <div class="wrap">
-		<p>© 2014 Design by Abhishek Bhowmik - Archit Sharma</p>
-	      </div>
-	    </div>
-	  </div>
+	      <h3>Stay in touch</h3>
+	      <ul>
+		<li class="googleplus"><a href="https://plus.google.com/+ArchitSharma1337/" target="_blank">
+		    <img src="/static/img/googleplus.png" alt="" /> Google+</a>
+		</li>
+		<li class="twitter"><a href="http://twitter.com/arcolife" target="_blank"> 
+		    <img src="/static/img/twitter.png" alt="" /> Twitter</a>
+		</li>
+		<li><a href="http://www.facebook.com/caftlegs/" target="_blank"> <img src="/static/img/facebook.png" alt="" /> Facebook</a></li>
+		<div class="clear"></div>
+	      </ul>
+   	    </div>			   
+ 	  </div>
+	  <div class="clear"></div>
 	</div>
+      </div> 
+    </div> 
+    <div class="copy_right">
+      <div class="wrap">
+	<p>© 2014 Design by Abhishek Bhowmik - Archit Sharma</p>
       </div>
     </div>
   </body>
