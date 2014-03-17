@@ -27,9 +27,9 @@
   		
 		<div id="div-busca">
 			<div style="text-align: right;">
-				<form action="/results/" method="get">
+				<form action="/results/" method="post">
 					<input id="search" name="q" type="text" placeholder="authors, title, summary, keywords...">
-					<button class="btn btn-large btn-inverse" id="artist_submit" type="submit" onclick="change_icon()">
+					<button class="btn btn-large btn-inverse" id="artist_submit" type="submit" onclick="change_icon()" value="Search">
 						<i class="icon-search"></i>
 						<img id="loading" src="/static/img/face-loader.gif" style="display: none;">
 					</button>
