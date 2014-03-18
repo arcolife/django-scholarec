@@ -11,10 +11,16 @@ on how to install scholarec for use in this django project.
 * In order to continue, you need to have:
     
     1.     Django>=1.6 installed.
-    2.	   ElasticSearch 0.90.11 installed (official repository)
+    	   (Refer: https://www.djangoproject.com/download/ )
+    2.	   ElasticSearch(0.90.11) instance up and running. 
+    	   (Refer: http://elasticsearch.org )
 
-Then, go to 'scholarec_web/', and run:
+For first usage, run following on a Linux console:
+``` 
+    $ ./setup.sh
+```
 
+For normal usage go to 'scholarec_web/', and run:
 ```
     $ ./manage.py syncdb
     $ ./manage.py runserver
@@ -24,9 +30,9 @@ Then, go to 'scholarec_web/', and run:
 
 **FAQ**
 
-Q. How do I include scholarec package's git repo in requirements.txt?
+Q. In requirements.txt, how do I install scholarec directly from source ?
 
-A. Simply include "-e git://github.com/arcolife/scholarec.git#egg=scholarec"
+A. Simply include "-e git+https://github.com/arcolife/scholarec.git#egg=scholarec"
 
 ***
 

@@ -5,3 +5,5 @@ python-social-auth==0.1.22
 django-haystack==2.1.0
 elasticsearch==1.0.0
 pyes==0.90.1
+pyelasticsearch==0.6.1
+-e git+https://github.com/arcolife/scholarec.git#egg=scholarec
