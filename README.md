@@ -17,15 +17,18 @@ on how to install scholarec for use in this django project.
 
 For first usage, run following on a Linux console:
 ``` 
-    $ ./setup.sh
+    $ ./setup
 ```
 
-For normal usage go to 'scholarec_web/', and run:
+For normal usage, go to 'scholarec_web/', and run:
 ```
-    $ ./manage.py syncdb
     $ ./manage.py runserver
 ```
 
+- NOTE: You need to run the following when changes to DB are made:
+```
+ $ ./manage.py syncdb
+```
 ***
 
 **FAQ**

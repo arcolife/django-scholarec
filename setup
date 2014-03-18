@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# install requirements from pip
+sudo pip install -r requirements.txt --use-mirrors
+# install from package manager
+echo "What's your package manager?"
+echo "1. APT"
+echo "2. YUM"
+read opt
+
+#options=("1. APT" "2. YUM")
+#echo "${options[@]}"
+#select opt in "${options[@]}"
+#{
+#    dpkg-query -W --showformat='${Status}\n' elasticsearch1 | grep "install ok installed" && exit
+#} || {
+#    echo "NONONO" && exit
+#}
+
+if [ $opt -eq 1 ]; then
+    sudo apt-get install elasticsearch
+elif [ $opt -eq 2 ]; then
+    sudo yum install elasticsearch
+else
+    echo "Wrong choice! Program Terminated!"
+    echo "Error: Unable to continue for this very reason!"
+    exit
+fi
+
+# go to src
+cd scholarec_web/
+# add permission: executable to server script
+chmod +x manage.py
+# start server on default port 8000
+# to change port, specify port as argument
+./manage.py syncdb
+./manage.py runserver 
