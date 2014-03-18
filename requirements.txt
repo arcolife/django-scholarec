@@ -1,2 +1,7 @@
 django>=1.6
-python-social-auth
+django-social-auth==0.7.28
+django-openid-auth==0.5
+python-social-auth==0.1.22
+django-haystack==2.1.0
+elasticsearch==1.0.0
+pyes==0.90.1
