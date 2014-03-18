@@ -124,106 +124,112 @@
       </div>
     </div>
     
-    <div class="container">    
-      <div class="row-fluid">
-	<div class="span8">
+    
+    <!-- div class="container">    
+	 <div class="row-fluid">
+	   <div class="span5">
+	     <div class="hero-unit">
+	       <div class="row-fluid">
+		 <p>
+		   <a href="/static/json/results.json" title="simply rendered results">
+		     Click to view plain simple results
+		   </a>
+		 </p>
+		 <br>
+	       </div>
+	     </div>
+	   </div>
+	 </div>
+</div -->
+    
+    <script type="text/javascript">
+      $.getJSON( "/static/json/results.json", function( data ) {
+      var items = [];
+      $.each( data, function( key, val ) {
+      $.each( val, function( key, val ) {
+      items.push( "<li id='" + key + "'>" + val + "</li>" );
+      });
+      });
+      
+      $( "<ul/>", {
+      "class": "my-new-list",
+      html: items.join( "" )
+      }).appendTo( "body" );
+      
+      });
+    </script>
+    
+    
+    
+    <!-- script type="text/javascript">
+	 window.onload = function() {
+	 var fileInput = document.getElementById('fileInput');
+	 var fileDisplayArea = document.getElementById('fileDisplayArea');
+	 
+	 fileInput.addEventListener('change', function(e) {
+	 var file = fileInput.files[0];
+	 var textType = /text.*/;
+	 
+	 if (file.type.match(textType)) {
+	 var reader = new FileReader();
+	 
+	 reader.onload = function(e) {
+	 fileDisplayArea.innerText = reader.result;
+	 }
+	 
+	 reader.readAsText(file);
+	 } else {
+	 fileDisplayArea.innerText = "File not supported!"
+	 }
+	 });
+	 }		  
+	 </script>
+    
+    <div id="page-wrapper">
+      
+      <h1>Text File Reader</h1>
+      <div>
+	Select a text file: 
+	<input type="file" id="fileInput">
+      </div>
+      <pre id="fileDisplayArea"><pre>
 	  
-	  <div class="hero-unit">
-	    <div class="row-fluid">
-	      <p>
-		<a href="/static/json/results.json" title="simply rendered results">
-		  Click to view plain simple results
-		</a>
-	      </p>
-	      <p>
-		<script type="text/javascript">
-		  $.getJSON( "/static/json/test.json", function( data ) {
-		  var items = [];
-		  $.each( data, function( key, val ) {
-		  items.push( "<li id='" + key + "'>" + val + "</li>" );
-		  });
-		  
-		  $( "<ul/>", {
-		  "class": "my-new-list",
-		  html: items.join( "" )
-		  }).appendTo( "body" );
-		  });
-		</script>
-	      </p>
-	      <br>
-	      =======================================================
-
-	      <script type="text/javascript">
-		window.onload = function() {
-		var fileInput = document.getElementById('fileInput');
-		var fileDisplayArea = document.getElementById('fileDisplayArea');
-		
-		fileInput.addEventListener('change', function(e) {
-		var file = fileInput.files[0];
-		var textType = /text.*/;
-		
-		if (file.type.match(textType)) {
-		var reader = new FileReader();
-		
-		reader.onload = function(e) {
-		fileDisplayArea.innerText = reader.result;
-		}
-		
-		reader.readAsText(file);
-		} else {
-		fileDisplayArea.innerText = "File not supported!"
-		}
-		});
-		}		  
-	      </script>
-	      <div id="page-wrapper">
-		
-		<h1>Text File Reader</h1>
-		<div>
-		  Select a text file: 
-		  <input type="file" id="fileInput">
-		</div>
-		<pre id="fileDisplayArea"><pre>
-		    
-	      </div>
-
-	      <br>
-	      =======================================================
-	    </div><!--/row-fluid-->
-	  </div><!--/hero-unit-->
-	    
-	  <div class="modal fade" id="about" role="dialog" tabindex="-1" aria-hidden="true" style="display: none;">
-	    <div class="modal-dialog">
-	      <div class="modal-content">
-		<div class="modal-header">
-		  <p>About:</p>
-		</div>
-		<div class="modal-body">
-		  <p>
-		    ScholaRec is a Recommendation Engine for Scholarly Articles<br>
-		    Hosted on: http://arcolife.github.io/scholarec <br>
-		  </p>
-		</div>
-		<div class="modal-footer">
-		  <a class="btn btn-default" data-dismiss="modal">Close</a>
-		</div>
-	      </div>
-	    </div>
-	  </div>
-	  
-	</div><!--/span8-->
-      </div><!--/row-fluid-->
-    </div><!--/container-->
+    </div>
+    
     <br>
-
-    <div>
+    =======================================================
+</div--> <!--/row-fluid-->
+    
+    
+    
+    <div class="modal fade" id="about" role="dialog" tabindex="-1" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog">
+	<div class="modal-content">
+	  <div class="modal-header">
+	    <p>About:</p>
+	  </div>
+	  <div class="modal-body">
+	    <p>
+	      ScholaRec is a Recommendation Engine for Scholarly Articles<br>
+	      Hosted on: http://arcolife.github.io/scholarec <br>
+	    </p>
+	  </div>
+	  <div class="modal-footer">
+	    <a class="btn btn-default" data-dismiss="modal">Close</a>
+	  </div>
+	</div>
+      </div>
+    </div>
+    
+  </body>
+  <!-- javascript
+       ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script type="text/javascript" src="/static/js/bootstrap/bootstrap.min.js"></script>
+  
+  <!--div>
       <footer>
 	&copy; ScholaRec (2014)
       </footer>
-      <!-- javascript
-	   ================================================== -->
-      <!-- Placed at the end of the document so the pages load faster -->
-      <script type="text/javascript" src="/static/js/bootstrap/bootstrap.min.js"></script>
-    </div>
-  </body>
+  </div-->
 </html>
