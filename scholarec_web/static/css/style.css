@@ -256,13 +256,19 @@ input:focus {
 .banner_desc{
     float:center;
     width:62%;
-    padding:10em 0 3em 0;
+    padding:10em 0 10em 0;
     text-align:center;
     color: #FFF;
     font-weight:300;
     text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.31);
     font-family: 'Roboto', sans-serif;
 }
+
+.banner_desc a:link {
+    text-decoration:underline;
+    color: #FFF
+}
+
 .banner_desc h1{
     font-size:3.5em;	
 }
@@ -279,6 +285,7 @@ input:focus {
 }
 .banner_desc h3 span{
     font-weight:bold;
+    color:#13F207;
 }
 .banner_desc p{
     font-size:0.9em;
