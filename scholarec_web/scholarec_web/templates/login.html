@@ -11,6 +11,7 @@
     <li><a href="{% url 'social:begin' 'twitter' %}">Twitter (OAuth1)</a> </li>
     <li><a href="{% url 'social:begin' 'google' %}">Google (OpenId)</a> </li>
     <li><a href="{% url 'social:begin' 'github' %}">Github (OAuth2)</a> </li>  
+    <li><a href="{% url 'social:begin' 'email' %}">Email Auth</a> <br /></li>    
     <li>
       <form method="post" action="{% url 'social:complete' 'persona' %}">{% csrf_token %}
 	<input type="hidden" name="assertion" value="" />
@@ -29,11 +30,8 @@
     <li><a href="{% url 'social:begin' 'soundcloud' %}">Soundcloud OAuth2</a> </li>
     <li><a href="{% url 'social:begin' 'stackoverflow' %}">Stackoverflow OAuth2</a> </li>
     <li><a href="{% url 'social:begin' 'tumblr' %}">Tumblr OAuth1</a> </li>
-    
     <li><a href="{% url 'social:begin' 'yahoo' %}">Yahoo OpenId</a> </li>
     <li><a href="{% url 'social:begin' 'yahoo-oauth' %}">Yahoo OAuth1</a> </li>
-      
-    <li><a href="{% url 'social:begin' 'email' %}">Email Auth</a> <br /></li>
     <li><a href="{% url 'social:begin' 'username' %}">Username Auth</a> <br /></li>
     <li>
       <form action="{% url 'social:begin' 'openid' %}" method="post">{% csrf_token %}

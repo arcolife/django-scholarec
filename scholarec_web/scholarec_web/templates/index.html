@@ -47,24 +47,37 @@
 	      <li class="login" >
 		<div id="loginContainer"><a href="#" id="loginButton"><span>Login</span></a>
 		  <div id="loginBox">                
-		    <form id="loginForm">
+
+		    {% load url from future %}		    
+		    {% block content %}
+		    <form id="loginForm" action="{% url 'social:complete' "email" %}" method="post">
+		      {% csrf_token %}
 		      <fieldset id="body">
+                        <fieldset>
+			  <label for="email">Email address:</label>
+			  <input id="email" type="email" name="email" value="" />
+			</fieldset>	
 			<fieldset>
-			  <label for="email">Email Address</label>
-			  <input type="text" name="email" id="email">
+			  <label for="password">Password:</label>
+			  <input id="password" type="password" name="password" value="" />
 			</fieldset>
 			<fieldset>
-			  <label for="password">Password</label>
-			  <input type="password" name="password" id="password">
+			  <label for="fullname">Full name:</label>
+			  <input id="fullname" type="text" name="fullname" value="" />
 			</fieldset>
-			<input type="submit" id="login" value="Sign in">
-			<label for="checkbox"><input type="checkbox" id="checkbox"> <i>Remember me</i></label>
-		      </fieldset>
+			
+		      <button id="login">Signup</button>
+		      <label for="checkbox">
+			<input type="checkbox" id="checkbox"> <i>Remember me</i>
+		      </label>
+		      <br><br>
 		      <span><a href="#">Forgot your password?</a></span>
 		    </form>
+		    {% endblock %}
 		    <form action="/login/">
 		      <input type="submit" id="login" value="Or Use OpenID">
 		    </form>
+		    </fieldset>
 		  </div>
 		</div>
 	      </li>
