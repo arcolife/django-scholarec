@@ -42,3 +42,8 @@ A. Simply include "-e git+https://github.com/arcolife/scholarec.git#egg=scholare
 **LICENSE**
 
 [![GPL V3](http://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0-standalone.html)
+
+***
+
+**REFERENCES**
+- Python Social Auth - http://psa.matiasaguirre.net/docs/index.html
