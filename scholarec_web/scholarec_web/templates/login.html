@@ -2,11 +2,13 @@
 {% load url from future %}
 
 <div>
-  <a href="/" value="Click to Go Back">HomePage</a>
-</div>
-
-<div>
   {% block content %}
+
+  <div style="text-align; right">
+    <a href="/"><img src="/static/img/scholarec_icon.png" /> Go Back</a>
+    <br><br>
+  </div>
+  
   <ul>
     <li><a href="{% url 'social:begin' 'twitter' %}">Twitter (OAuth1)</a> </li>
     <li><a href="{% url 'social:begin' 'google' %}">Google (OpenId)</a> </li>

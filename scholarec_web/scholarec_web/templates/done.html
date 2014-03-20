@@ -2,8 +2,13 @@
 {% load url from future %}
 
 {% block content %}
-<p>You are logged in as {{ user.username }}!</p>
 
+<div>
+  <a href="/"><img src="/static/img/scholarec_icon.png" /> Go Back</a>
+  <br><br>
+</div>
+
+<p>You are logged in as {{ user.username }}!</p>
 <p>Associated:</p>
 <ul>
   {% for assoc in backends.associated %}
