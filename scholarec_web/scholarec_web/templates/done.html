@@ -9,12 +9,13 @@
 </div>
 
 <p>You are logged in as {{ user.username }}!</p>
+
 <p>Associated:</p>
 <ul>
   {% for assoc in backends.associated %}
-    <li>
-      {{ assoc.provider }} (<a href="{% url 'social:disconnect_individual' assoc.provider assoc.id %}" class="disconnect">Disconnect</a> or <a href="/logout/">logout</a>)
-    </li>
+  <li>
+    {{ assoc.provider }} (<a href="{% url 'social:disconnect_individual' assoc.provider assoc.id %}" class="disconnect">Disconnect</a> or <a href="/logout/">logout</a>)
+  </li>
   {% endfor %}
 </ul>
 

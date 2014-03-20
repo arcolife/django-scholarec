@@ -13,6 +13,7 @@
     <li><a href="{% url 'social:begin' 'twitter' %}">Twitter (OAuth1)</a> </li>
     <li><a href="{% url 'social:begin' 'google' %}">Google (OpenId)</a> </li>
     <li><a href="{% url 'social:begin' 'github' %}">Github (OAuth2)</a> </li>  
+    <li><a href="{% url 'social:begin' 'linkedin' %}">LinkedIn OAuth1</a> </li>
     <li><a href="{% url 'social:begin' 'email' %}">Email Auth</a> <br /></li>    
     <li>
       <form method="post" action="{% url 'social:complete' 'persona' %}">{% csrf_token %}
@@ -26,7 +27,6 @@
     <li><a href="{% url 'social:begin' 'flickr' %}">Flickr (OAuth1)</a> </li>
     <li><a href="{% url 'social:begin' 'google-oauth' %}">Google OAuth1</a> </li>
     <li><a href="{% url 'social:begin' 'google-oauth2' %}">Google OAuth2</a> </li>
-    <li><a href="{% url 'social:begin' 'linkedin' %}">LinkedIn OAuth1</a> </li>
     <li><a href="{% url 'social:begin' 'linkedin-oauth2' %}">LinkedIn OAuth2</a> </li>
     <li><a href="{% url 'social:begin' 'reddit' %}">Reddit OAuth2</a> </li>
     <li><a href="{% url 'social:begin' 'soundcloud' %}">Soundcloud OAuth2</a> </li>
