@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Get ES data</title>
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    
+    <script>
+      var url = 'http://localhost:9200/arxiv/_search?pretty=true';
+      $.getJSON(url, function(json) { 
+      $.each(json.hits.hits, function(i, profile) { 
+      console.log(i+1, profile._source); 
+      }); 
+      });
+    </script>
+    
+  </head>
+  
+
+  <body>
+    Sample 10 results from ES instance:<br><br>
+
+    <script>
+      var url = 'http://localhost:9200/arxiv/_search?pretty=true';
+      $.getJSON(url, function(json) { 
+      $.each(json.hits.hits, function(i, profile) {
+      document.write("<div>");
+	document.write("<p>");
+	  document.write("<h3>",i+1, ": ", profile._source.title,"</h3>");
+	  document.write(i+1, ": ", profile._source.authors);
+	  document.write(i+1, ": ", profile._source.summary);
+	  document.write(i+1, ": ", profile._source.ID);
+	  document.write(i+1, ": ", profile._source.published);
+	  document.write("<p>");	  
+	  document.write("<br><br>");
+	  }); 
+	  });
+    </script>
+    
+  </body>
+
+</html>

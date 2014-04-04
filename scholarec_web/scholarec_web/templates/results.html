@@ -142,7 +142,7 @@
 	 </div>
 </div -->
     
-    <script type="text/javascript">
+    <!--script type="text/javascript">
       $.getJSON( "/static/json/results.json", function( data ) {
       var items = [];
       $.each( data, function( key, val ) {
@@ -157,7 +157,7 @@
       }).appendTo( "body" );
       
       });
-    </script>
+    </script-->
     
     
     
@@ -222,6 +222,19 @@
     </div>
     
   </body>
+
+  <ul>
+  {% for item in items %}
+  <strong>{{ item.title }}</strong>
+  <li><b>Authors:</b> {{ item.authors }}</li>
+  <li><b>Summary:</b> {{ item.summary }}</li>
+  <li><b>Published:</b> {{ item.published }}</li>
+  <li><b>ID:</b> {{ item.ID }}</li>
+  <li><b>Links:</b> {{ item.links }}</li>
+  <br>
+  {% endfor %}
+  </ul>
+
   <!-- javascript
        ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->

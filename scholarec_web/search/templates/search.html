@@ -1,43 +1,39 @@
-<html>
-  <head>
-  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>ScholaRec: Scholarly Recommendation</title>
-    
-  	<link href="/static/css/style1.css" rel="stylesheet" type="text/css" media="screen"/>
-  	<script type="text/javascript" src="/static/js/jquery/jquery-1.8.3.min.js"></script>
-    
-  </head>
-  
-  <script type="text/javascript">
-  	function change_icon() {
-		$(".icon-search").hide();
-		$("#loading").show();
-  	}
-  </script>
-  
-  <body>
-  	<div id="wrapper">
-  	
-  		<div id="div-propaganda">
-  			<div class="texto">
-  				ScholaRec: A Recommendation Engine for Scholarly Articles. <br/>
-  				<span class="sub-texto">Document recommendation for real!</span>
-  			</div>
-  		</div>
-  		
-		<div id="div-busca">
-			<div style="text-align: right;">
-				<form action="/results/" method="post">{% csrf_token %}
-					<input id="search" name="q" type="text" placeholder="authors, title, summary, keywords...">
-					<button class="btn btn-large btn-inverse" id="artist_submit" type="submit" onclick="change_icon()" value="Search">
-						<i class="icon-search"></i>
-						<img id="loading" src="/static/img/face-loader.gif" style="display: none;">
-					</button>
-				</form>
-			</div>
-					
-		</div>
-	</div>
-  </body>
-  
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Search</h2>
+
+<form method="get" action=".">
+          <table>
+            {{ form.as_table }}
+            <tr>
+              <td>&nbsp;</td>
+              <td>
+                <input type="submit" value="Search">
+              </td>
+            </tr>
+          </table>
+	    
+          {% if query %}
+          <h3>Results</h3>
+	    
+          {% for result in page.object_list %}
+        <p>
+          <a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a>
+        </p>
+        {% empty %}
+          <p>No results found.</p>
+          {% endfor %}
+	    
+          {% if page.has_previous or page.has_next %}
+          <div>
+            {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
+            |
+            {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
+          </div>
+          {% endif %}
+          {% else %}
+          {# Show some example queries to run, maybe query syntax, something else? #}
+          {% endif %}
+	  </form>
+{% endblock %}

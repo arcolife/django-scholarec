@@ -33,6 +33,7 @@ urlpatterns = patterns('',
                        
                        (r'^$', views.home),
                        (r'^results/$', views.results),
+                       (r'^results_mod/$', views.results_mod),
                        (r'^authors/$', views.authors),
                        (r'^citations/$', views.citations),
                        (r'^references/$', views.references),

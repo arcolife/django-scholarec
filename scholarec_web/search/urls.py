@@ -10,4 +10,5 @@ urlpatterns = patterns('',
                        #(r'^test/', TemplateView.as_view(template_name="index.html")),
                        (r'^$', views.search),
                        (r'^test/$', views.test),
+                       (r'^search-haystack/', include('haystack.urls')),
 )

@@ -9,7 +9,7 @@ def search(request):
         print request.POST['q']
         return HttpResponseRedirect("/")
     else:
-        return render_to_response('search.html', c)
+        return render_to_response('search_default.html', c)
 
 def test(request):    
     return render_to_response('test.html', {})
