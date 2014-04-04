@@ -38,3 +38,18 @@ def __run_query(query):
     #JE = json.encoder.JSONEncoder()
     #return JE.encode(result)
     return result
+
+'''
+def __ES_query(query):
+    query = build_query(query)
+    query = json.dumps(query)
+    response = urllib.urlopen(
+        'http://localhost:9200/arxiv/docs/_search',
+        query
+    )
+    result = json.loads( response.read() )
+    pprint.pprint(result['hits']['hits'])
+    #JE = json.encoder.JSONEncoder()
+    #return JE.encode(result)
+    return result
+'''
