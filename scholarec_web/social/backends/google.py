@@ -148,4 +148,5 @@ class GoogleOpenId(OpenIdAuth):
         is unique enought to flag a single user. Email comes from schema:
         http://axschema.org/contact/email
         """
+        print details
         return details['email']

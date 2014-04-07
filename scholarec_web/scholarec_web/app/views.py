@@ -3,6 +3,7 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout as auth_logout
+from social.apps.django_app.utils import strategy
 
 from social.backends.google import GooglePlusAuth
 
@@ -26,6 +27,12 @@ def login(request):
 def done(request):
     """Login complete view, displays user data"""
     scope = ' '.join(GooglePlusAuth.DEFAULT_SCOPE)
+    #print "whazzzuppp!! Guess what? I was just requested! \n",request,"\n"
+    print "======================="
+    print dir(strategy)
+    print "======================="
+    print dir(request)
+    print "======================="
     return render_to_response('done.html', {
         'user': request.user,
         'plus_id': getattr(settings, 'SOCIAL_AUTH_GOOGLE_PLUS_KEY', None),

@@ -1,10 +1,14 @@
+from django.core.context_processors import csrf
+from django.template import RequestContext
 from django.shortcuts import render_to_response
 from haystack.query import SearchQuerySet
 from search import es_query
 from django.http import HttpResponseRedirect, HttpResponse
 
 def home(request):    
-    return render_to_response('index.html', {})
+    c = {}
+    c.update(csrf(request))
+    return render_to_response('index.html', c, RequestContext(request))
 
 def results(request):    
     query = request.GET.get('q', None)
