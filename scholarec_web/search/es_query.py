@@ -34,7 +34,8 @@ def __run_query(query):
         query
     )
     result = json.loads( response.read() )
-    pprint.pprint(result['hits']['hits'])
+    #pprint.pprint(result['hits']['hits'])
+    
     #JE = json.encoder.JSONEncoder()
     #return JE.encode(result)
     return result
