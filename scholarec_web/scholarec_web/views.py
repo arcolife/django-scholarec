@@ -28,7 +28,8 @@ def results(request):
                      'keyword' : _sources[i]['_source']['keyword'],
                      'published' : _sources[i]['_source']['published'],
                      'ID' : _sources[i]['_source']['ID'],
-                     'links' : '; '.join([j['href'] for j in _sources[i]['_source']['links']])
+                     'links' : [ {'href':j['href'],'type':j['type']} for j in _sources[i]['_source']['links']]
+                     #'links' : '; '.join([j['href'] for j in _sources[i]['_source']['links']])
                  }
             resp.append(temp)
             

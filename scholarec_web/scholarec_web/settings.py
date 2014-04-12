@@ -84,7 +84,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'sa7!a1cm3dc9vcmnty&amp;&amp;a=ibudkpk17r(^i5wk^y@u+v-fn&amp;9c'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -260,17 +260,17 @@ READABILITY_CONSUMER_SECRET  = ''
 READABILITY_CONSUMER_SECRET  = ''
 '''
 
-# SOCIAL_AUTH_FACEBOOK_APP_ID = ''
-# SOCIAL_AUTH_FACEBOOK_SECRET = ''
-# SOCIAL_AUTH_FACEBOOK_APP_NAMESPACE = ''
-# SOCIAL_AUTH_FACEBOOK_EXTENDED_PERMISSIONS = ['email']
+SOCIAL_AUTH_FACEBOOK_APP_ID = os.environ.get('FB_KEY')
+SOCIAL_AUTH_FACEBOOK_SECRET = os.environ.get('FB_SECRET')
+SOCIAL_AUTH_FACEBOOK_APP_NAMESPACE = 'scholarec'
+SOCIAL_AUTH_FACEBOOK_EXTENDED_PERMISSIONS = ['email']
 
-SOCIAL_AUTH_TWITTER_KEY         = ''
-SOCIAL_AUTH_TWITTER_SECRET      = ''
-SOCIAL_AUTH_GITHUB_KEY          = ''
-SOCIAL_AUTH_GITHUB_SECRET       = ''
-SOCIAL_AUTH_LINKEDIN_KEY        = ''
-SOCIAL_AUTH_LINKEDIN_SECRET     = ''
+SOCIAL_AUTH_TWITTER_KEY         = os.environ.get('TWITTER_KEY')
+SOCIAL_AUTH_TWITTER_SECRET      = os.environ.get('TWITTER_SECRET')
+SOCIAL_AUTH_GITHUB_KEY          = os.environ.get('GITHUB_KEY')
+SOCIAL_AUTH_GITHUB_SECRET       = os.environ.get('GITHUB_SECRET')
+SOCIAL_AUTH_LINKEDIN_KEY        = os.environ.get('LINKEDIN_KEY')
+SOCIAL_AUTH_LINKEDIN_SECRET     = os.environ.get('LINKEDIN_SECRET')
 
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/done/'

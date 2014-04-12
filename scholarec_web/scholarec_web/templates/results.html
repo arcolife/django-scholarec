@@ -221,21 +221,27 @@
       </div>
     </div>
 
-
-  <ul>
-  {% for item in items %}
-  <strong>{{ item.title }}</strong>
-  <li><b>Authors:</b> {{ item.authors }}</li>
-  <li><b>Summary:</b> {{ item.summary }}</li>
-  <li><b>Published:</b> {{ item.published }}</li>
-  <li><b>ID:</b> {{ item.ID }}</li>
-  <li><b>Links:</b> {{ item.links }}</li>
-  <br>
-  {% endfor %}
-  </ul>
-
+    <ol>
+      {% for item in items %}
+      <li><u><strong>{{ item.title }}</strong></u></li>
+      <ul>
+	<li><b>Authors:</b> {{ item.authors }}</li>
+	<li><b>Summary:</b> {{ item.summary }}</li>
+	<li><b>Published:</b> {{ item.published }}</li>
+	<li><b>ID:</b> {{ item.ID }}</li>
+	<li>
+	  <b>Links:</b>
+	  <ol>
+	    {% for link in item.links %}
+	    <li><a href={{link.href}} value="link">{{ link.type }}</a></li>
+	    {% endfor %}
+	  </ol>
+	</li>
+      </ul><hr>
+    {% endfor %}
+    </ol>
   </body>
-
+  
   <!-- javascript
        ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
