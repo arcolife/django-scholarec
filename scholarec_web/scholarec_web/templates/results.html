@@ -7,7 +7,7 @@
     <meta name="description" content="scholarec">
     <meta name="author" content="arcolife">
     
-    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/flatly/bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
       padding-top: 60px;
@@ -46,8 +46,6 @@
       pointer-events: none;
       text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
       }
-
-
       
       html {
       font-family: Helvetica, Arial, sans-serif;
@@ -105,22 +103,32 @@
 			  </script>
   </head>  
   <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="brand pull-left" href="/"><img src="/static/img/scholarec_icon.png" /></a>
-          <div class="nav-collapse collapse pull-right">
-            <ul class="nav">
-              <li class="active"><a href="/">Home</a></li>
-              <li><a href="#about" data-toggle="modal">About</a></li>
+    
+    <div class="navbar navbar-default">
+      <div class="navbar-collapse collapse navbar-responsive-collapse">
+	<ul class="nav navbar-nav">
+	  <li><a class="brand pull-left" href="/"><img src="/static/img/scholarec_icon.png" height="22px" width="95px"></a></li>
+	  <li class="active"><a href="#">Results</a></li>
+	  <li><a href="/search">Search</a></li>
+	  <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li class="divider"></li>
+              <li class="dropdown-header">Dropdown header</li>
+              <li><a href="#">Separated link</a></li>
+              <li><a href="#">One more separated link</a></li>
             </ul>
-          </div><!--/.nav-collapse -->
-        </div>
+	  </li>
+	</ul>
+	<form action="/results/" method="get" class="navbar-form navbar-left">
+	  <input  id="search" name="q" type="text" class="form-control col-lg-8" placeholder="Search">
+	</form>
+	<ul class="nav navbar-nav navbar-right">
+	  <li><a href="#about" data-toggle="modal">About Us</a></li>
+	</ul>
       </div>
     </div>
     
@@ -200,45 +208,49 @@
     =======================================================
 </div--> <!--/row-fluid-->
     
-    
-    
-    <div class="modal fade" id="about" role="dialog" tabindex="-1" aria-hidden="true" style="display: none;">
+
+    <div class="modal fade" id="about" >
       <div class="modal-dialog">
 	<div class="modal-content">
 	  <div class="modal-header">
-	    <p>About:</p>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+            <h4 class="modal-title">About This Application</h4>
 	  </div>
 	  <div class="modal-body">
 	    <p>
 	      ScholaRec is a Recommendation Engine for Scholarly Articles<br>
-	      Hosted on: http://arcolife.github.io/scholarec <br>
+	      <hr>
+	      Hosted <a href="http://arcolife.github.io/scholarec">HERE</a> <br>
 	    </p>
 	  </div>
 	  <div class="modal-footer">
-	    <a class="btn btn-default" data-dismiss="modal">Close</a>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	  </div>
 	</div>
       </div>
     </div>
-
+    
     <ol>
       {% for item in items %}
-      <li><u><strong>{{ item.title }}</strong></u></li>
-      <ul>
-	<li><b>Authors:</b> {{ item.authors }}</li>
-	<li><b>Summary:</b> {{ item.summary }}</li>
-	<li><b>Published:</b> {{ item.published }}</li>
-	<li><b>ID:</b> {{ item.ID }}</li>
-	<li>
-	  <b>Links:</b>
-	  <ol>
-	    {% for link in item.links %}
-	    <li><a href={{link.href}} value="link">{{ link.type }}</a></li>
-	    {% endfor %}
-	  </ol>
-	</li>
-      </ul><hr>
-    {% endfor %}
+      <div class="jumbotron">
+	<strong><b><li>{{ item.title }}</li></b></strong>
+	<ul>
+	  <li><b>Authors:</b> {{ item.authors }}</li>
+	  <li><b>Summary:</b> {{ item.summary }}</li>
+	  <li><b>Published:</b> {{ item.published }}</li>
+	  <li><b>ID:</b> {{ item.ID }}</li>
+	  <li>
+	    <b>Links:</b>
+	    <ol>
+	      {% for link in item.links %}
+	      <li><a href={{link.href}} value="link">{{ link.type }}</a></li>
+	      {% endfor %}
+	    </ol>
+	  </li>
+	</ul>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary btn-sm">preview</a>
+      </div>
+      {% endfor %}
     </ol>
   </body>
   

@@ -30,6 +30,9 @@ urlpatterns = patterns('',
                        #(r'^$', 'search.views.index'),
                        #(r'^$', TemplateView.as_view(template_name="index.html",
                        #                content_type='text/plain')),
+
+                       (r'^facebook/', include('django_facebook.urls')),
+                       (r'^accounts/', include('django_facebook.auth_urls')), 
                        
                        (r'^$', views.home),
                        (r'^results/$', views.results),

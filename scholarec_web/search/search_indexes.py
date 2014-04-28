@@ -2,6 +2,18 @@ import datetime
 from haystack import indexes
 from search.models import Note
 
+'''
+# post.search_indexes
+import search
+from search.core import porter_stemmer
+from post.models import Post
+
+# index used to retrieve posts using the title, content or the
+# category.
+search.register(Post, ('title', 'content','category', ),
+    indexer=porter_stemmer)
+
+'''
 
 class NoteIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)

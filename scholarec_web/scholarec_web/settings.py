@@ -130,7 +130,9 @@ INSTALLED_APPS = (
     'haystack',
     'search',
     'social.apps.django_app.default',
-    'scholarec_web.app'
+    'scholarec_web.app',
+    'django_facebook',
+
 )
 
 HAYSTACK_CONNECTIONS = {
@@ -158,6 +160,12 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.media',
     'django.contrib.messages.context_processors.messages',
     'social.apps.django_app.context_processors.backends',
+    'django.core.context_processors.tz',
+    'django.core.context_processors.request',
+    # django-facebook specific
+    'django_facebook.context_processors.facebook',
+    # and add request if you didn't do so already
+    'django.core.context_processors.request',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -232,6 +240,7 @@ AUTHENTICATION_BACKENDS = (
     'social.backends.email.EmailAuth',
     'social.backends.username.UsernameAuth',
     'django.contrib.auth.backends.ModelBackend',
+    'django_facebook.auth_backends.FacebookBackend',
 )
 
 
@@ -259,6 +268,12 @@ YAHOO_CONSUMER_SECRET        = ''
 READABILITY_CONSUMER_SECRET  = ''
 READABILITY_CONSUMER_SECRET  = ''
 '''
+
+AUTH_USER_MODEL = 'django_facebook.FacebookCustomUser'
+AUTH_PROFILE_MODULE = 'django_facebook.FacebookProfile'
+
+FACEBOOK_APP_ID = os.environ.get('FB_KEY')
+FACEBOOK_APP_SECRET = os.environ.get('FB_SECRET')
 
 SOCIAL_AUTH_FACEBOOK_APP_ID = os.environ.get('FB_KEY')
 SOCIAL_AUTH_FACEBOOK_SECRET = os.environ.get('FB_SECRET')
