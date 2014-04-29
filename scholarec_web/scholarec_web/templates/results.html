@@ -8,6 +8,8 @@
     <meta name="author" content="arcolife">
     
     <link href="/static/flatly/bootstrap.css" rel="stylesheet">
+    <link href="/static/flatly/style.css" rel="stylesheet">
+
     <style type="text/css">
       body {
       padding-top: 60px;
@@ -110,22 +112,27 @@
 	  <li><a class="brand pull-left" href="/"><img src="/static/img/scholarec_icon.png" height="22px" width="95px"></a></li>
 	  <li class="active"><a href="#">Results</a></li>
 	  <li><a href="/search">Search</a></li>
+	  <form action="/results/" method="get" class="navbar-form navbar-left">
+	    <input  id="search" name="q" type="text" class="form-control col-lg-8" placeholder="Search">	    
+	    &nbsp;
+	    <select class="multiselect" multiple="multiple" name="hair">
+              <option value="Authors">Authors</option>
+              <option value="Title">Title</option>
+              <option value="Summary">Summary</option>
+              <option value="Keywords">Keywords</option>
+              <option value="ID">ID</option>
+            </select>
+	  </form>
 	  <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sort By <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li class="divider"></li>
-              <li class="dropdown-header">Dropdown header</li>
-              <li><a href="#">Separated link</a></li>
-              <li><a href="#">One more separated link</a></li>
+              <li class="dropdown-header">Limit search-lookup:</li>
+	      <li class="divider"></li>          
+	      <li class="active"><a href="#">Relevance</a></li>
+              <li><a href="#">Date</a></li>
             </ul>
 	  </li>
 	</ul>
-	<form action="/results/" method="get" class="navbar-form navbar-left">
-	  <input  id="search" name="q" type="text" class="form-control col-lg-8" placeholder="Search">
-	</form>
 	<ul class="nav navbar-nav navbar-right">
 	  <li><a href="#about" data-toggle="modal">About Us</a></li>
 	</ul>
@@ -236,20 +243,45 @@
 	<strong><b><li>{{ item.title }}</li></b></strong>
 	<ul>
 	  <li><b>Authors:</b> {{ item.authors }}</li>
-	  <li><b>Summary:</b> {{ item.summary }}</li>
 	  <li><b>Published:</b> {{ item.published }}</li>
 	  <li><b>ID:</b> {{ item.ID }}</li>
-	  <li>
-	    <b>Links:</b>
-	    <ol>
-	      {% for link in item.links %}
-	      <li><a href={{link.href}} value="link">{{ link.type }}</a></li>
-	      {% endfor %}
-	    </ol>
-	  </li>
 	</ul>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary btn-sm">preview</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#ID{{ forloop.counter }}" data-toggle="modal" class="btn btn-primary btn-sm">preview</a>
       </div>
+      
+      <div class="modal fade" id="ID{{ forloop.counter }}" >
+	<div class="modal-dialog">
+	  <div class="modal-content">
+	    <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+              <h4 class="modal-title">{{ item.title }}</h4>
+	    </div>
+	    <div class="modal-body">
+	      <p>
+		<ul>
+		  <li><b>Authors:</b> {{ item.authors }}</li>
+		  <li><b>Summary:</b> {{ item.summary }}</li>
+		  <li><b>Published:</b> {{ item.published }}</li>
+		  <li><b>ID:</b> {{ item.ID }}</li>
+		  <li>
+		    <b>Links:</b>
+		    <ol>
+		      {% for link in item.links %}
+		      <li><a href={{link.href}} value="link">{{ link.type }}</a></li>
+		      {% endfor %}
+		    </ol>
+		  </li>
+		</ul>
+		
+	      </p>
+	    </div>
+	    <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	    </div>
+	  </div>
+	</div>
+      </div>
+      
       {% endfor %}
     </ol>
   </body>
@@ -258,6 +290,15 @@
        ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
   <script type="text/javascript" src="/static/js/bootstrap/bootstrap.min.js"></script>
+  <!--script src="/static/js/angular/angular.min.js"></script>
+  <script src="/static/js/angular/angular-animate.min.js"></script-->
+  <script src="/static/flatly/bootstrap-multiselect.js"></script>
+  <!-- Initialize the plugins: -->
+  <script type="text/javascript">
+    $(document).ready(function() {
+    $('.multiselect').multiselect();
+    });
+  </script>
   
   <!--div>
       <footer>
