@@ -36,3 +36,4 @@ nosetests.xml
 db
 db_scholarec
 *.blob
+facebook_profiles
