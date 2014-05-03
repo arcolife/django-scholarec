@@ -13,6 +13,10 @@
     <!-- Add fancyBox main JS and CSS files -->
     <script type="text/javascript" src="/static/js/jquery/jquery.fancybox.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/css/jquery.fancybox.css" media="screen" />
+
+    <link rel="stylesheet" type="text/css" href="/static/flatly/bootstrap.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/static/flatly/bootswatch.less" media="screen" />
+
   </head>
 
   <script type="text/javascript">
@@ -34,21 +38,46 @@
     <div class="header" id="home">
       <div class="header_top">
 	<div class="wrap">
-	  <div class="logo">
-	    <a href="/"></a>
-	  </div>	
-	  <div class="menu">
-	    <ul>
+	  
+	  <div class="menu" style="float: left">
+	    <ul class="nav nav-pills">
 	      <li><a href="#home" class="scroll">Home</a></li>
 	      <li><a href="#searchbar" class="scroll">Search</a></li>
 	      <li><a href="#features" class="scroll">Documents</a></li>
 	      <li><a href="#dashboard" class="scroll">Sample</a></li>
 	      <li><a href="#about" class="scroll">About Us</a></li>
+	      
+	    </ul>
+	  </div>
+	  
+	  <div class="menu">
+	    <ul class="nav nav-pills">
+	      {% if user.username %}
+	      <li class="active">
+		<a href="#">Logged In as<span class="badge">{{ user.username }}</span></a>
+	      </li>
+	      <li class="">
+		<a href="/logout/">Log<span class="badge">Out</span></a>
+	      </li>
 
-	      <li class="login" >
-		<div id="loginContainer"><a href="#" id="loginButton"><span>Login</span></a>
+	      {% else %}
+	      
+	      <li>
+		<a href="/facebook/connect/">
+		  <button type="button" class="btn btn-primary btn-sm">Login Through FaceBook</button>
+		</a>
+	      </li>
+	      
+	      <li>
+		
+		<a href="#" id="loginButton">
+		  <button type="button" id="loginButton" class="btn btn-primary btn-sm">
+		    Login
+		  </button>
+		</a>
+		<div id="loginContainer">
 		  <div id="loginBox">                
-
+		    
 		    {% load url from future %}		    
 		    {% block content %}
 		    <form id="loginForm" action="{% url 'social:complete' "email" %}" method="post">
@@ -74,16 +103,21 @@
 		      <br><br>
 		      <span><a href="#">Forgot your password?</a></span>
 		    </form>
+
 		    {% endblock %}
 		    <form action="/login/">
 		      <input type="submit" id="login" value="Or Use OpenID">
 		    </form>
+		    
 		    </fieldset>
 		  </div>
 		</div>
 	      </li>
+	      
+	      {% endif %}
 	    </ul>
 	  </div>							
+
 	</div>
       </div>
     </div>		
@@ -124,7 +158,7 @@
 	  <div class="wrap">                                  		
 	    <div class="banner_desc">
               <img src="/static/img/scholarec_logo4.png" alt="ScholaRec Logo" style="display: right;"/>                  
-	      <h1>Recommender System for <span>Scientific Documents</span></h1>  
+	      <h1>Recommender System for <br><span>Scientific Documents</span></h1>  
               <h3>ScholaRec provides everything you need to research<br /></h3>
 	      <h3>Start searching <a href="#searchbar" class="scroll"><span>here</span></a></h3>
             </div>
@@ -139,7 +173,7 @@
 	    <br><br>
 	    <form action="/results/" method="get">
 	      <input id="search" name="q" type="text" placeholder="Keywords: Author, Title, Summary..." size=50>
-	      <button class="btn btn-large btn-inverse" id="artist_submit" type="submit" onclick="change_icon()">
+	      <button class="btn btn-sm btn-inverse" id="artist_submit" type="submit" onclick="change_icon()">
 		<i class="icon-search"></i>
 		<img id="loading" src="/static/img/face-loader.gif" style="display: none;">
 		Search
@@ -218,40 +252,37 @@
         <div class="wrap">
 	  <br><br>
           <h2>Powerful <span>Search</span></h2>
-          <h4>Recommender Systems for Scientific Documents</h4>
-	  <br><br>	  
+          <h4>Recommender System for Scientific Documents</h4>
 	  <br><br>
-	  <div class="grid_1_of_1 images_1_of_2">
-            <h3>Results</h3>
-            <p>
-	      <a href="/results/" title="Click Here">
-		Sample Results from a query</a>
-	    </p>
-	  </div>
-	  
-	  <div class="grid_2_of_1 images_1_of_2">
-            <h3>Authors-Graph</h3>
-            <p>
-              <a href="/authors/" title="Click Here">
-		Sample Author graph visualization</a>
-            </p>
-	  </div>
-	  
-	  <div class="grid_1_of_2 images_1_of_2">
-            <h3>Citations</h3>
-            <p>
-              <a href="/citations/" title="Click Here">
-		Sample visualization of Citations</a>
-            </p>
-	  </div>
-	  <div class="grid_2_of_2 images_2_of_2">
-            <h3>References</h3>
-            <p>
-              <a href="/references/" title="Click Here">
-		Sample visualization of References</a>
-            </p>
-	  </div>
-	  
+	  <table class="table table-striped table-hover ">
+	    <tbody>	      
+	      <tr class="info">
+		<td>1</td>
+		<td>Results</td>
+		<td>Sample Results from a query</td>
+		<td><a href="/results?q=victory">View</a></td>
+	      </tr>
+	      <tr class="success">
+		<td>2</td>
+		<td>Authors-Graph</td>
+		<td>Sample Author graph visualization</td>
+		<td><a href="/authors/">View</a></td>
+	      </tr>
+	      <tr class="danger">
+		<td>3</td>
+		<td>Citations</td>
+		<td>Sample visualization of Citations</td>
+		<td><a href="/citations/">View</a></td>
+	      </tr>
+	      <tr class="warning">
+		<td>4</td>
+		<td>References</td>
+		<td>Sample visualization of References</td>
+		<td><a href="/references/">View</a></td>
+	      </tr>
+	    </tbody>
+	  </table> 
+
 	  <br><br>
 	  -------------<br>
 	  <a href="#about" class="scroll" style="text-decoration: underline; color:#156B04;">About Us</a>

@@ -104,14 +104,15 @@
 			  console.log(csrftoken);
 			  </script>
   </head>  
-  <body>
-    
+  <body>    
     <div class="navbar navbar-default">
+      <ul class="breadcrumb">
+	<li><a href="/">Home</a></li>
+	<li class="active">Results</li>
+      </ul>
       <div class="navbar-collapse collapse navbar-responsive-collapse">
 	<ul class="nav navbar-nav">
-	  <li><a class="brand pull-left" href="/"><img src="/static/img/scholarec_icon.png" height="22px" width="95px"></a></li>
-	  <li class="active"><a href="#">Results</a></li>
-	  <li><a href="/search">Search</a></li>
+	  <li><a class="brand pull-left" href="/"><img src="/static/img/scholarec_icon.png" height="27px" width="110px"></a></li>
 	  <form action="/results/" method="get" class="navbar-form navbar-left">
 	    <input  id="search" name="q" type="text" class="form-control col-lg-8" placeholder="Search">	    
 	    &nbsp;
@@ -246,7 +247,14 @@
 	  <li><b>Published:</b> {{ item.published }}</li>
 	  <li><b>ID:</b> {{ item.ID }}</li>
 	</ul>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#ID{{ forloop.counter }}" data-toggle="modal" class="btn btn-primary btn-sm">preview</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#ID{{ forloop.counter }}" data-toggle="modal" class="btn btn-primary btn-sm">Preview</a>
+	{% for link in item.links %}
+	{% if link.type == 'application/pdf' %}
+	<a href="{{ link.href }}" class="btn btn-primary btn-sm">Download</a>&nbsp;
+	{% elif link.type == 'text/html' %}
+	<a href="{{ link.href }}" class="btn btn-primary btn-sm">View Original</a>
+	{% endif %}
+	{% endfor %}
       </div>
       
       <div class="modal fade" id="ID{{ forloop.counter }}" >
@@ -260,14 +268,16 @@
 	      <p>
 		<ul>
 		  <li><b>Authors:</b> {{ item.authors }}</li>
-		  <li><b>Summary:</b> {{ item.summary }}</li>
+		  <li><b>Summary:</b> 
+		    <p class="text-info">{{ item.summary }}</p>
+		  </li>
 		  <li><b>Published:</b> {{ item.published }}</li>
 		  <li><b>ID:</b> {{ item.ID }}</li>
 		  <li>
 		    <b>Links:</b>
 		    <ol>
 		      {% for link in item.links %}
-		      <li><a href={{link.href}} value="link">{{ link.type }}</a></li>
+		      <li><a href="{{link.href}}" value="link">{{ link.type }}</a></li>
 		      {% endfor %}
 		    </ol>
 		  </li>

@@ -10,9 +10,11 @@ def home(request):
     c.update(csrf(request))
     return render_to_response('index.html', c, RequestContext(request))
 
+
 def results(request):    
     query = request.GET.get('q', None)
     #print SearchQuerySet().filter(content=query)
+    print request.user
     if query:
         q_resp =  es_query.__run_query(query)
         if bool(q_resp)==False:

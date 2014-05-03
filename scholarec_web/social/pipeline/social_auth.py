@@ -33,6 +33,7 @@ def social_user(strategy, uid, user=None, *args, **kwargs):
 def associate_user(strategy, uid, user=None, social=None, *args, **kwargs):
     if user and not social:
         try:
+            print "SOCIAL: ", user, ":", uid, ":", strategy.backend.name
             social = strategy.storage.user.create_social_auth(
                 user, uid, strategy.backend.name
             )

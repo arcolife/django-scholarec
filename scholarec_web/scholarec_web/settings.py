@@ -132,7 +132,7 @@ INSTALLED_APPS = (
     'social.apps.django_app.default',
     'scholarec_web.app',
     'django_facebook',
-
+    'django_extensions',
 )
 
 HAYSTACK_CONNECTIONS = {
@@ -269,16 +269,16 @@ READABILITY_CONSUMER_SECRET  = ''
 READABILITY_CONSUMER_SECRET  = ''
 '''
 
-AUTH_USER_MODEL = 'django_facebook.FacebookCustomUser'
+#AUTH_USER_MODEL = 'django_facebook.FacebookCustomUser'
 AUTH_PROFILE_MODULE = 'django_facebook.FacebookProfile'
 
-FACEBOOK_APP_ID = os.environ.get('FB_KEY')
-FACEBOOK_APP_SECRET = os.environ.get('FB_SECRET')
+FACEBOOK_APP_ID = 226953304169624 #os.environ.get('FB_KEY_L')
+FACEBOOK_APP_SECRET = '7e7cb2fc70350e055ab9f09fdeb8aa2a' #os.environ.get('FB_SECRET_L')
 
-SOCIAL_AUTH_FACEBOOK_APP_ID = os.environ.get('FB_KEY')
-SOCIAL_AUTH_FACEBOOK_SECRET = os.environ.get('FB_SECRET')
-SOCIAL_AUTH_FACEBOOK_APP_NAMESPACE = 'scholarec'
-SOCIAL_AUTH_FACEBOOK_EXTENDED_PERMISSIONS = ['email']
+SOCIAL_AUTH_FACEBOOK_APP_ID = 226953304169624 #os.environ.get('FB_KEY_L')
+SOCIAL_AUTH_FACEBOOK_SECRET = '7e7cb2fc70350e055ab9f09fdeb8aa2a' #os.environ.get('FB_SECRET_L')
+#SOCIAL_AUTH_FACEBOOK_APP_NAMESPACE = 'scholarec'
+#SOCIAL_AUTH_FACEBOOK_EXTENDED_PERMISSIONS = ['email']
 
 SOCIAL_AUTH_TWITTER_KEY         = os.environ.get('TWITTER_KEY')
 SOCIAL_AUTH_TWITTER_SECRET      = os.environ.get('TWITTER_SECRET')
@@ -350,3 +350,8 @@ LOGGING = {
 }
 
 
+
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+}
