@@ -10,75 +10,6 @@
     <link href="/static/flatly/bootstrap.css" rel="stylesheet">
     <link href="/static/flatly/style.css" rel="stylesheet">
 
-    <style type="text/css">
-      body {
-      padding-top: 60px;
-      padding-bottom: 25px;
-      }
-      p {
-      text-align: justify;
-      }
-      
-      .link {
-      fill: none;
-      stroke: #666;
-      stroke-width: 1.5px;
-      }
-      
-      #licensing {
-      fill: green;
-      }
-      
-      .link.licensing {
-      stroke: green;
-      }
-      
-      .link.resolved {
-      stroke-dasharray: 0,2 1;
-      }
-      
-      circle {
-      fill: #ccc;
-      stroke: #333;
-      stroke-width: 1.5px;
-      }
-      
-      text {
-      font: 10px sans-serif;
-      pointer-events: none;
-      text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
-      }
-      
-      html {
-      font-family: Helvetica, Arial, sans-serif;
-      font-size: 100%;
-      background: #333;
-      }
-      
-      #page-wrapper {
-      width: 600px;
-      background: #FFF;
-      padding: 1em;
-      margin: 1em auto;
-      min-height: 300px;
-      border-top: 5px solid #69c773;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.8);
-      }
-      
-      h1 {
-      margin-top: 0;
-      }
-      
-      img {
-      max-width: 100%;
-      }
-      
-      #fileDisplayArea {
-      margin-top: 2em;
-      width: 100%;
-      overflow-x: auto;
-      }      
-    </style>
     
     <link href="/static/css/bootstrap-responsive.css" rel="stylesheet">  
     
@@ -139,83 +70,6 @@
 	</ul>
       </div>
     </div>
-    
-    <br><br>
-    <!-- div class="container">    
-	 <div class="row-fluid">
-	   <div class="span5">
-	     <div class="hero-unit">
-	       <div class="row-fluid">
-		 <p>
-		   <a href="/static/json/results.json" title="simply rendered results">
-		     Click to view plain simple results
-		   </a>
-		 </p>
-		 <br>
-	       </div>
-	     </div>
-	   </div>
-	 </div>
-</div -->
-    
-    <!--script type="text/javascript">
-      $.getJSON( "/static/json/results.json", function( data ) {
-      var items = [];
-      $.each( data, function( key, val ) {
-      $.each( val, function( key, val ) {
-      items.push( "<li id='" + key + "'>" + val + "</li>" );
-      });
-      });
-      
-      $( "<ul/>", {
-      "class": "my-new-list",
-      html: items.join( "" )
-      }).appendTo( "body" );
-      
-      });
-    </script-->
-    
-    
-    
-    <!-- script type="text/javascript">
-	 window.onload = function() {
-	 var fileInput = document.getElementById('fileInput');
-	 var fileDisplayArea = document.getElementById('fileDisplayArea');
-	 
-	 fileInput.addEventListener('change', function(e) {
-	 var file = fileInput.files[0];
-	 var textType = /text.*/;
-	 
-	 if (file.type.match(textType)) {
-	 var reader = new FileReader();
-	 
-	 reader.onload = function(e) {
-	 fileDisplayArea.innerText = reader.result;
-	 }
-	 
-	 reader.readAsText(file);
-	 } else {
-	 fileDisplayArea.innerText = "File not supported!"
-	 }
-	 });
-	 }		  
-	 </script>
-    
-    <div id="page-wrapper">
-      
-      <h1>Text File Reader</h1>
-      <div>
-	Select a text file: 
-	<input type="file" id="fileInput">
-      </div>
-      <pre id="fileDisplayArea"><pre>
-	  
-    </div>
-    
-    <br>
-    =======================================================
-</div--> <!--/row-fluid-->
-    
 
     <div class="modal fade" id="about" >
       <div class="modal-dialog">
@@ -238,6 +92,7 @@
       </div>
     </div>
     
+    <div class="col-lg-9">
     <ol>
       {% for item in items %}
       <div class="jumbotron">
@@ -294,6 +149,56 @@
       
       {% endfor %}
     </ol>
+    </div>
+
+    <div class="col-lg-3">
+
+      <div class="panel panel-primary">
+	<div class="panel-heading">
+	  <h3 class="panel-title">Labels</h3>
+	</div>
+	<div class="panel-body">
+	  <span class="label label-default">math-ph</span>
+	  <span class="label label-primary">hep-th</span>
+	  <span class="label label-success">nucl-ex</span>
+	  <span class="label label-warning">quant-ph</span>
+	  <span class="label label-danger">cond-mat</span>
+	  <span class="label label-info">cs</span>
+	</div>
+      </div>      
+
+      <div class="panel panel-info">
+	<div class="panel-heading">
+	  <h3 class="panel-title">Related Terms</h3>
+	</div>
+	<div class="panel-body">
+	  <ul class="list-group">
+	    <li class="list-group-item">
+	      <span class="badge">14</span>
+	      Keyword type 1
+	    </li>
+	    <li class="list-group-item">
+	      <span class="badge">2</span>
+	      Keyword type 2
+	    </li>
+	    <li class="list-group-item">
+	      <span class="badge">1</span>
+	      Keyword type 3
+	    </li>
+	  </ul>
+	</div>
+      </div>
+
+      <div class="panel panel-success">
+	<div class="panel-heading">
+	  <h3 class="panel-title">Recommendations for you</h3>
+	</div>
+	<div class="panel-body">
+	  content
+	</div>
+      </div>
+      
+    </div>
   </body>
   
   <!-- javascript

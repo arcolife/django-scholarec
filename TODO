@@ -1,11 +1,11 @@
 - integrate django-social-auth #partial
   - integrate Twitter #done
-  - integrate Facebook #partial
-    - resolve invalid App Id
+  - integrate Facebook #done
+    - resolve invalid App Id #done
   - Integrate Fedora (FAS) #partial
     - resolve no redirect url
-  - integrate Github
-    - resolve no such page error
+  - integrate Github #done
+    - resolve no such page error #done
   - integrate Persona (Mozilla) #done
   - integrate Google #partial
     - Google OpenId #done
@@ -13,12 +13,22 @@
       - Reset permissions (currently, profile, email, google drive)
     - Google OAuth2 
       -	Resolve Error: invalid_client. Bad request.
-  - integrate sign-in page
-  - integrate session trackers / cookies
+  - integrate sign-in page #partial
+  - integrate session trackers / cookies #partial
   - resolve no disconnect allowed issue
-- Connect Social Auth to HomePage
-- Add query_parse statements to models.py
-- Display JSON data file in browser #partial
-- Refactor HTML code #partial
-- Refine database and replace mockup viz
-- Integrate Search URL box with DB
+- Connect Social Auth to HomePage #done
+- Add query_parse statements to models.py #done
+- Display JSON data file in browser #done
+- Refactor HTML code #done
+- Refine database and replace mockup viz #done
+- Integrate Search URL box with DB #done
+
+- Add scroll down arrow Gif's to homepage
+- Refactor /done UI (similar to /login)
+- add search history expand-collapse column to /results
+- integrate search history
+- add pagination UI controls to /results
+- intergrate pagination 
+- add labels/keywords panel display on /results #done
+- integrate documents labels / keywords
+- integrate recommender to /results

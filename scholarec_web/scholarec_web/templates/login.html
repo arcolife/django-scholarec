@@ -1,121 +1,244 @@
-{% extends "base.html" %}
-{% load url from future %}
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Social Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,700,500,900" rel="stylesheet" type="text/css">
+    <script src="/static/js/jquery/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/static/js/bootstrap/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="/static/flatly/bootstrap.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/static/flatly/bootswatch.less" media="screen" />
 
-<div>
-  {% block content %}
+    <link href="/static/css/bootstrap-responsive.css" rel="stylesheet">
 
-  <div style="text-align; right">
-    <a href="/"><img src="/static/img/scholarec_icon.png" /> Go Back</a>
-    <br><br>
-  </div>
+  </head>
   
-  <ul>
-    <li><a href="{% url 'social:begin' 'twitter' %}">Twitter (OAuth1)</a> </li>
-    <li><a href="{% url 'social:begin' 'google' %}">Google (OpenId)</a> </li>
-    <li><a href="{% url 'social:begin' 'github' %}">Github (OAuth2)</a> </li>  
-    <li><a href="{% url 'social:begin' 'linkedin' %}">LinkedIn OAuth1</a> </li>
-    <li><a href="{% url 'social:begin' 'email' %}">Email Auth</a></li>    
-    <li><a href="{% url 'social:begin' 'username' %}">Username Auth</a> <br /></li>
-    <li>
-      <form method="post" action="{% url 'social:complete' 'persona' %}">{% csrf_token %}
-	<input type="hidden" name="assertion" value="" />
-	<a rel="nofollow" id="persona" href="#">Persona (Mozilla Browser ID)</a>
-      </form>
-    </li>
-    <li><a href="{% url 'social:begin' 'facebook' %}">Facebook (OAuth2)</a></li>
-    <li><a href="{% url 'social:begin' 'facebook-app' %}">Facebook (App)</a> </li>
-    <li><a href="{% url 'social:begin' 'fedora' %}">Fedora (OpenId)</a> </li>
-    <li><a href="{% url 'social:begin' 'flickr' %}">Flickr (OAuth1)</a> </li>
-    <li><a href="{% url 'social:begin' 'google-oauth' %}">Google OAuth1</a> </li>
-    <li><a href="{% url 'social:begin' 'google-oauth2' %}">Google OAuth2</a> </li>
-    <li><a href="{% url 'social:begin' 'linkedin-oauth2' %}">LinkedIn OAuth2</a> </li>
-    <li><a href="{% url 'social:begin' 'reddit' %}">Reddit OAuth2</a> </li>
-    <li><a href="{% url 'social:begin' 'soundcloud' %}">Soundcloud OAuth2</a> </li>
-    <li><a href="{% url 'social:begin' 'stackoverflow' %}">Stackoverflow OAuth2</a> </li>
-    <li><a href="{% url 'social:begin' 'tumblr' %}">Tumblr OAuth1</a> </li>
-    <li><a href="{% url 'social:begin' 'yahoo' %}">Yahoo OpenId</a> </li>
-    <li><a href="{% url 'social:begin' 'yahoo-oauth' %}">Yahoo OAuth1</a> </li>
-    <li>
-      <form action="{% url 'social:begin' 'openid' %}" method="post">{% csrf_token %}
-	<div>
-	  <label for="openid_identifier">OpenId provider</label>
-	  <input id="openid_identifier" type="text" value="" name="openid_identifier" />
-	  <input type="submit" value="Login" />
-	</div>
-      </form>
-    </li>
-    <li>
-      <form action="{% url 'social:begin' 'livejournal' %}" method="post">{% csrf_token %}
-	<div>
-	  <label for="openid_lj_identifier">LiveJournal ID</label>
-	  <input id="openid_lj_identifier" type="text" value="" name="openid_lj_user" />
-	  <input type="submit" value="Login" />
-	</div>
-      </form>
-    </li>
-  </ul>    
-  {% if plus_id %}
-  
-  <form id="google-plus" method="post" action="{% url 'social:complete' 'google-plus' %}">{% csrf_token %}
-    <input id="at" type="hidden" name="access_token" value="" />
-    <input id="code" type="hidden" name="code" value="" />
-    <div id="signinButton">
-      <span class="g-signin" data-scope="{{ plus_scope }}"
-            data-clientid="{{ plus_id }}"
-            data-redirecturi="postmessage"
-            data-accesstype="offline"
-            data-cookiepolicy="single_host_origin"
-            data-callback="signInCallback">
-      </span>
+  <body>
+    
+    <ul class="breadcrumb">
+      <li><a href="/">Home</a></li>
+      <li class="active">Social</li>
+    </ul>
+    
+    <div class="navbar navbar-default">
+      <div class="navbar-header">
+	<a class="navbar-brand" href="/">ScholaRec</a>
+      </div>
+      <div class="navbar-collapse collapse navbar-responsive-collapse">
+	<ul class="nav navbar-nav">
+	  <li class="active"><a href="#">Social Login</a></li>
+	</ul>
+	<ul class="nav navbar-nav navbar-right">
+          <li><a href="#about" data-toggle="modal">About Us</a></li>
+        </ul>
+      </div>
     </div>
-  </form>
-  {% endif %}
-  {% endblock %}
-</div>
-{% block head_scripts %}
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
-<script src="https://login.persona.org/include.js" type="text/javascript"></script>
+    
+    <div class="modal fade" id="about" >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x
+	    </button>
+            <h4 class="modal-title">About This Application</h4>
+          </div>
+          <div class="modal-body">
+            <p>
+              ScholaRec is a Recommendation Engine for Scholarly Articles<br>
+              <hr>
+              Hosted <a href="http://arcolife.github.io/scholarec">HERE</a> <br>
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<!-- Mozilla Persona -->
-<script type="text/javascript">
-  $(function () {
+    {% load url from future %}
+    {% block content %}
+    
+    <div class="col-lg-6">
+      <ol>
+	<li>
+	  <a href="{% url 'social:begin' 'twitter' %}">
+	    <button type="button" class="btn btn-default">Twitter (OAuth1)
+	    </button>
+	  </a>
+	</li>
+	<li>
+	  <a href="{% url 'social:begin' 'google' %}">
+	    <button type="button" class="btn btn-primary">Google (OpenId)
+	    </button>
+	  </a>
+	</li>
+	<li>
+	  <a href="{% url 'social:begin' 'github' %}">
+	    <button type="button" class="btn btn-success">Github (OAuth2)
+	    </button>
+	  </a>
+	</li>  
+	<li>
+	  <a href="{% url 'social:begin' 'linkedin' %}">
+	    <button type="button" class="btn btn-info">LinkedIn OAuth1
+	    </button> 
+	  </a>
+	</li>
+	<li>
+	  <a href="{% url 'social:begin' 'username' %}">
+	    <button type="button" class="btn btn-danger">Username Auth
+	    </button>
+	  </a>
+	</li>
+	<li>
+	  <form method="post" action="{% url 'social:complete' 'persona' %}">{% csrf_token %}
+	    <input type="hidden" name="assertion" value="" />
+	    <a rel="nofollow" id="persona" href="#">
+	      <button type="button" class="btn btn-default">Persona (Mozilla Browser ID)
+	      </button>
+	    </a>
+	  </form>
+	</li>		
+	<li>
+	  <a href="{% url 'social:begin' 'email' %}">
+	    <button type="button" class="btn btn-warning">Email Auth
+	    </button>
+	  </a>
+	</li>
+      </ol>
+    </div>
+    
+    <div class="col-lg-6" >
+      <ul>
+	<li><a href="{% url 'social:begin' 'facebook' %}">
+	    <button type="button" class="btn btn-primary btn-sm">Facebook (OAuth2)
+	    </button></a></li>
+	<li><a href="{% url 'social:begin' 'facebook-app' %}">
+	    <button type="button" class="btn btn-primary btn-sm">Facebook (App)
+	    </button>
+	</a> </li>
+	<li><a href="{% url 'social:begin' 'fedora' %}">
+	    <button type="button" class="btn btn-primary btn-sm">Fedora (OpenId)
+	    </button></a> </li>
+	<li><a href="{% url 'social:begin' 'flickr' %}">
+	    <button type="button" class="btn btn-primary btn-sm">Flickr (OAuth1)
+	</button></a> </li>
+	<li><a href="{% url 'social:begin' 'google-oauth' %}">
+	    <button type="button" class="btn btn-primary btn-sm">Google OAuth1
+	</button></a> </li>
+	<li><a href="{% url 'social:begin' 'google-oauth2' %}">
+	    <button type="button" class="btn btn-primary btn-sm">Google OAuth2
+	</button></a></li>
+	<li><a href="{% url 'social:begin' 'linkedin-oauth2' %}">
+	    <button type="button" class="btn btn-primary btn-sm">LinkedIn OAuth2
+	</button></a> </li>
+	<li><a href="{% url 'social:begin' 'reddit' %}">
+	    <button type="button" class="btn btn-primary btn-sm">Reddit OAuth2
+	</button></a> </li>
+	<li><a href="{% url 'social:begin' 'soundcloud' %}">
+	    <button type="button" class="btn btn-primary btn-sm">Soundcloud OAuth2
+	</button></a> </li>
+	<li><a href="{% url 'social:begin' 'stackoverflow' %}">
+	    <button type="button" class="btn btn-primary btn-sm">Stackoverflow OAuth2
+	</button></a> </li>
+	<li><a href="{% url 'social:begin' 'tumblr' %}">
+	    <button type="button" class="btn btn-primary btn-sm">Tumblr OAuth1
+	</button></a> </li>
+	<li><a href="{% url 'social:begin' 'yahoo' %}">
+	    <button type="button" class="btn btn-primary btn-sm">Yahoo OpenId
+	</button></a> </li>
+	<li><a href="{% url 'social:begin' 'yahoo-oauth' %}">
+	    <button type="button" class="btn btn-primary btn-sm">Yahoo OAuth1
+	</button></a> </li>
+	<li>
+	  <form action="{% url 'social:begin' 'openid' %}" method="post">{% csrf_token %}
+	    <div>
+	      <label for="openid_identifier">OpenId provider</label>
+	      <input id="openid_identifier" type="text" value="" name="openid_identifier" />
+	      <input type="submit" value="Login" />
+	    </div>
+	  </form>
+	</li>
+	<li>
+	  <form action="{% url 'social:begin' 'livejournal' %}" method="post">{% csrf_token %}
+	    <div>
+	      <label for="openid_lj_identifier">LiveJournal ID</label>
+	      <input id="openid_lj_identifier" type="text" value="" name="openid_lj_user" />
+	      <input type="submit" value="Login" />
+	    </div>
+	  </form>
+	</li>
+      </ul>    
+      {% if plus_id %}
+      
+      <form id="google-plus" method="post" action="{% url 'social:complete' 'google-plus' %}">{% csrf_token %}
+	<input id="at" type="hidden" name="access_token" value="" />
+	<input id="code" type="hidden" name="code" value="" />
+	<div id="signinButton">
+	  <span class="g-signin" data-scope="{{ plus_scope }}"
+		data-clientid="{{ plus_id }}"
+		data-redirecturi="postmessage"
+		data-accesstype="offline"
+		data-cookiepolicy="single_host_origin"
+		data-callback="signInCallback">
+	  </span>
+	</div>
+      </form>
+      {% endif %}
+      {% endblock %}
+    </div>
+    {% block head_scripts %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
+    <script src="https://login.persona.org/include.js" type="text/javascript"></script>
+    
+    <!-- Mozilla Persona -->
+    <script type="text/javascript">
+      $(function () {
       $('#persona').on('click', function (e) {
-          e.preventDefault();
-          var self = $(this);
-
-          navigator.id.get(function (assertion) {
-              if (assertion) {
-                  self.parent('form')
-                          .find('input[type=hidden]')
-                          .attr('value', assertion)
-                          .end()
-                      .submit();
-              } else {
-                  alert('Some error occurred');
-              }
-          });
-      });
-  });
-</script>
-
-<!-- Google+ Sign In -->
-<script type="text/javascript">
-  (function () {
-    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true; po.src = 'https://plus.google.com/js/client:plusone.js?onload=start';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(po, s);
-  })();
-</script>
-
-<script type="text/javascript">
-  var signInCallback = function (result) {
-      if (result['error']) {
-        alert('An error happened:', result['error']);
+      e.preventDefault();
+      var self = $(this);
+      
+      navigator.id.get(function (assertion) {
+      if (assertion) {
+      self.parent('form')
+      .find('input[type=hidden]')
+      .attr('value', assertion)
+      .end()
+      .submit();
       } else {
-        $('#code').attr('value', result['code']);
-        $('#at').attr('value', result['access_token']);
-        $('#google-plus').submit();
+      alert('Some error occurred');
       }
-  };
-</script>
-{% endblock %}
+      });
+      });
+      });
+    </script>
+    
+    <!-- Google+ Sign In -->
+    <script type="text/javascript">
+      (function () {
+      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true; po.src = 'https://plus.google.com/js/client:plusone.js?onload=start';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(po, s);
+      })();
+    </script>
+    
+    <script type="text/javascript">
+      var signInCallback = function (result) {
+      if (result['error']) {
+      alert('An error happened:', result['error']);
+      } else {
+      $('#code').attr('value', result['code']);
+      $('#at').attr('value', result['access_token']);
+      $('#google-plus').submit();
+      }
+      };
+    </script>
+    {% endblock %}
+    
+    
+  </body>
+</html>

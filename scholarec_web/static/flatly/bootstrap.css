@@ -4369,7 +4369,7 @@ a.list-group-item.active > .badge,
   background-color: #ecf0f1;
   padding-left: 40px;
   padding-right: 29px;
-  width: 70%;
+  width: 100%;
 }
 .jumbotron h1,
 .jumbotron .h1 {
