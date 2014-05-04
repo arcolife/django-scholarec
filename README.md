@@ -10,7 +10,7 @@ on how to install scholarec for use in this django project.
 
 * In order to continue, you need to have:
     
-    1.     Django>=1.6 installed.
+    1.     Django>=1.5 installed.
     	   (Refer: https://www.djangoproject.com/download/ )
     2.	   ElasticSearch(0.90.11) instance up and running. 
     	   (Refer: http://elasticsearch.org )
