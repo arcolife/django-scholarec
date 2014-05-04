@@ -10,7 +10,6 @@
     <link href="/static/flatly/bootstrap.css" rel="stylesheet">
     <link href="/static/flatly/style.css" rel="stylesheet">
 
-    
     <link href="/static/css/bootstrap-responsive.css" rel="stylesheet">  
     
     <script type="text/javascript" src="/static/js/jquery/jquery.min.js">
@@ -91,68 +90,82 @@
 	</div>
       </div>
     </div>
-    
+
     <div class="col-lg-9">
-    <ol>
-      {% for item in items %}
-      <div class="jumbotron">
-	<strong><b><li>{{ item.title }}</li></b></strong>
-	<ul>
-	  <li><b>Authors:</b> {{ item.authors }}</li>
-	  <li><b>Published:</b> {{ item.published }}</li>
-	  <li><b>ID:</b> {{ item.ID }}</li>
-	</ul>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#ID{{ forloop.counter }}" data-toggle="modal" class="btn btn-primary btn-sm">Preview</a>
-	{% for link in item.links %}
-	{% if link.type == 'application/pdf' %}
-	<a href="{{ link.href }}" class="btn btn-primary btn-sm">Download</a>&nbsp;
-	{% elif link.type == 'text/html' %}
-	<a href="{{ link.href }}" class="btn btn-primary btn-sm">View Original</a>
-	{% endif %}
-	{% endfor %}
-      </div>
       
-      <div class="modal fade" id="ID{{ forloop.counter }}" >
-	<div class="modal-dialog">
-	  <div class="modal-content">
-	    <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-              <h4 class="modal-title">{{ item.title }}</h4>
-	    </div>
-	    <div class="modal-body">
-	      <p>
-		<ul>
-		  <li><b>Authors:</b> {{ item.authors }}</li>
-		  <li><b>Summary:</b> 
-		    <p class="text-info">{{ item.summary }}</p>
-		  </li>
-		  <li><b>Published:</b> {{ item.published }}</li>
-		  <li><b>ID:</b> {{ item.ID }}</li>
-		  <li>
-		    <b>Links:</b>
-		    <ol>
-		      {% for link in item.links %}
-		      <li><a href="{{link.href}}" value="link">{{ link.type }}</a></li>
-		      {% endfor %}
-		    </ol>
-		  </li>
-		</ul>
-		
-	      </p>
-	    </div>
-	    <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <ol>
+	{% for item in items %}
+	<div class="jumbotron">
+	  <strong><b><li>{{ item.title }}</li></b></strong>
+	  <ul>
+	    <li><b>Authors:</b> {{ item.authors }}</li>
+	    <li><b>Published:</b> {{ item.published }}</li>
+	    <li><b>ID:</b> {{ item.ID }}</li>
+	  </ul>
+	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#ID{{ forloop.counter }}" data-toggle="modal" class="btn btn-primary btn-sm">Preview</a>
+	  {% for link in item.links %}
+	  {% if link.type == 'application/pdf' %}
+	  <a href="{{ link.href }}" class="btn btn-primary btn-sm">Download</a>&nbsp;
+	  {% elif link.type == 'text/html' %}
+	  <a href="{{ link.href }}" class="btn btn-primary btn-sm">View Original</a>
+	  {% endif %}
+	  {% endfor %}
+	</div>
+	
+	<div class="modal fade" id="ID{{ forloop.counter }}" >
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+		<h4 class="modal-title">{{ item.title }}</h4>
+	      </div>
+	      <div class="modal-body">
+		<p>
+		  <ul>
+		    <li><b>Authors:</b> {{ item.authors }}</li>
+		    <li><b>Summary:</b> 
+		      <p class="text-info">{{ item.summary }}</p>
+		    </li>
+		    <li><b>Published:</b> {{ item.published }}</li>
+		    <li><b>ID:</b> {{ item.ID }}</li>
+		    <li>
+		      <b>Links:</b>
+		      <ol>
+			{% for link in item.links %}
+			<li><a href="{{link.href}}" value="link">{{ link.type }}</a></li>
+			{% endfor %}
+		      </ol>
+		    </li>
+		  </ul>
+		  
+		</p>
+	      </div>
+	      <div class="modal-footer">
+		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      </div>
 	    </div>
 	  </div>
 	</div>
+	
+	{% endfor %}
+      </ol>
+      
+      <div >
+	<ul class="pagination">
+	  <li class="disabled"><a href="#">&#171;</a></li>
+	  <li class="active"><a href="#">1</a></li>
+	  <li><a href="#">2</a></li>
+	  <li><a href="#">3</a></li>
+	  <li><a href="#">4</a></li>
+	  <li><a href="#">5</a></li>
+	  <li><a href="#">&#187;</a></li>
+	</ul>
       </div>
       
-      {% endfor %}
-    </ol>
     </div>
-
+    
     <div class="col-lg-3">
-
+      
       <div class="panel panel-primary">
 	<div class="panel-heading">
 	  <h3 class="panel-title">Labels</h3>
@@ -166,7 +179,7 @@
 	  <span class="label label-info">cs</span>
 	</div>
       </div>      
-
+      
       <div class="panel panel-info">
 	<div class="panel-heading">
 	  <h3 class="panel-title">Related Terms</h3>
@@ -188,7 +201,7 @@
 	  </ul>
 	</div>
       </div>
-
+      
       <div class="panel panel-success">
 	<div class="panel-heading">
 	  <h3 class="panel-title">Recommendations for you</h3>
@@ -196,9 +209,27 @@
 	<div class="panel-body">
 	  content
 	</div>
-      </div>
+      </div> 
       
+      <div class="panel-group" id="history">
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <h3 class="panel-title">
+	      <a data-toggle="collapse" data-parent="#history" href="#collapseOne">
+		Search History <span>[+]</span>
+	      </a>
+	    </h3>
+	  </div>
+	  <div id="collapseOne" class="panel-collapse collapse">
+	    <div class="panel-body">
+	      Panel content Panel contentPanel contentPanel contentPanel content
+	    </div>
+	  </div>
+	</div>
+      </div>
+
     </div>
+      
   </body>
   
   <!-- javascript
@@ -212,6 +243,17 @@
   <script type="text/javascript">
     $(document).ready(function() {
     $('.multiselect').multiselect();
+    });
+  </script>
+    
+  <script type="text/javascript">
+    $(".msg_head").click(function(){
+    $(this).next(".msg_body").slideToggle(100);
+    })
+    .toggle( function() {
+    $(this).children("span").text("[+]");
+    }, function() {
+    $(this).children("span").text("[-]");
     });
   </script>
   
