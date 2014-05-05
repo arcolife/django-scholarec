@@ -1,8 +1,14 @@
 # Django settings for scholarec_web
 import os
 import sys
+from django import VERSION
 
 sys.path.insert(0, '../..')
+
+CUSTOM_USER_MODEL = bool(int(os.environ.get('CUSTOM_USER_MODEL', '1')))
+MODE = os.environ.get('MODE', 'standalone')
+BASE_ROOT = os.path.abspath(
+    os.path.join(os.path.split(__file__)[0]))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -49,17 +55,18 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = os.path.join(BASE_ROOT, 'media/')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
+
 STATIC_ROOT = ''
 
 # URL prefix for static files.
@@ -67,12 +74,14 @@ STATIC_ROOT = ''
 STATIC_URL = '/static/'
 
 # Additional locations of static files
+
+#STATICFILES_ROOT =  os.path.join(BASE_ROOT, 'static/')
+
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(os.path.abspath(os.path.dirname(os.path.dirname(__file__))), 'static'),
-
+    os.path.join(os.path.abspath(os.path.dirname(os.path.dirname(__file__))), 'static/'),
 )
 
 # List of finder classes that know how to find static files in
@@ -132,6 +141,8 @@ INSTALLED_APPS = (
     'social.apps.django_app.default',
     'scholarec_web.app',
     'django_facebook',
+    'south',
+    'open_facebook',
     #'django_extensions',
 )
 
@@ -151,7 +162,8 @@ HAYSTACK_CONNECTIONS = {
 }
 '''
 
-SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
+#SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
@@ -269,6 +281,12 @@ READABILITY_CONSUMER_SECRET  = ''
 READABILITY_CONSUMER_SECRET  = ''
 '''
 
+if CUSTOM_USER_MODEL:
+    AUTH_USER_MODEL = 'django_facebook.FacebookCustomUser'
+else:
+    AUTH_USER_MODEL = 'auth.User'
+    AUTH_PROFILE_MODULE = 'member.UserProfile'
+
 #AUTH_USER_MODEL = 'django_facebook.FacebookCustomUser'
 AUTH_PROFILE_MODULE = 'django_facebook.FacebookProfile'
 
@@ -325,29 +343,51 @@ SOCIAL_AUTH_PIPELINE = (
 # the site admins on every HTTP 500 error when DEBUG=False.
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
+
+FILTERS = {
+    'require_debug_false': {
+        '()': 'django.utils.log.RequireDebugFalse'
+    }
+}
+
+MAIL_ADMINS = {
+    'level': 'ERROR',
+    'class': 'django.utils.log.AdminEmailHandler'
+}
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
-    'filters': {
-        'require_debug_false': {
-            '()': 'django.utils.log.RequireDebugFalse'
-        }
-    },
     'handlers': {
-        'mail_admins': {
-            'level': 'ERROR',
-            'filters': ['require_debug_false'],
-            'class': 'django.utils.log.AdminEmailHandler'
-        }
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
     },
     'loggers': {
+        'open_facebook': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'django_facebook': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
         'django.request': {
-            'handlers': ['mail_admins'],
+            'handlers': ['console'],
             'level': 'ERROR',
             'propagate': True,
         },
     }
 }
+LOGGING['handlers']['mail_admins'] = MAIL_ADMINS
+
+if VERSION > (1, 4, 0):
+    LOGGING['filters'] = FILTERS
+    MAIL_ADMINS['filters'] = ['require_debug_false']
+    LOGGING['handlers']['mail_admins'] = MAIL_ADMINS
 
 
 
@@ -355,3 +395,37 @@ GRAPH_MODELS = {
   'all_applications': True,
   'group_models': True,
 }
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+        }
+}
+
+if MODE == 'django_registration':
+    FACEBOOK_REGISTRATION_BACKEND = 'facebook_example.registration_backends.DjangoRegistrationDefaultBackend'
+    INSTALLED_APPS += (
+        'registration',
+    )
+    ACCOUNT_ACTIVATION_DAYS = 10
+elif MODE == 'userena':
+    '''
+    Settings based on these docs
+    http://docs.django-userena.org/en/latest/installation.html#installing-django-userena
+    '''
+    FACEBOOK_REGISTRATION_BACKEND = 'django_facebook.registration_backends.UserenaBackend'
+    AUTHENTICATION_BACKENDS = (
+        'django_facebook.auth_backends.FacebookBackend',
+        'userena.backends.UserenaAuthenticationBackend',
+        'django.contrib.auth.backends.ModelBackend',
+    )
+    EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+    LOGIN_REDIRECT_URL = '/accounts/%(username)s/'
+    LOGIN_URL = '/accounts/signin/'
+    LOGOUT_URL = '/accounts/signout/'
+    ANONYMOUS_USER_ID = 1
+    INSTALLED_APPS += (
+        'userena',
+        'guardian',
+    )

@@ -22,12 +22,12 @@
 - Refactor HTML code #done
 - Refine database and replace mockup viz #done
 - Integrate Search URL box with DB #done
-
+---------------------------------------------------
 - Add scroll down arrow Gif's to homepage
 - Refactor /done UI (similar to /login)
 - add search history expand-collapse column to /results #done
 - integrate search history
-- add pagination UI controls to /results
+- add pagination UI controls to /results #done
 - intergrate pagination 
 - add labels/keywords panel display on /results #done
 - integrate documents labels / keywords
@@ -35,3 +35,5 @@
 - add visualizations page/controls/options to UI on /results
 - integrate visualizations
 - Add carousel (slideshow) to homepage / HINT: bootstrap carousel.js
+- enable semantic search
+

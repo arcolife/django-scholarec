@@ -54,7 +54,7 @@
 	    <ul class="nav nav-pills">
 	      {% if user.username %}
 	      <li class="active">
-		<a href="#">Logged In as<span class="badge">{{ user.username }}</span></a>
+		<a href="/profile">Logged In as<span class="badge">{{ user.username }}</span></a>
 	      </li>
 	      <li class="">
 		<a href="/logout/">Log<span class="badge">Out</span></a>
@@ -171,7 +171,7 @@
 	    <br><br><br><br>
 	    <img src="/static/img/scholarec_logo.jpg" alt="ScholaRec Logo"/>
 	    <br><br>
-	    <form action="/results/" method="get">
+	    <form action="/results" method="get">
 	      <input id="search" name="q" type="text" placeholder="Keywords: Author, Title, Summary..." size=50>
 	      <button class="btn btn-sm btn-inverse" id="artist_submit" type="submit" onclick="change_icon()">
 		<i class="icon-search"></i>

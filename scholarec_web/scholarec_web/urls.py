@@ -7,6 +7,8 @@ from django.contrib import admin
 admin.autodiscover()
 import settings
 
+from django.conf import settings
+
 from scholarec_web import views
 # import your urls from each app here, as needed
 import search.urls
@@ -34,15 +36,16 @@ urlpatterns = patterns('',
                        (r'^facebook/', include('django_facebook.urls')),
                        (r'^accounts/', include('django_facebook.auth_urls')), 
                        
+                       (r'^profile/?$', views.profile),
                        (r'^$', views.home),
-                       (r'^results/$', views.results),
+                       (r'^results/?$', views.results),
                        (r'^results_mod/$', views.results_mod),
                        (r'^authors/$', views.authors),
                        (r'^citations/$', views.citations),
                        (r'^references/$', views.references),
 
                        #url(r'^social-auth/', 'scholarec_web.app.views.social_auth'),
-                       url(r'^login/$', 'scholarec_web.app.views.login'),
+                       url(r'^login/?$', 'scholarec_web.app.views.login'),
                        url(r'^signup-email/', 'scholarec_web.app.views.signup_email'),
                        url(r'^email-sent/', 'scholarec_web.app.views.validation_sent'),
                        url(r'^logout/$', 'scholarec_web.app.views.logout'),
@@ -51,3 +54,21 @@ urlpatterns = patterns('',
                        url(r'', include('social.apps.django_app.urls', namespace='social')),
                        
 )
+
+if settings.MODE == 'userena':
+    urlpatterns += patterns('',
+                            (r'^accounts/', include('userena.urls')),
+                        )
+elif settings.MODE == 'django_registration':
+    urlpatterns += patterns('',
+                            (r'^accounts/', include(
+                                'registration.backends.default.urls')),
+                        )
+    
+    
+if settings.DEBUG:
+    urlpatterns += patterns('',
+                            url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
+                                'document_root': settings.MEDIA_ROOT,
+                            }),
+    )

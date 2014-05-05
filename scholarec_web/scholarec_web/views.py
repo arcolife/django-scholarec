@@ -8,8 +8,14 @@ from django.http import HttpResponseRedirect, HttpResponse
 def home(request):    
     c = {}
     c.update(csrf(request))
-    return render_to_response('index.html', c, RequestContext(request))
+    context = RequestContext(request)
+    #print context
+    return render_to_response('index.html', c, context)
 
+def profile(request):
+     context = RequestContext(request)
+     #print graph.get('me')
+     return render_to_response('profile.html', context)
 
 def results(request):    
     query = request.GET.get('q', None)
