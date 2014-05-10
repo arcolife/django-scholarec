@@ -4,6 +4,7 @@ from django.shortcuts import render_to_response
 from haystack.query import SearchQuerySet
 from search import es_query
 from django.http import HttpResponseRedirect, HttpResponse
+import datetime
 
 def home(request):    
     c = {}
@@ -13,9 +14,16 @@ def home(request):
     return render_to_response('index.html', c, context)
 
 def profile(request):
-     context = RequestContext(request)
-     #print graph.get('me')
-     return render_to_response('profile.html', context)
+    context = RequestContext(request)
+    '''
+    #print graph.get('me')
+    graph = request.user.get_offline_graph()
+    print graph
+    if graph:
+        friends = graph.get('me/friends')
+        print friends
+    '''
+    return render_to_response('profile.html', context)
 
 def results(request):    
     query = request.GET.get('q', None)
@@ -31,10 +39,11 @@ def results(request):
         _sources = q_resp['hits']['hits']
         for i in xrange(len(_sources)):
             temp = { 'title' : _sources[i]['_source']['title'],
-                     'authors' : '; '.join([j['name'] for j in _sources[i]['_source']['authors']]),
+                     #'authors' : '; '.join([j['name'] for j in _sources[i]['_source']['authors']]),
+                     'authors' : [j['name'] for j in _sources[i]['_source']['authors']],
                      'summary' : _sources[i]['_source']['summary'],
                      'keyword' : _sources[i]['_source']['keyword'],
-                     'published' : _sources[i]['_source']['published'],
+                     'published' : datetime.datetime.strptime(_sources[i]['_source']['published'], "%Y-%m-%dT%H:%M:%SZ"),
                      'ID' : _sources[i]['_source']['ID'],
                      'links' : [ {'href':j['href'],'type':j['type']} for j in _sources[i]['_source']['links']]
                      #'links' : '; '.join([j['href'] for j in _sources[i]['_source']['links']])

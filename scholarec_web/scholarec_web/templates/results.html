@@ -98,8 +98,8 @@
 	<div class="jumbotron">
 	  <strong><b><li>{{ item.title }}</li></b></strong>
 	  <ul>
-	    <li><b>Authors:</b> {{ item.authors }}</li>
-	    <li><b>Published:</b> {{ item.published }}</li>
+	    <li><b>Authors:</b> {{ item.authors|join:"; " }}</li>
+	    <li><b>Published:</b> {{ item.published |date:"M d, Y (D)" }}</li>
 	    <li><b>ID:</b> {{ item.ID }}</li>
 	  </ul>
 	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#ID{{ forloop.counter }}" data-toggle="modal" class="btn btn-primary btn-sm">Preview</a>
@@ -122,11 +122,11 @@
 	      <div class="modal-body">
 		<p>
 		  <ul>
-		    <li><b>Authors:</b> {{ item.authors }}</li>
+		    <li><b>Authors:</b> {{ item.authors |join:"; " }}</li>
 		    <li><b>Summary:</b> 
 		      <p class="text-info">{{ item.summary }}</p>
 		    </li>
-		    <li><b>Published:</b> {{ item.published }}</li>
+		    <li><b>Published:</b> {{ item.published |date:"M d, Y (D)"  }}</li>
 		    <li><b>ID:</b> {{ item.ID }}</li>
 		    <li>
 		      <b>Links:</b>
