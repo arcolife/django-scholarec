@@ -6,6 +6,9 @@ from search import es_query
 from django.http import HttpResponseRedirect, HttpResponse
 import datetime
 
+from open_facebook import OpenFacebook
+from django_facebook.api import get_persistent_graph
+
 def home(request):    
     c = {}
     c.update(csrf(request))
@@ -14,7 +17,20 @@ def home(request):
     return render_to_response('index.html', c, context)
 
 def profile(request):
+    '''
+    from django_facebook.api import get_facebook_graph, FacebookUserConverter, \
+        get_persistent_graph, require_persistent_graph, get_user_attribute, \
+        get_profile_model
+    x = get_persistent_graph(request)
+    #print require_persistent_graph(request)
+    print dir(x.me)
+    '''
+    req = get_persistent_graph(request)
+    graph = OpenFacebook(req.access_token)
+    print "ME: ", graph.get('me')
     context = RequestContext(request)
+    #x = context['user']
+
     '''
     #print graph.get('me')
     graph = request.user.get_offline_graph()

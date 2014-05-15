@@ -33,6 +33,16 @@
 			  
 			  console.log(csrftoken);
 			  </script>
+
+    <script type="text/javascript">
+      $('#example').popover({
+      placement: 'right',
+      title: 'Like this paper?',
+      html: true,
+      content: '<button class="btn"><a href="#">Like</a></button>'
+      });
+    </script>
+
   </head>  
   <body>    
     <div class="navbar navbar-default">
@@ -47,10 +57,10 @@
 	    <input  id="search" name="q" type="text" class="form-control col-lg-8" placeholder="Search">	    
 	    &nbsp;
 	    <select class="multiselect" multiple="multiple" name="hair">
-              <option value="Authors">Authors</option>
+              <option value="Authors">Author(s)</option>
               <option value="Title">Title</option>
               <option value="Summary">Summary</option>
-              <option value="Keywords">Keywords</option>
+              <option value="Keywords">Keyword(s)</option>
               <option value="ID">ID</option>
             </select>
 	  </form>
@@ -98,7 +108,7 @@
 	<div class="jumbotron">
 	  <strong><b><li>{{ item.title }}</li></b></strong>
 	  <ul>
-	    <li><b>Authors:</b> {{ item.authors|join:"; " }}</li>
+	    <li><b>Author(s):</b> {{ item.authors|join:"; " }}</li>
 	    <li><b>Published:</b> {{ item.published |date:"M d, Y (D)" }}</li>
 	    <li><b>ID:</b> {{ item.ID }}</li>
 	  </ul>
@@ -110,6 +120,8 @@
 	  <a href="{{ link.href }}" class="btn btn-primary btn-sm">View Original</a>
 	  {% endif %}
 	  {% endfor %}
+	  <a href="#" id="example" class="btn btn-primary btn-sm" rel="popover"><img height="25px" src="/static/img/icon/icon-1/icon_heart.png"></a>	  
+	  <a href="#" id="example" class="btn btn-primary btn-sm" rel="popover"><img height="25px" src="/static/img/icon/icon-1/icon_hearted.png"></a>
 	</div>
 	
 	<div class="modal fade" id="ID{{ forloop.counter }}" >
@@ -122,7 +134,7 @@
 	      <div class="modal-body">
 		<p>
 		  <ul>
-		    <li><b>Authors:</b> {{ item.authors |join:"; " }}</li>
+		    <li><b>Author(s):</b> {{ item.authors |join:"; " }}</li>
 		    <li><b>Summary:</b> 
 		      <p class="text-info">{{ item.summary }}</p>
 		    </li>
@@ -229,7 +241,7 @@
       </div>
 
     </div>
-      
+    
   </body>
   
   <!-- javascript
@@ -237,7 +249,7 @@
   <!-- Placed at the end of the document so the pages load faster -->
   <script type="text/javascript" src="/static/js/bootstrap/bootstrap.min.js"></script>
   <!--script src="/static/js/angular/angular.min.js"></script>
-  <script src="/static/js/angular/angular-animate.min.js"></script-->
+      <script src="/static/js/angular/angular-animate.min.js"></script-->
   <script src="/static/flatly/bootstrap-multiselect.js"></script>
   <!-- Initialize the plugins: -->
   <script type="text/javascript">
@@ -245,7 +257,7 @@
     $('.multiselect').multiselect();
     });
   </script>
-    
+  
   <script type="text/javascript">
     $(".msg_head").click(function(){
     $(this).next(".msg_body").slideToggle(100);

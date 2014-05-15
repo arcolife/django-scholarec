@@ -1,5 +1,10 @@
 from django.db import models
 #from django.contrib.auth.models import User
+from django import forms
+#from uuid import uuid4 as uuid
+
+# class Article(forms.Models):
+#      pass
 
 '''
 class Note(models.Model):
@@ -23,3 +28,4 @@ class Post(models.Model):
     rating = models.IntegerField(choices=[(0, 'zero'), (1, 'one'), (2, 'two'),
         (3, 'three'), (4, 'four'), (5, 'five'), ], default=0)
 '''
+

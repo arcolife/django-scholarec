@@ -1,24 +1,35 @@
-# project wide urls
+## project wide urls
+####################
 from django.conf.urls import patterns, include, url
-#from django.views.generic.simple import redirect_to
+# from django.views.generic.simple import redirect_to
 from django.views.generic import TemplateView
 from django.core.urlresolvers import reverse
 from django.contrib import admin
 admin.autodiscover()
 import settings
-
 from django.conf import settings
 
-from scholarec_web import views
-# import your urls from each app here, as needed
+## urls from each app
+#####################
 import search.urls
+import users.urls
+from scholarec_web import views
+'''
+from haystack.forms import HighlightedModelSearchForm
+from haystack.query import SearchQuerySet
+from haystack.views import SearchView
+from search.models import Article
 
+article_sqs = SearchQuerySet().models(Article)
+'''
+# Patterns
 urlpatterns = patterns('',
                        # urls specific to this app
                        
                        # social_auth (pip installed)
                        #url(r'', include('social_auth.urls')),
-                       
+
+                       url(r'test', include(users.urls)),
                        # social auth git example app
                        #url('', include('social.apps.django_app.urls', namespace='social')),
                        

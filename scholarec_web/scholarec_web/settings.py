@@ -2,6 +2,7 @@
 import os
 import sys
 from django import VERSION
+import mongoengine
 
 sys.path.insert(0, '../..')
 
@@ -9,6 +10,8 @@ CUSTOM_USER_MODEL = bool(int(os.environ.get('CUSTOM_USER_MODEL', '1')))
 MODE = os.environ.get('MODE', 'standalone')
 BASE_ROOT = os.path.abspath(
     os.path.join(os.path.split(__file__)[0]))
+
+TEST_RUNNER = 'scholarec_web.users.tests.NoSQLTestRunner'
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -18,6 +21,25 @@ ADMINS = (
 )
 
 MANAGERS = ADMINS
+'''
+DATABASES = {
+    'default': {
+        'ENGINE': '',
+    },
+}
+'''
+SESSION_ENGINE = 'mongoengine.django.sessions' # optional
+
+_MONGODB_USER = 'arco'
+_MONGODB_PASSWD = open('/home/arcolife/temp/A_PERSONAL_projects/recommender/django-scholarec/scholarec_web/scholarec_web/key.txt','rb').readline().strip('\n')
+#os.environ.get('mongo_scholarec_p')
+_MONGODB_HOST = 'localhost'
+_MONGODB_NAME = 'scholarec'
+_MONGODB_DATABASE_HOST = \
+                         'mongodb://%s:%s@%s/%s' \
+                         % (_MONGODB_USER, _MONGODB_PASSWD, _MONGODB_HOST, _MONGODB_NAME)
+
+mongoengine.connect(_MONGODB_NAME, host=_MONGODB_DATABASE_HOST)
 
 DATABASES = {
     'default': {
@@ -141,8 +163,9 @@ INSTALLED_APPS = (
     'social.apps.django_app.default',
     'scholarec_web.app',
     'django_facebook',
-    'south',
+    #'south',
     'open_facebook',
+    'users',
     #'django_extensions',
 )
 
@@ -253,6 +276,8 @@ AUTHENTICATION_BACKENDS = (
     'social.backends.username.UsernameAuth',
     'django.contrib.auth.backends.ModelBackend',
     'django_facebook.auth_backends.FacebookBackend',
+    
+    'mongoengine.django.auth.MongoEngineBackend',
 )
 
 
