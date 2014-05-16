@@ -234,7 +234,11 @@
 	  </div>
 	  <div id="collapseOne" class="panel-collapse collapse">
 	    <div class="panel-body">
-	      Panel content Panel contentPanel contentPanel contentPanel content
+	      <ol>
+		{% for item in history reversed %}
+		<li><strong>{{ item }}</strong></li>
+		{% endfor %}
+	      </ol>
 	    </div>
 	  </div>
 	</div>

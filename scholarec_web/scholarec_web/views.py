@@ -1,11 +1,14 @@
+# django specific
 from django.core.context_processors import csrf
 from django.template import RequestContext
 from django.shortcuts import render_to_response
+from django.http import HttpResponseRedirect, HttpResponse
+# app specific
+import datetime
 from haystack.query import SearchQuerySet
 from search import es_query
-from django.http import HttpResponseRedirect, HttpResponse
-import datetime
-
+from users import control
+#from users.models import History
 from open_facebook import OpenFacebook
 from django_facebook.api import get_persistent_graph
 
@@ -44,8 +47,13 @@ def profile(request):
 def results(request):    
     query = request.GET.get('q', None)
     #print SearchQuerySet().filter(content=query)
-    print request.user
+    #print "IN RESULTS: ", request.user #remember, user is an object
     if query:
+        # add to search history
+        history = control.add_to_history(query, str(request.user))
+        if len(history) > 5:
+            history = history[-5:]
+
         q_resp =  es_query.__run_query(query)
         if bool(q_resp)==False:
             return HttpResponse('No results found! Go back')
@@ -66,7 +74,7 @@ def results(request):
                  }
             resp.append(temp)
             
-        return render_to_response('results.html', { 'items' : resp })
+        return render_to_response('results.html', { 'items' : resp, 'history' : history })
     else:
         #return HttpResponse("No Query Sent!")
         return HttpResponseRedirect('/search/')
