@@ -1,3 +1,6 @@
+TODO
+===
+
 - integrate django-social-auth 
   - [x] integrate Twitter0
   - [x] integrate Facebook 
