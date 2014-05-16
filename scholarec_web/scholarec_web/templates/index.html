@@ -161,6 +161,10 @@
 	      <h1>Recommender System for <br><span>Scientific Documents</span></h1>  
               <h3>ScholaRec provides everything you need to research<br /></h3>
 	      <h3>Start searching <a href="#searchbar" class="scroll"><span>here</span></a></h3>
+	      <!-- Codes by HTML.am -->
+	      <!--<marquee behavior="scroll" direction="down">
+		<img src="http://www.html.am/images/html-codes/marquees/arrow-down.gif" width="32" height="32" alt="Arrow pointing down" />
+	      </marquee>-->
             </div>
 	  </div>
 	</div>
@@ -171,7 +175,7 @@
 	    <br><br><br><br>
 	    <img src="/static/img/scholarec_logo.jpg" alt="ScholaRec Logo"/>
 	    <br><br>
-	    <form action="/results" method="get">
+	    <form action="/results/1" method="get">
 	      <input id="search" name="q" type="text" placeholder="Keywords: Author, Title, Summary..." size=50>
 	      <button class="btn btn-sm btn-inverse" id="artist_submit" type="submit" onclick="change_icon()">
 		<i class="icon-search"></i>
@@ -260,7 +264,7 @@
 		<td>1</td>
 		<td>Results</td>
 		<td>Sample Results from a query</td>
-		<td><a href="/results?q=victory">View</a></td>
+		<td><a href="/results/1?q=victory">View</a></td>
 	      </tr>
 	      <tr class="success">
 		<td>2</td>

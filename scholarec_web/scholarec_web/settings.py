@@ -166,6 +166,7 @@ INSTALLED_APPS = (
     #'south',
     'open_facebook',
     'users',
+    #'bootstrap_pagination',
     #'django_extensions',
 )
 
@@ -196,10 +197,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.messages.context_processors.messages',
     'social.apps.django_app.context_processors.backends',
     'django.core.context_processors.tz',
-    'django.core.context_processors.request',
     # django-facebook specific
     'django_facebook.context_processors.facebook',
-    # and add request if you didn't do so already
+    # and add request if you didn't do so already    
     'django.core.context_processors.request',
 )
 

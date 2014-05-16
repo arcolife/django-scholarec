@@ -49,7 +49,7 @@ urlpatterns = patterns('',
                        
                        (r'^profile/?$', views.profile),
                        (r'^$', views.home),
-                       (r'^results/?$', views.results),
+                       (r'^results/(?P<page>[\w.@+-]+)/?$', views.results,),
                        (r'^results_mod/$', views.results_mod),
                        (r'^authors/$', views.authors),
                        (r'^citations/$', views.citations),

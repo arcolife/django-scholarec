@@ -1,4 +1,4 @@
-import urllib2 as urllib
+import urllib
 import json
 import pprint
 
@@ -26,12 +26,25 @@ def build_query(search_term):
     
     return q
 
-def __run_query(query):
-    query = build_query(query)
-    query = json.dumps(query)
+def __run_query(query, **kwargs):
+    #query = build_query(str(query))
+    #query = json.dumps(query)
+    kwargs['q'] = query
+    args = kwargs.keys()
+    if 'search_size' in args:
+        kwargs['size'] = kwargs.pop('search_size')
+    else:
+        kwargs['size'] = 10
+    if 'search_from' in args:
+        kwargs['from'] = kwargs.pop('search_from')
+    else:
+        kwargs['from'] = 0
+    #query = '?q='+query+'&'
+    query = urllib.urlencode(kwargs)
+    #for key, value in kwargs.items():
+    #    query+=key+'='+str(value)+'&'
     response = urllib.urlopen(
-        'http://localhost:9200/arxiv/docs/_search',
-        query
+        'http://localhost:9200/arxiv/docs/_search?' + query
     )
     result = json.loads( response.read() )
     #pprint.pprint(result['hits']['hits'])

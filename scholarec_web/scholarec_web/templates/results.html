@@ -10,6 +10,8 @@
     <link href="/static/flatly/bootstrap.css" rel="stylesheet">
     <link href="/static/flatly/style.css" rel="stylesheet">
 
+    <link href="/static/flatly/style.less" type="text/css" rel="stylesheet">
+
     <link href="/static/css/bootstrap-responsive.css" rel="stylesheet">  
     
     <script type="text/javascript" src="/static/js/jquery/jquery.min.js">
@@ -42,7 +44,9 @@
       content: '<button class="btn"><a href="#">Like</a></button>'
       });
     </script>
-
+    
+    {% load search_tags %}
+    
   </head>  
   <body>    
     <div class="navbar navbar-default">
@@ -50,11 +54,11 @@
 	<li><a href="/">Home</a></li>
 	<li class="active">Results</li>
       </ul>
-
+      
       <div class="navbar-collapse collapse navbar-responsive-collapse">
 	<ul class="nav navbar-nav">
 	  <li><a class="brand pull-left" href="/"><img src="/static/img/scholarec_icon.png" height="27px" width="110px"></a></li>
-	  <form action="/results" method="get" class="navbar-form navbar-left">
+	  <form action="/results/1" method="get" class="navbar-form navbar-left">
 	    <input  id="search" name="q" type="text" class="form-control col-lg-8" placeholder="Search">	    
 	    &nbsp;
 	    <select class="multiselect" multiple="multiple" name="hair">
@@ -105,6 +109,25 @@
 
     <div class="col-lg-9">
       
+      {% if items|length %}
+      <small> About <b>{{ total }}</b> results ({{ took }} seconds)</small>
+      {% else %}
+      <div>
+	Your search - <b>{{ q }}</b> - did not match any documents.
+	<br /><br />
+	Suggestions:
+	<br />
+	<ul>
+	  <li>Maybe you need to append an asterix ('*') to the keyword? <br />
+	    Eg: <b>nov* results in novel</b>.</li>
+	  <li>Make sure that all words are spelled correctly.</li>
+	  <li>Try different keywords.</li>
+	  <li>Try more general keywords.</li>
+	  <li>Try fewer keywords.</li>
+	</ul>
+      </div>
+      {% endif %}
+      
       <ol>
 	{% for item in items %}
 	<div class="jumbotron">
@@ -122,8 +145,24 @@
 	  <a href="{{ link.href }}" class="btn btn-primary btn-sm">View Original</a>
 	  {% endif %}
 	  {% endfor %}
-	  <a href="#" id="example" class="btn btn-primary btn-sm" rel="popover"><img height="25px" src="/static/img/icon/icon-1/icon_heart.png"></a>	  
-	  <a href="#" id="example" class="btn btn-primary btn-sm" rel="popover"><img height="25px" src="/static/img/icon/icon-1/icon_hearted.png"></a>
+	  <a href="#" id="example" class="btn btn-primary btn-sm" rel="popover"><img height="15px" src="/static/img/icon/icon-1/icon_heart.png"></a>	  
+	  <a href="#" id="example" class="btn btn-primary btn-sm" rel="popover"><img height="15px" src="/static/img/icon/icon-1/icon_hearted.png"></a>
+	  <br />
+	  <span class="star-rating">
+	    <input type="radio" name="rating" value="1"><i></i>
+	    <input type="radio" name="rating" value="2"><i></i>
+	    <input type="radio" name="rating" value="3"><i></i>
+	    <input type="radio" name="rating" value="4"><i></i>
+	    <input type="radio" name="rating" value="5"><i></i>
+	  </span>	  
+	  <strong class="choice">Choose a rating</strong>
+	  <script type="text/javascript">
+	    $(':radio').change(
+	    function(){
+	    $('.choice').text( this.value + ' stars' );
+	    } 
+	    )
+	  </script>
 	</div>
 	
 	<div class="modal fade" id="ID{{ forloop.counter }}" >
@@ -163,119 +202,129 @@
 	
 	{% endfor %}
       </ol>
-      
-      <div >
-	<ul class="pagination">
-	  <li class="disabled"><a href="#">&#171;</a></li>
-	  <li class="active"><a href="#">1</a></li>
-	  <li><a href="#">2</a></li>
-	  <li><a href="#">3</a></li>
-	  <li><a href="#">4</a></li>
-	  <li><a href="#">5</a></li>
-	  <li><a href="#">&#187;</a></li>
-	</ul>
-      </div>
-      
-    </div>
-    
-    <div class="col-lg-3">
-      
-      <div class="panel panel-primary">
-	<div class="panel-heading">
-	  <h3 class="panel-title">Labels</h3>
-	</div>
-	<div class="panel-body">
-	  {% for item in items %}
-	  <span class="label label-{% cycle 'default' 'primary' 'success' 'warning' 'danger' 'info' %}">
-	    {{ item.keyword }}</span>
-	  {% endfor %}
-	</div>
-      </div>      
-      
-      <div class="panel panel-info">
-	<div class="panel-heading">
-	  <h3 class="panel-title">Related Terms</h3>
-	</div>
-	<div class="panel-body">
-	  <ul class="list-group">
-	    <li class="list-group-item">
-	      <span class="badge">14</span>
-	      Keyword type 1
-	    </li>
-	    <li class="list-group-item">
-	      <span class="badge">2</span>
-	      Keyword type 2
-	    </li>
-	    <li class="list-group-item">
-	      <span class="badge">1</span>
-	      Keyword type 3
-	    </li>
+
+      {% if total >= 10  %}
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	<span class="label label-info" style="font-size: 86%;">Total Pages: {% get_count total items|length %}</span>
+	<span class="label label-danger" style="font-size: 86%;">Page: # {{ current }}</span>
+	<div>
+	  <!--Div: {{ total|div:2 }}-->
+	  <ul class="pagination" style="padding-left: 1em;">
+	    {% if current >= 1 %}
+	    <li><a href="/results/{{current|sub:'1'}}?q={{q}}">&#171;</a></li>
+	    {% endif %}
+
+	    {% for i in total|get_range %}
+	    <li><a href="/results/{{i}}?q={{q}}">{{i}}</a></li>
+	    {% endfor %}
+
+	    <li><a href="/results/{{current|add:'1'}}?q={{q}}">&#187;</a></li>
 	  </ul>
 	</div>
-      </div>
-      
-      <div class="panel panel-success">
-	<div class="panel-heading">
-	  <h3 class="panel-title">Recommendations for you</h3>
-	</div>
-	<div class="panel-body">
-	  content
-	</div>
-      </div> 
-      
-      <div class="panel-group" id="history">
-	<div class="panel panel-default">
-	  <div class="panel-heading">
-	    <h3 class="panel-title">
-	      <a data-toggle="collapse" data-parent="#history" href="#collapseOne">
-		Search History <span>[+]</span>
-	      </a>
-	    </h3>
-	  </div>
-	  <div id="collapseOne" class="panel-collapse collapse">
-	    <div class="panel-body">
-	      <ol>
-		{% for item in history reversed %}
-		<li><strong>{{ item }}</strong></li>
-		{% endfor %}
-	      </ol>
-	    </div>
-	  </div>
-	</div>
-      </div>
+	{% endif %}
+	
+</div>
 
+<div class="col-lg-3">
+  
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Labels</h3>
     </div>
-    
-  </body>
+    <div class="panel-body">
+      {% for keyword in keywords %}
+      <a href="/results/1?q={{keyword}}">
+	<span class="label label-{% cycle 'default' 'primary' 'success' 'warning' 'danger' 'info' %}">
+	  {{ keyword }}</span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>      
   
-  <!-- javascript
-       ================================================== -->
-  <!-- Placed at the end of the document so the pages load faster -->
-  <script type="text/javascript" src="/static/js/bootstrap/bootstrap.min.js"></script>
-  <!--script src="/static/js/angular/angular.min.js"></script>
-      <script src="/static/js/angular/angular-animate.min.js"></script-->
-  <script src="/static/flatly/bootstrap-multiselect.js"></script>
-  <!-- Initialize the plugins: -->
-  <script type="text/javascript">
-    $(document).ready(function() {
-    $('.multiselect').multiselect();
-    });
-  </script>
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h3 class="panel-title">Related Terms</h3>
+    </div>
+    <div class="panel-body">
+      <ul class="list-group">
+	<li class="list-group-item">
+	  <span class="badge">14</span>
+	  Keyword type 1
+	</li>
+	<li class="list-group-item">
+	  <span class="badge">2</span>
+	  Keyword type 2
+	</li>
+	<li class="list-group-item">
+	  <span class="badge">1</span>
+	  Keyword type 3
+	</li>
+      </ul>
+    </div>
+  </div>
   
-  <script type="text/javascript">
-    $(".msg_head").click(function(){
-    $(this).next(".msg_body").slideToggle(100);
-    })
-    .toggle( function() {
-    $(this).children("span").text("[+]");
-    }, function() {
-    $(this).children("span").text("[-]");
-    });
-  </script>
+  <div class="panel panel-success">
+    <div class="panel-heading">
+      <h3 class="panel-title">Recommendations for you</h3>
+    </div>
+    <div class="panel-body">
+      content
+    </div>
+  </div> 
   
-  <!--div>
-      <footer>
-	&copy; ScholaRec (2014)
-      </footer>
-  </div-->
+  <div class="panel-group" id="history">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+	<h3 class="panel-title">
+	  <a data-toggle="collapse" data-parent="#history" href="#collapseOne">
+	    Search History <span>[+]</span>
+	  </a>
+	</h3>
+      </div>
+      <div id="collapseOne" class="panel-collapse collapse">
+	<div class="panel-body">
+	  <ol>
+	    {% for item in history reversed %}
+	    <li><strong>{{ item }}</strong></li>
+	    {% endfor %}
+	  </ol>
+	</div>
+      </div>
+    </div>
+  </div>
+  
+</div>  
+
+</body>
+
+<!-- javascript
+     ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script type="text/javascript" src="/static/js/bootstrap/bootstrap.min.js"></script>
+<!--<script src="/static/js/angular/angular.min.js"></script>
+    <script src="/static/js/angular/angular-animate.min.js"></script>-->
+<script src="/static/flatly/bootstrap-multiselect.js"></script>
+<!-- Initialize the plugins: -->
+<script type="text/javascript">
+  $(document).ready(function() {
+  $('.multiselect').multiselect();
+  });
+</script>
+
+<script type="text/javascript">
+  $(".msg_head").click(function(){
+  $(this).next(".msg_body").slideToggle(100);
+  })
+  .toggle( function() {
+  $(this).children("span").text("[+]");
+  }, function() {
+  $(this).children("span").text("[-]");
+  });
+</script>
+
+<!--<div>
+    <footer>
+      &copy; ScholaRec (2014)
+    </footer>
+</div>-->
 </html>

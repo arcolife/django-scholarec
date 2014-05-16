@@ -28,9 +28,12 @@ def profile(request):
     #print require_persistent_graph(request)
     print dir(x.me)
     '''
-    req = get_persistent_graph(request)
-    graph = OpenFacebook(req.access_token)
-    print "ME: ", graph.get('me')
+    try:
+        req = get_persistent_graph(request)
+        graph = OpenFacebook(req.access_token)
+        print "ME: ", graph.get('me')
+    except:
+        pass
     context = RequestContext(request)
     #x = context['user']
 
@@ -44,41 +47,52 @@ def profile(request):
     '''
     return render_to_response('profile.html', context)
 
-def results(request):    
+def results(request, page):    
     query = request.GET.get('q', None)
+    print "page req: ", page
     #print SearchQuerySet().filter(content=query)
     #print "IN RESULTS: ", request.user #remember, user is an object
-    if query:
+    if bool(query.split()):
         # add to search history
         history = control.add_to_history(query, str(request.user))
         if len(history) > 5:
             history = history[-5:]
-
         try:
-            q_resp =  es_query.__run_query(query)
+            q_resp =  es_query.__run_query(query, search_from=int(page)-1, search_size=10)
         except:
             return HttpResponse("Bad Request: Go back and check on your query parameters (mostly due to imbalanced \").")
 
         if bool(q_resp)==False:
             return HttpResponse('No results found! Go back')
-
-        print "\nQuery: %s" % (query)
+            
+        #print "\nQuery: %s" % (query)
         resp = []
+        keywords = []
         _sources = q_resp['hits']['hits']
         for i in xrange(len(_sources)):
             temp = { 'title' : _sources[i]['_source']['title'],
                      #'authors' : '; '.join([j['name'] for j in _sources[i]['_source']['authors']]),
                      'authors' : [j['name'] for j in _sources[i]['_source']['authors']],
                      'summary' : _sources[i]['_source']['summary'],
-                     'keyword' : _sources[i]['_source']['keyword'],
+                     #'keyword' : _sources[i]['_source']['keyword'],
                      'published' : datetime.datetime.strptime(_sources[i]['_source']['published'], "%Y-%m-%dT%H:%M:%SZ"),
                      'ID' : _sources[i]['_source']['ID'],
                      'links' : [ {'href':j['href'],'type':j['type']} for j in _sources[i]['_source']['links']]
                      #'links' : '; '.join([j['href'] for j in _sources[i]['_source']['links']])
                  }
+            
+            keywords.append(_sources[i]['_source']['keyword'])
             resp.append(temp)
             
-        return render_to_response('results.html', { 'items' : resp, 'history' : history, 'username' : str(request.user) })
+        return render_to_response('results.html', 
+                                  { 'items' : resp, 
+                                    'history' : history, 
+                                    'username' : str(request.user),
+                                    'total' : q_resp['hits']['total'],
+                                    'took' : float(q_resp['took'])/1000, 
+                                    'keywords' : list(set(keywords)),
+                                    'current' : page,
+                                    'q' : query })
     else:
         #return HttpResponse("No Query Sent!")
         return HttpResponseRedirect('/search/')
