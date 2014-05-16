@@ -33,9 +33,9 @@ TODO
 - [x] add search history expand-collapse column to /results
 - [x] integrate search history
 - [x] add pagination UI controls to /results 
-- [ ] intergrate pagination 
+- [x] intergrate pagination 
 - [x] add labels/keywords panel display on /results
-- [ ] integrate documents labels / keywords
+- [x] integrate documents labels / keywords
 - [ ] integrate recommender to /results
 - [ ] add visualizations page/controls/options to UI on /results
 - [ ] integrate visualizations
