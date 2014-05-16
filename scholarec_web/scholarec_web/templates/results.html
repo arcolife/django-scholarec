@@ -183,12 +183,10 @@
 	  <h3 class="panel-title">Labels</h3>
 	</div>
 	<div class="panel-body">
-	  <span class="label label-default">math-ph</span>
-	  <span class="label label-primary">hep-th</span>
-	  <span class="label label-success">nucl-ex</span>
-	  <span class="label label-warning">quant-ph</span>
-	  <span class="label label-danger">cond-mat</span>
-	  <span class="label label-info">cs</span>
+	  {% for item in items %}
+	  <span class="label label-{% cycle 'default' 'primary' 'success' 'warning' 'danger' 'info' %}">
+	    {{ item.keyword }}</span>
+	  {% endfor %}
 	</div>
       </div>      
       
