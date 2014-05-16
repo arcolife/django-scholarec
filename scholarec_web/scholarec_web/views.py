@@ -54,7 +54,11 @@ def results(request):
         if len(history) > 5:
             history = history[-5:]
 
-        q_resp =  es_query.__run_query(query)
+        try:
+            q_resp =  es_query.__run_query(query)
+        except:
+            return HttpResponse("Bad Request: Go back and check on your query parameters (mostly due to imbalanced \").")
+
         if bool(q_resp)==False:
             return HttpResponse('No results found! Go back')
 
@@ -74,7 +78,7 @@ def results(request):
                  }
             resp.append(temp)
             
-        return render_to_response('results.html', { 'items' : resp, 'history' : history })
+        return render_to_response('results.html', { 'items' : resp, 'history' : history, 'username' : str(request.user) })
     else:
         #return HttpResponse("No Query Sent!")
         return HttpResponseRedirect('/search/')
