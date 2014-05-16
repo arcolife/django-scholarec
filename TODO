@@ -1,39 +1,39 @@
-- integrate django-social-auth #partial
-  - integrate Twitter #done
-  - integrate Facebook #done
-    - resolve invalid App Id #done
-  - Integrate Fedora (FAS) #partial
-    - resolve no redirect url
-  - integrate Github #done
-    - resolve no such page error #done
-  - integrate Persona (Mozilla) #done
-  - integrate Google #partial
-    - Google OpenId #done
-    - Google OAuth1 #partial
-      - Reset permissions (currently, profile, email, google drive)
-    - Google OAuth2 
-      -	Resolve Error: invalid_client. Bad request.
-  - integrate sign-in page #partial
-  - integrate session trackers / cookies #partial
-  - resolve no disconnect allowed issue
-- Connect Social Auth to HomePage #done
-- Add query_parse statements to models.py #done
-- Display JSON data file in browser #done
-- Refactor HTML code #done
-- Refine database and replace mockup viz #done
-- Integrate Search URL box with DB #done
+- integrate django-social-auth 
+  - [x] integrate Twitter0
+  - [x] integrate Facebook 
+    - [x] resolve invalid App Id 
+  - [] Integrate Fedora (FAS) 
+    - [] resolve no redirect url
+  - [x] integrate Github 
+    - [x] resolve no such page error 
+  - [x] integrate Persona (Mozilla) 
+  - [] integrate Google 
+    - [x] Google OpenId 
+    - [] Google OAuth1 
+      - [] Reset permissions (currently, profile, email, google drive)
+    - [] Google OAuth2 
+      -	[] Resolve Error: invalid_client. Bad request.
+  - [x] integrate sign-in page
+  - [] integrate session trackers / cookies
+  - [] resolve no disconnect allowed issue
+- [x] Connect Social Auth to HomePage 
+- [x] Add query_parse statements to models.py
+- [x] Display JSON data file in browser
+- [x] Refactor HTML code
+- [x] Refine database and replace mockup viz
+- [x] Integrate Search URL box with DB
 ---------------------------------------------------
-- Add scroll down arrow Gif's to homepage
-- Refactor /done UI (similar to /login)
-- add search history expand-collapse column to /results #done
-- integrate search history
-- add pagination UI controls to /results #done
-- intergrate pagination 
-- add labels/keywords panel display on /results #done
-- integrate documents labels / keywords
-- integrate recommender to /results
-- add visualizations page/controls/options to UI on /results
-- integrate visualizations
-- Add carousel (slideshow) to homepage / HINT: bootstrap carousel.js
-- enable semantic search
+- [] Add scroll down arrow Gif's to homepage
+- [] Refactor /done UI (similar to /login)
+- [x] add search history expand-collapse column to /results
+- [x] integrate search history
+- [x] add pagination UI controls to /results 
+- [] intergrate pagination 
+- [x] add labels/keywords panel display on /results
+- [] integrate documents labels / keywords
+- [] integrate recommender to /results
+- [] add visualizations page/controls/options to UI on /results
+- [] integrate visualizations
+- [] Add carousel (slideshow) to homepage / HINT: bootstrap carousel.js
+- [] enable semantic search /NLP
 
