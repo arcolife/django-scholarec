@@ -22,6 +22,6 @@ def add_to_history(query, username):
         s_history.keywords.append(query)
 
     s_history.save()
-    print "History For username: %s \nKeywords: %s" \
-        % (username, str(s_history.keywords))
+    #print "History For username: %s \nKeywords: %s" \
+    #    % (username, str(s_history.keywords))
     return s_history.keywords

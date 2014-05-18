@@ -49,7 +49,7 @@ def profile(request):
 
 def results(request, page):    
     query = request.GET.get('q', None)
-    print "page req: ", page
+    #print "page req: ", page
     #print SearchQuerySet().filter(content=query)
     #print "IN RESULTS: ", request.user #remember, user is an object
     if bool(query.split()):
