@@ -217,7 +217,9 @@ arcolife
     
   </div>
   <a name="comment"></a>
-  <form method="post" id="form" class="form-project-comment"><div style='display:none;'><input type='hidden' id='xsrftoken' name='xsrf_token' value='uNLsxlj_sb7I5NytIipQMjoxMzk0NjU4OTc2'/></div>
+  <form method="post" id="form" class="form-project-comment">
+    {% csrf_token %}
+    <div style='display:none;'><input type='hidden' id='xsrftoken' name='xsrf_token' value='uNLsxlj_sb7I5NytIipQMjoxMzk0NjU4OTc2'/></div>
   <fieldset id="form-project-comment-fieldset" class="fieldset-project-comment">
   <legend><span>Leave a comment</span></legend>
   

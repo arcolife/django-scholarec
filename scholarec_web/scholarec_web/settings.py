@@ -163,7 +163,7 @@ INSTALLED_APPS = (
     'social.apps.django_app.default',
     'scholarec_web.app',
     'django_facebook',
-    #'south',
+    'south',
     'open_facebook',
     'users',
     #'bootstrap_pagination',
