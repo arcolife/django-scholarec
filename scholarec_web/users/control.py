@@ -2,6 +2,7 @@
 from users.models import History 
 from django.utils import timezone
 import string
+from search import es_query
 
 def add_to_history(query, username):
     #print query, " | ", username
@@ -100,3 +101,24 @@ def get_collection(username):
         s_history.save()
         print "User %s not found in DB. Created one." % (username)    
         return []
+
+def get_recommendations(username):
+    try:
+        s_history = History.objects.get(user_id__contains=username)
+        keywords = s_history.fav_keywords
+    except:
+        s_history = History( user_id=username, last_search=timezone.now())
+        s_history.save()
+        print "User %s not found in DB. Created one." % (username)    
+        return [], []
+    recos = []
+    try:
+        for fav in set(keywords):
+            temp = es_query.__run_query(fav, search_size=1, fields='title,ID')
+            recos.append(temp['hits']['hits'][0]['fields'])
+        if len(recos) > 3:
+            return recos[:3], list(set(keywords))
+        else:
+            return recos, list(set(keywords))
+    except:
+        return [], []

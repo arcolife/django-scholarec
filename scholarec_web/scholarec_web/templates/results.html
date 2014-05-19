@@ -385,22 +385,15 @@
   
   <div class="panel panel-info">
     <div class="panel-heading">
-      <h3 class="panel-title">Related Terms</h3>
+      <h3 class="panel-title">User's Favorites</h3>
     </div>
     <div class="panel-body">
       <ul class="list-group">
+	{% for item in related %}
 	<li class="list-group-item">
-	  <span class="badge">14</span>
-	  Finance
+	  <a href="/results/1?q={{ item }}"><strong>{{ item }}&nbsp;&nbsp;</strong><span class="badge">14</span></a>
 	</li>
-	<li class="list-group-item">
-	  <span class="badge">2</span>
-	  Statistics
-	</li>
-	<li class="list-group-item">
-	  <span class="badge">1</span>
-	  computation
-	</li>
+	{% endfor %}
       </ul>
     </div>
   </div>
@@ -411,14 +404,12 @@
     </div>
     <div class="panel-body">
       <ol>
-	<li>A Multi-Level Lorentzian Analysis of the Basic Structures of the Daily DJIA</li>
-	<li>Interest Rates and Inflation</li>
-	<li>Adjoints and Automatic (Algorithmic) Differentiation in Computational Finance</li>
+	{% for item in recommendations %}
+	<li><a href="/results/1?q={{ item.ID|first }}"<strong>{{ item.title|first }}</strong></a></li>
+	{% endfor %}
       </ol>
     </div>
   </div> 
-  
-  
   
 </div>  
 

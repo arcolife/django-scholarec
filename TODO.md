@@ -17,7 +17,7 @@ TODO
     - [ ] Google OAuth2 
       -	[ ] Resolve Error: invalid_client. Bad request.
   - [x] integrate sign-in page
-  - [ ] integrate session trackers / cookies
+  - [x] integrate session trackers / cookies
   - [ ] resolve no disconnect allowed issue
 - [x] Connect Social Auth to HomePage 
 - [x] Add query_parse statements to models.py
@@ -37,7 +37,7 @@ TODO
 - [x] add labels/keywords panel display on /results
 - [x] integrate documents labels / keywords
 - [x] Add star and heart icons to papers
-- [ ] integrate recommender to /results
+- [x] integrate recommender to /results
 - [ ] add visualizations page/controls/options to UI on /results
 - [ ] integrate visualizations
 - [ ] Add carousel (slideshow) to homepage / HINT: bootstrap carousel.js
@@ -51,3 +51,4 @@ TODO
 - [ ] Integrate ratings / stars:
     - [ ] Change stars as per request (integrate get_ratings() from control.py)
     - [x] Integrate stars in UI, connect stars to backend.
+- [x] Integrate User's favorites.

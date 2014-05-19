@@ -91,6 +91,7 @@ def results(request, page):
             history = history[-5:]
         try:
             q_resp =  es_query.__run_query(query, search_from=int(page)-1, search_size=10)
+            recos, favs = control.get_recommendations(str(request.user))
         except:
             return HttpResponse("Bad Request: Go back and check on your query parameters (mostly due to imbalanced \").")
 
@@ -115,12 +116,14 @@ def results(request, page):
             
             keywords.append(_sources[i]['_source']['keyword'])
             resp.append(temp)
-            
+        
         return render_to_response('results.html', 
                                   { 'items' : resp, 
                                     'history' : history, 
                                     'collection' : control.get_collection(str(request.user)),
                                     'username' : str(request.user),
+                                    'recommendations' : recos,
+                                    'related' : favs,
                                     'total' : q_resp['hits']['total'],
                                     'took' : float(q_resp['took'])/1000, 
                                     'keywords' : list(set(keywords)),
