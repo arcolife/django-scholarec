@@ -7,6 +7,15 @@ from django import forms
 #      pass
 
 '''
+class CountryForm(forms.Form):
+        OPTIONS = (
+                ("AUT", "Australia"),
+                ("DEU", "Germany"),
+                ("NLD", "Neitherlands"),
+                )
+        Countries = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=OPTIONS)
+'''
+'''
 class Note(models.Model):
     user = models.ForeignKey(User)
     pub_date = models.DateTimeField()
