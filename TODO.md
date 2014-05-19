@@ -46,8 +46,8 @@ TODO
     - [x] Integrate add_collection() and get_collection() with 
       	  the heart icons for collection
     - [ ] Enhance UX
-    - [ ] Integrate get_collection()
-    - [ ] Display Collections in panel
+    - [x] Integrate get_collection()
+    - [x] Display Collections in panel
 - [ ] Integrate ratings / stars:
     - [ ] Change stars as per request (integrate get_ratings() from control.py)
     - [x] Integrate stars in UI, connect stars to backend.
