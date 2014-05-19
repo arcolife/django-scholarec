@@ -361,6 +361,27 @@
       </div>
     </div>
   </div>
+
+  <div class="panel-group" id="collections">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+	<h3 class="panel-title">
+	  <a data-toggle="collapse" data-parent="#collections" href="#collapseTwo">
+	    My Collections <span>[+]</span>
+	  </a>
+	</h3>
+      </div>
+      <div id="collapseTwo" class="panel-collapse collapse">
+	<div class="panel-body">
+	  <ol>
+	    {% for item in collection %}
+	    <li><a href="/results/1?q={{ item }}"<strong>{{ item }}</strong></a></li>
+	    {% endfor %}
+	  </ol>
+	</div>
+      </div>
+    </div>
+  </div>
   
   <div class="panel panel-info">
     <div class="panel-heading">

@@ -41,7 +41,7 @@ def fav(request):
     paper = request.GET.get('paper', None)
     current = request.GET.get('current', None)
     q = request.GET.get('q', None)
-    rate = request.GET.get('rate', None)
+    rate = int(request.GET.get('rate', None))
     kw = request.GET.get('kw', None)
     print "FAVORITE req: username: %s paper_ID: %s Current_page: %s, Query: %s Rating: %s Keyword: %s " % \
         (username, paper, current, q, rate, kw)
@@ -58,13 +58,14 @@ def profile(request):
     x = get_persistent_graph(request)
     #print require_persistent_graph(request)
     print dir(x.me)
-    '''
+
     try:
         req = get_persistent_graph(request)
         graph = OpenFacebook(req.access_token)
         print "ME: ", graph.get('me')
     except:
         pass
+    '''
     context = RequestContext(request)
     #x = context['user']
 
@@ -118,6 +119,7 @@ def results(request, page):
         return render_to_response('results.html', 
                                   { 'items' : resp, 
                                     'history' : history, 
+                                    'collection' : control.get_collection(str(request.user)),
                                     'username' : str(request.user),
                                     'total' : q_resp['hits']['total'],
                                     'took' : float(q_resp['took'])/1000, 
