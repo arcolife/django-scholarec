@@ -40,16 +40,16 @@ def add_rating(username, paper_id, rating, query, keyword):
         s_history.fav_papers.append(paper_id)
         s_history.fav_ratings.append(rating)
         s_history.fav_keywords.append(keyword)
-        print "%s added to %s's favorites!\n" % (paper_id, username)
+        print "%s added to %s's ratings!\n" % (paper_id, username)
     elif paper_id in s_history.fav_papers:
         ix = s_history.fav_papers.index(paper_id) 
         if s_history.fav_ratings[ix] != rating:
             s_history.fav_ratings[ix] = rating
-            print "%s's rating changed in %s's favorites!\n" % (paper_id, username)
+            print "%s's rating changed in %s's ratings!\n" % (paper_id, username)
         else:
-            print "%s is already in %s's favorites!\n" % (paper_id, username)
+            print "%s is already in %s's ratings!\n" % (paper_id, username)
     else:
-        print "%s is already in %s's favorites!\n" % (paper_id, username)
+        print "%s is already in %s's ratings!\n" % (paper_id, username)
     s_history.save()
     return ''
 
