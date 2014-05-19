@@ -29,16 +29,25 @@ TODO
 ***
 
 - [ ] Add scroll down arrow Gif's to homepage
-- [ ] Refactor /done UI (similar to /login)
+- [x] Refactor /done UI (similar to /login)
 - [x] add search history expand-collapse column to /results
 - [x] integrate search history
 - [x] add pagination UI controls to /results 
 - [x] intergrate pagination 
 - [x] add labels/keywords panel display on /results
 - [x] integrate documents labels / keywords
+- [x] Add star and heart icons to papers
 - [ ] integrate recommender to /results
 - [ ] add visualizations page/controls/options to UI on /results
 - [ ] integrate visualizations
 - [ ] Add carousel (slideshow) to homepage / HINT: bootstrap carousel.js
 - [ ] enable semantic search /NLP
-
+- [ ] Integrate Collections:
+    - [x] Integrate add_collection() and get_collection() with 
+      	  the heart icons for collection
+    - [ ] Enhance UX
+    - [ ] Integrate get_collection()
+    - [ ] Display Collections in panel
+- [ ] Integrate ratings / stars:
+    - [ ] Change stars as per request (integrate get_ratings() from control.py)
+    - [x] Integrate stars in UI, connect stars to backend.
