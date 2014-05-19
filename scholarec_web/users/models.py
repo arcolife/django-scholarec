@@ -1,6 +1,37 @@
 # from django.db import models
 from mongoengine import *
 
+'''
+class Keyword(EmbeddedDocument):
+    k_text = StringField(max_length=200)
+    count = IntField(default=0)
+    k_time = DateTimeField(help_text='date searched')
+
+class Favorite(EmbeddedDocument):
+    paper_id= StringField(max_length=20)
+    rating = IntField(default=0)
+'''
+
+class History(Document):
+    # search history
+    #keywords = ListField(EmbeddedDocumentField(Keyword))
+    keywords = ListField()
+    # favorites
+    fav_papers = ListField()
+    fav_ratings = ListField()
+    fav_keywords = ListField()
+    # user's collection
+    collection = ListField()
+    # history metadata
+    user_id = StringField(max_length=200)
+    last_search = DateTimeField(help_text='last searched')
+    meta = {
+        'indexes': [
+            'user_id',
+            ('last_search', '+user_id')
+        ]
+    }
+
 class Choice(EmbeddedDocument):
     choice_text = StringField(max_length=200)
     votes = IntField(default=0)
@@ -15,24 +46,6 @@ class Poll(Document):
             ('pub_date', '+question')
         ]
     }
-'''
-class Keyword(EmbeddedDocument):
-    k_text = StringField(max_length=200)
-    count = IntField(default=0)
-    k_time = DateTimeField(help_text='date searched')
-'''
-class History(Document):
-    #keywords = ListField(EmbeddedDocumentField(Keyword))
-    keywords = ListField()
-    user_id = StringField(max_length=200)
-    last_search = DateTimeField(help_text='last searched')
-    meta = {
-        'indexes': [
-            'user_id',
-            ('last_search', '+user_id')
-        ]
-    }
-    
 
 """ form object like:
 from users.models import Poll, Choice

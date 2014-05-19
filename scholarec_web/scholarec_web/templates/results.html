@@ -226,11 +226,11 @@
 	  <div class="jumbotron">
 	    <strong><b><li>{{ item.title }}</li></b></strong>
 	    <ul class="rating twostar"> <!-- onestar twostar .. fivestar -->
-	      <li class="one"><a href="#" title="1 Star">1</a></li>
-	      <li class="two"><a href="#" title="2 Stars">2</a></li>
-	      <li class="three"><a href="#" title="3 Stars">3</a></li>
-	      <li class="four"><a href="#" title="4 Stars">4</a></li>
-	      <li class="five"><a href="#" title="5 Stars">5</a></li>
+	      <li class="one"><a href="/fav?username={{ username }}&paper={{ item.ID }}&current={{ current }}&q={{ q }}&rate=1&kw={{item.keyword}}" title="1 Star">1</a></li>
+	      <li class="two"><a href="/fav?username={{ username }}&paper={{ item.ID }}&current={{ current }}&q={{ q }}&rate=2&kw={{item.keyword}}" title="2 Stars">2</a></li>
+	      <li class="three"><a href="/fav?username={{ username }}&paper={{ item.ID }}&current={{ current }}&q={{ q }}&rate=3&kw={{item.keyword}}" title="3 Stars">3</a></li>
+	      <li class="four"><a href="/fav?username={{ username }}&paper={{ item.ID }}&current={{ current }}&q={{ q }}&rate=4&kw={{item.keyword}}" title="4 Stars">4</a></li>
+	      <li class="five"><a href="/fav?username={{ username }}&paper={{ item.ID }}&current={{ current }}&q={{ q }}&rate=5&kw={{item.keyword}}" title="5 Stars">5</a></li>
 	    </ul>
 	    <ul>
 	      <li><b>Author(s):</b> {{ item.authors|join:"; " }}</li>
@@ -246,8 +246,9 @@
 	    <a href="{{ link.href }}" class="btn btn-primary btn-sm">View Original</a>
 	    {% endif %}
 	    {% endfor %}
-	    <a href="#" id="example" class="btn btn-primary btn-sm" rel="popover"><img height="15px" src="/static/img/icon/icon-1/icon_heart.png"></a>	  
-	    <!--a href="#" id="example" class="btn btn-primary btn-sm" rel="popover"><img height="15px" src="/static/img/icon/icon-1/icon_hearted.png"></a-->
+	    <a href="/add?id={{ item.ID }}&username={{ username }}&current={{ current }}&q={{ q }}" id="example" class="btn btn-primary btn-sm" rel="popover"><img height="15px" src="/static/img/icon/icon-1/icon_heart.png"></a>	  
+	    <a href="/remove?id={{ item.ID }}&username={{ username }}&current={{ current }}&q={{ q }}" id="example" class="btn btn-primary btn-sm" rel="popover"><img height="15px" src="/static/img/icon/icon-1/icon_hearted.png"></a>
+
 	    <!--span class="label label-info"><strong class="choice{{ forloop.counter }}">Paper-rating: </strong></span>
 		<input name="star{{ forloop.counter }}" type="radio" value="1" class="star"/>
 		<input name="star{{ forloop.counter }}" type="radio" value="2" class="star"/>

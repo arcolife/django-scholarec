@@ -11,6 +11,7 @@ from users import control
 #from users.models import History
 from open_facebook import OpenFacebook
 from django_facebook.api import get_persistent_graph
+#import string
 
 def home(request):    
     c = {}
@@ -18,6 +19,36 @@ def home(request):
     context = RequestContext(request)
     #print context
     return render_to_response('index.html', c, context)
+    
+def add(request):
+    username = request.GET.get('username', None)
+    paper = request.GET.get('id', None)
+    current = request.GET.get('current', None)
+    q = request.GET.get('q', None)
+    control.add_to_collection(username, paper)
+    return HttpResponseRedirect('/results/' + current + '?q=' + q)
+
+def remove(request):
+    username = request.GET.get('username', None)
+    paper = request.GET.get('id', None)
+    current = request.GET.get('current', None)
+    q = request.GET.get('q', None)
+    control.remove_from_collection(username, paper)
+    return HttpResponseRedirect('/results/' + current + '?q=' + q)
+
+def fav(request):
+    username = request.GET.get('username', None)
+    paper = request.GET.get('paper', None)
+    current = request.GET.get('current', None)
+    q = request.GET.get('q', None)
+    rate = request.GET.get('rate', None)
+    kw = request.GET.get('kw', None)
+    print "FAVORITE req: username: %s paper_ID: %s Current_page: %s, Query: %s Rating: %s Keyword: %s " % \
+        (username, paper, current, q, rate, kw)
+    #table = string.maketrans("","")
+    #kw = '%20'.join(kw.translate(table, string.punctuation).split())
+    control.add_rating(username, paper, rate, q, kw)
+    return HttpResponseRedirect('/results/' + current + '?q=' + q)
 
 def profile(request):
     '''
@@ -74,7 +105,7 @@ def results(request, page):
                      #'authors' : '; '.join([j['name'] for j in _sources[i]['_source']['authors']]),
                      'authors' : [j['name'] for j in _sources[i]['_source']['authors']],
                      'summary' : _sources[i]['_source']['summary'],
-                     #'keyword' : _sources[i]['_source']['keyword'],
+                     'keyword' : _sources[i]['_source']['keyword'],
                      'published' : datetime.datetime.strptime(_sources[i]['_source']['published'], "%Y-%m-%dT%H:%M:%SZ"),
                      'ID' : _sources[i]['_source']['ID'],
                      'links' : [ {'href':j['href'],'type':j['type']} for j in _sources[i]['_source']['links']]
