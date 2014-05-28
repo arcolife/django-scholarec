@@ -50,6 +50,8 @@ urlpatterns = patterns('',
                        (r'^profile/?$', views.profile),
                        (r'^$', views.home),
                        (r'^results/(?P<page>[\w.@+-]+)/?$', views.results,),
+                       (r'^record/?$', views.record,),
+
                        (r'^fav/?$', views.fav,),
                        (r'^add/?$', views.add,),
                        (r'^remove/?$', views.remove,),

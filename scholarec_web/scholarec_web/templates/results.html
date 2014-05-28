@@ -17,10 +17,12 @@
 
     <link href="/static/css/bootstrap-responsive.css" rel="stylesheet">  
     
-    <!--script type="text/javascript" src="/static/js/jquery/jquery.form.js"></script>
+    <!--
+	<script type="text/javascript" src="/static/js/jquery/jquery.form.js"></script>
 	<script type="text/javascript" src="/static/js/jquery/jquery.MetaData.js"></script>
 	<script type="text/javascript" src="/static/js/jquery/jquery.rating.js"></script>
-	<script type="text/javascript" src="/static/js/jquery/jquery.rating.pack.js"></script-->
+	<script type="text/javascript" src="/static/js/jquery/jquery.rating.pack.js"></script> 
+-->
     <style type="text/css">
       /* star rating code - use lists because its more semantic */
       /* No javascript required */
@@ -238,7 +240,8 @@
 	      <li><b>ID:</b> {{ item.ID }}</li>
 	    </ul>
 	    <br />
-	    <a href="#ID{{ forloop.counter }}" data-toggle="modal" class="btn btn-primary btn-sm">Preview</a>
+	    <a href="#ID{{ forloop.counter }}" data-toggle="modal" class="btn btn-primary btn-sm">Summary</a>
+	    <a href="/record?doc={{ item.id }}&q={{q}}" class="btn btn-primary btn-sm">Preview</a>
 	    {% for link in item.links %}
 	    {% if link.type == 'application/pdf' %}
 	    <a href="{{ link.href }}" class="btn btn-primary btn-sm">Download</a>&nbsp;
@@ -376,41 +379,41 @@
 	  <ol>
 	    {% for item in collection %}
 	    <li><a href="/results/1?q={{ item }}"<strong>{{ item }}</strong></a></li>
-	    {% endfor %}
-	  </ol>
-	</div>
-      </div>
-    </div>
+		   {% endfor %}
+		   </ol>
+</div>
+</div>
+</div>
+</div>
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">User's Favorites</h3>
   </div>
-  
-  <div class="panel panel-info">
-    <div class="panel-heading">
-      <h3 class="panel-title">User's Favorites</h3>
-    </div>
-    <div class="panel-body">
-      <ul class="list-group">
-	{% for item in related %}
-	<li class="list-group-item">
-	  <a href="/results/1?q={{ item }}"><strong>{{ item }}&nbsp;&nbsp;</strong></a> <!--<span class="badge">14</span>-->
-	</li>
-	{% endfor %}
-      </ul>
-    </div>
+  <div class="panel-body">
+    <ul class="list-group">
+      {% for item in related %}
+      <li class="list-group-item">
+	<a href="/results/1?q={{ item }}"><strong>{{ item }}&nbsp;&nbsp;</strong></a> <!--<span class="badge">14</span>-->
+      </li>
+      {% endfor %}
+    </ul>
   </div>
-  
-  <div class="panel panel-success">
-    <div class="panel-heading">
-      <h3 class="panel-title">Recommendations for you</h3>
-    </div>
-    <div class="panel-body">
-      <ol>
-	{% for item in recommendations %}
-	<li><a href="/results/1?q={{ item.ID|first }}"<strong>{{ item.title|first }}</strong></a></li>
-	{% endfor %}
-      </ol>
-    </div>
-  </div> 
-  
+</div>
+
+<div class="panel panel-success">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recommendations for you</h3>
+  </div>
+  <div class="panel-body">
+    <ol>
+      {% for item in recommendations %}
+      <li><a href="/results/1?q={{ item.ID|first }}"><strong>{{ item.title|first }}</strong></a></li>
+      {% endfor %}
+    </ol>
+  </div>
+</div> 
+
 </div>  
 
 </body>

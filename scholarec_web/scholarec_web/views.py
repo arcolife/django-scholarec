@@ -12,6 +12,8 @@ from users import control
 from open_facebook import OpenFacebook
 from django_facebook.api import get_persistent_graph
 #import string
+import json
+from urllib import urlopen
 
 def home(request):    
     c = {}
@@ -110,6 +112,7 @@ def results(request, page):
                      'keyword' : _sources[i]['_source']['keyword'],
                      'published' : datetime.datetime.strptime(_sources[i]['_source']['published'], "%Y-%m-%dT%H:%M:%SZ"),
                      'ID' : _sources[i]['_source']['ID'],
+                     'id' : _sources[i]['_id'],
                      'links' : [ {'href':j['href'],'type':j['type']} for j in _sources[i]['_source']['links']]
                      #'links' : '; '.join([j['href'] for j in _sources[i]['_source']['links']])
                  }
@@ -132,6 +135,19 @@ def results(request, page):
     else:
         #return HttpResponse("No Query Sent!")
         return HttpResponseRedirect('/search/')
+
+def record(request):
+    doc_id = request.GET.get('doc', None)
+    query = request.GET.get('q', None)
+    try:
+        response = urlopen('http://localhost:9200/arxiv/docs/'+ \
+                           doc_id + '/_source')
+    except:
+        return HttpResponse('404: Not Found! Go back')
+    result = json.loads(response.read())
+    return render_to_response('record.html', \
+                              { 'item' : result,
+                                'q' : query })
 
 def results_mod(request):    
     return render_to_response('results_mod.html', {})
