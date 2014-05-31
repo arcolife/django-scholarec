@@ -77,12 +77,12 @@
 		</a>
 		<div id="loginContainer">
 		  <div id="loginBox">                
-		    
-		    {% load url from future %}		    
-		    {% block content %}
-		    <form id="loginForm" action="{% url 'social:complete' "email" %}" method="post">
-		      {% csrf_token %}
-		      <fieldset id="body">
+		    <fieldset id="body">
+		      
+		      {% load url from future %}		    
+		      {% block content %}
+		      <form id="loginForm" action="{% url 'social:complete' "email" %}" method="post">
+			{% csrf_token %}
                         <fieldset>
 			  <label for="email">Email address:</label>
 			  <input id="email" type="email" name="email" value="" />
@@ -96,19 +96,19 @@
 			  <input id="fullname" type="text" name="fullname" value="" />
 			</fieldset>
 			
-		      <button id="login">Signup</button>
-		      <label for="checkbox">
-			<input type="checkbox" id="checkbox"> <i>Remember me</i>
-		      </label>
-		      <br><br>
-		      <span><a href="#">Forgot your password?</a></span>
-		    </form>
+			<button id="login">Signup</button>
+			<label for="checkbox">
+			  <input type="checkbox" id="checkbox"> <i>Remember me</i>
+			</label>
+			<br><br>
+			<span><a href="#">Forgot your password?</a></span>
+		      </form>
 
-		    {% endblock %}
-		    <form action="/login/">
-		      <input type="submit" id="login" value="Or Use OpenID">
-		    </form>
-		    
+		      {% endblock %}
+		      <form action="/login/">
+			<input type="submit" id="login" value="Or Use OpenID">
+		      </form>
+		      
 		    </fieldset>
 		  </div>
 		</div>
@@ -123,34 +123,34 @@
     </div>		
 
     <!-- GOOGLE+  Sign in Button
-    <div>
-      <span id="signinButton">
-	<span
-	   class="g-signin"
-	   data-callback="signinCallback"
-	   data-clientid="CLIENT_ID_HERE"
-	   data-cookiepolicy="single_host_origin"
-	   data-requestvisibleactions="http://schemas.google.com/AddActivity"
-	   data-scope="https://www.googleapis.com/auth/plus.login">
-	</span>
-      </span>    
-      <script type="text/javascript">
-	function signinCallback(authResult) {
-	if (authResult['status']['signed_in']) {
-	// Update the app to reflect a signed in user
-	// Hide the sign-in button now that the user is authorized, for example:
-	document.getElementById('signinButton').setAttribute('style', 'display: none');
-	} else {
-	// Update the app to reflect a signed out user
-	// Possible error values:
-	//   "user_signed_out" - User is signed-out
-	//   "access_denied" - User denied access to your app
-	//   "immediate_failed" - Could not automatically log in the user
-	console.log('Sign-in state: ' + authResult['error']);
-	}
-	}
-      </script>
-    </div> -->
+	 <div>
+	   <span id="signinButton">
+	     <span
+		class="g-signin"
+		data-callback="signinCallback"
+		data-clientid="CLIENT_ID_HERE"
+		data-cookiepolicy="single_host_origin"
+		data-requestvisibleactions="http://schemas.google.com/AddActivity"
+		data-scope="https://www.googleapis.com/auth/plus.login">
+	     </span>
+	   </span>    
+	   <script type="text/javascript">
+	     function signinCallback(authResult) {
+	     if (authResult['status']['signed_in']) {
+	     // Update the app to reflect a signed in user
+	     // Hide the sign-in button now that the user is authorized, for example:
+	     document.getElementById('signinButton').setAttribute('style', 'display: none');
+	     } else {
+	     // Update the app to reflect a signed out user
+	     // Possible error values:
+	     //   "user_signed_out" - User is signed-out
+	     //   "access_denied" - User denied access to your app
+	     //   "immediate_failed" - Could not automatically log in the user
+	     console.log('Sign-in state: ' + authResult['error']);
+	     }
+	     }
+	   </script>
+	 </div> -->
     
     <div class="main">
       <div class="content">	
@@ -163,35 +163,35 @@
 	      <h3>Start searching <a href="#searchbar" class="scroll"><span>here</span></a></h3>
 	      <!-- Codes by HTML.am -->
 	      <!--<marquee behavior="scroll" direction="down">
-		<img src="http://www.html.am/images/html-codes/marquees/arrow-down.gif" width="32" height="32" alt="Arrow pointing down" />
+		  <img src="http://www.html.am/images/html-codes/marquees/arrow-down.gif" width="32" height="32" alt="Arrow pointing down" />
 	      </marquee>-->
             </div>
 	  </div>
 	</div>
 	
         <div class="content_bottom" id="searchbar">
-        <div class="wrapper">  	  
-	  <div style="text-align: centre;">
-	    <br><br><br><br>
-	    <img src="/static/img/scholarec_logo.jpg" alt="ScholaRec Logo"/>
-	    <br><br>
-	    <form action="/results/1" method="get">
-	      <input id="search" name="q" type="text" placeholder="Keywords: Author, Title, Summary..." size=50>
-	      <button class="btn btn-sm btn-inverse" id="artist_submit" type="submit" onclick="change_icon()">
-		<i class="icon-search"></i>
-		<img id="loading" src="/static/img/face-loader.gif" style="display: none;">
-		Search
-	      </button>
-	    </form>
-	    <a href="/search/" alt="Clutter-Free">Want Clutter-Free Search?</a>
-	    <br><br>
-	    <div id='search_stats'>
-	      100,000's of <a href="#features" class="scroll"> thesis, authors, papers, and articles </a>
-            </div>          
+          <div class="wrapper">  	  
+	    <div style="text-align: centre;">
+	      <br><br><br><br>
+	      <img src="/static/img/scholarec_logo.jpg" alt="ScholaRec Logo"/>
+	      <br><br>
+	      <form action="/results/1" method="get">
+		<input id="search" name="q" type="text" placeholder="Keywords: Author, Title, Summary..." size=50>
+		<button class="btn btn-sm btn-inverse" id="artist_submit" type="submit" onclick="change_icon()">
+		  <i class="icon-search"></i>
+		  <img id="loading" src="/static/img/face-loader.gif" style="display: none;">
+		  Search
+		</button>
+	      </form>
+	      <a href="/search/" alt="Clutter-Free">Want Clutter-Free Search?</a>
+	      <br><br>
+	      <div id='search_stats'>
+		100,000's of <a href="#features" class="scroll"> thesis, authors, papers, and articles </a>
+              </div>          
+	    </div>
 	  </div>
-	</div>
-	<br>
-        <h4>Our success is measured through the success of our recommendation system.</h4>
+	  <br>
+          <h4>Our success is measured through the success of our recommendation system.</h4>
 	</div>
 
 	
@@ -224,7 +224,7 @@
 		  <p>Computational Finance, General Finance, Pricing of Securities, Risk Management,
 		    Statistical Finance, Trading and Market Microstructure, Applications, Computation, Machine Learning, 
 		    Methodology, Statistics Theory ..</p>
-		  </div>
+		</div>
 	      </div>
 	      
 	      <script>
@@ -308,6 +308,7 @@
 	      <ul>
 		<li><a href="http://dailyarxiv.com/">Latest from ArXiv</a></li>
 		<li><a href="http://paperrater.org/">Rate and Review Papers</a></li>
+	      </ul>
 	    </div>
 	    <div class="col_1_of_4 span_1_of_4 list">
 	      <h3>Data Sources</h3>
