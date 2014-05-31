@@ -5,7 +5,7 @@ from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect, HttpResponse
 # app specific
 import datetime
-from haystack.query import SearchQuerySet
+#from haystack.query import SearchQuerySet
 from search import es_query
 from users import control
 #from users.models import History

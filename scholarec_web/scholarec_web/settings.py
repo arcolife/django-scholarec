@@ -32,7 +32,7 @@ SESSION_ENGINE = 'mongoengine.django.sessions' # optional
 
 _MONGODB_USER = 'arco'
 _MONGODB_PASSWD = open('/home/arcolife/temp/A_PERSONAL_projects/recommender/django-scholarec/scholarec_web/scholarec_web/key.txt','rb').readline().strip('\n')
-#os.environ.get('mongo_scholarec_p')
+#os.environ.get('mongo_scholarec_p')  
 _MONGODB_HOST = 'localhost'
 _MONGODB_NAME = 'scholarec'
 _MONGODB_DATABASE_HOST = \
@@ -158,7 +158,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    'haystack',
+    #'haystack',
     'search',
     'social.apps.django_app.default',
     'scholarec_web.app',
