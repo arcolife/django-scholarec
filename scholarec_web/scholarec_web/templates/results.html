@@ -236,7 +236,7 @@
 	    </ul>
 	    <ul>
 	      <li><b>Author(s):</b> {{ item.authors|join:"; " }}</li>
-	      <li><b>Published:</b> {{ item.published |date:"M d, Y (D)" }}</li>
+	      <li><b>Published:</b> {{ item.published |date:"M d, Y (D)"}}</li>
 	      <li><b>ID:</b> {{ item.ID }}</li>
 	    </ul>
 	    <br />
@@ -249,8 +249,8 @@
 	    <a href="{{ link.href }}" class="btn btn-primary btn-sm">View Original</a>
 	    {% endif %}
 	    {% endfor %}
-	    <a href="/add?id={{ item.ID }}&username={{ username }}&current={{ current }}&q={{ q }}" id="example" class="btn btn-primary btn-sm" rel="popover"><img height="15px" src="/static/img/icon/icon-1/icon_heart.png"></a>	  
-	    <a href="/remove?id={{ item.ID }}&username={{ username }}&current={{ current }}&q={{ q }}" id="example" class="btn btn-primary btn-sm" rel="popover"><img height="15px" src="/static/img/icon/icon-1/icon_hearted.png"></a>
+	    <a href="/add?p_id={{ item.ID }}&col_id={{ item.id }}&username={{ username }}&current={{ current }}&q={{ q }}&title={{ item.title }}" id="example" class="btn btn-primary btn-sm" rel="popover"><img height="15px" src="/static/img/icon/icon-1/icon_heart.png"></a>	  
+	    <a href="/remove?col_id={{ item.id }}&username={{ username }}&current={{ current }}&q={{ q }}" id="example" class="btn btn-primary btn-sm" rel="popover"><img height="15px" src="/static/img/icon/icon-1/icon_hearted.png"></a>
 
 	    <!--span class="label label-info"><strong class="choice{{ forloop.counter }}">Paper-rating: </strong></span>
 		<input name="star{{ forloop.counter }}" type="radio" value="1" class="star"/>
@@ -282,7 +282,7 @@
 		      <li><b>Summary:</b> 
 			<p class="text-info">{{ item.summary }}</p>
 		      </li>
-		      <li><b>Published:</b> {{ item.published |date:"M d, Y (D)"  }}</li>
+		      <li><b>Published:</b> {{ item.published |date:"M d, Y (D)" }}</li>
 		      <li><b>ID:</b> {{ item.ID }}</li>
 		      <li>
 			<b>Links:</b>
@@ -377,8 +377,8 @@
       <div id="collapseTwo" class="panel-collapse collapse">
 	<div class="panel-body">
 	  <ol>
-	    {% for item in collection %}
-	    <li><a href="/results/1?q={{ item }}"<strong>{{ item }}</strong></a></li>
+	    {% for item, title in collection.items %}
+	    <li><a href="/results/1?q={{ title.1 }}"<strong>{{ title.0 }}</strong></a></li>
 		   {% endfor %}
 		   </ol>
 </div>
@@ -392,7 +392,7 @@
   </div>
   <div class="panel-body">
     <ul class="list-group">
-      {% for item in related %}
+      {% for item in favorites %}
       <li class="list-group-item">
 	<a href="/results/1?q={{ item }}"><strong>{{ item }}&nbsp;&nbsp;</strong></a> <!--<span class="badge">14</span>-->
       </li>

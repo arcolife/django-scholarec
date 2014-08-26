@@ -57,10 +57,11 @@ urlpatterns = patterns('',
                        (r'^remove/?$', views.remove,),
 
                        #(?P<username>[\w.@+-]+)/(?P<paper>[\w.@+-]+)/(?P<current>[\w.@+-]+)/(?P<q>[\w.@+-]+)/(?P<rate>[\w.@+-]+)/?$', views.fav,),
-                       (r'^results_mod/$', views.results_mod),
                        (r'^authors/$', views.authors),
                        (r'^citations/$', views.citations),
                        (r'^references/$', views.references),
+                       (r'^raw/published/$', views.get_stats),
+                       (r'^visualize/$', views.visualize),
 
                        #url(r'^social-auth/', 'scholarec_web.app.views.social_auth'),
                        url(r'^login/?$', 'scholarec_web.app.views.login'),

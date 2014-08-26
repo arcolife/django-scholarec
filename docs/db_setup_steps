@@ -1,0 +1,65 @@
+#!/bin/bash
+
+#some helpful commands for running DB backends
+sudo service mongodb stop / start
+sudo service elasticsearch stop / start
+
+# for specifying mongo db path (see /etc/mongodb.conf)
+sudo mongod --dbpath=/var/lib/mongodb
+
+# for enabling auth module login in mongo
+# change to 'auth = true' in /etc/mongodb.conf
+
+# for removing mongo lock, in case it fails to start
+sudo rm /var/lib/mongodb/mongod.lock
+
+# run mongod in --auth mode; 
+sudo mongod --auth --dbpath=/var/lib/mongodb
+#run 'mongo' in another shell; then run 'use admin';
+# then run 'db.addUser('username','password');
+# then run mongod in normal mode
+
+#sudo mongod --dbpath=/var/lib/mongodb
+sudo -u mongodb mongod --dbpath=/var/lib/mongodb
+
+# run 'mongo' and run 'show dbs' to list dbs
+
+# run 'use <dbname>' to use particular db
+
+# run "mongoimport --db <user_name> --collection <collectio_name> --file <filename.json>" 
+# to import json file into a particular collection in a particular db
+
+# for logging in as user 'manager' in db 'admin'
+mongo admin --port 27017 -u manager -p
+
+# for adding a new user for a particular DB:
+# Example: 
+# First start mongo in auth mode OR through a user having admin access; 
+# then:
+> use products
+> db.addUser( { user: "Alice",
+              pwd: "Moon1234",
+              roles: [ "readWrite", "dbAdmin" ]
+            } )
+
+# or if you wish to run it as daemon:
+# first run the following commands
+sudo update-rc.d mongodb defaults
+sudo service mongod stop
+sudo service mongod start
+ 
+# to get site id from db (Refer: http://stackoverflow.com/questions/8819456/django-mongodb-engine-error-when-running-tellsiteid )
+python ./manage.py shell
+>>> from django.contrib.sites.models import Site
+>>> s = Site()
+>>> s.save()
+
+# base location of binary for installation of plugins
+# like head / mongo-river / marvel etc..
+/usr/share/elasticsearch/bin/plugin 
+
+# to check users for a db, 
+# first run:
+> use <db_name>
+# then :
+> db.system.users.find()

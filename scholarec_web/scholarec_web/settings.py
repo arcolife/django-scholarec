@@ -31,8 +31,9 @@ DATABASES = {
 SESSION_ENGINE = 'mongoengine.django.sessions' # optional
 
 _MONGODB_USER = 'arco'
-_MONGODB_PASSWD = open('/home/arcolife/temp/A_PERSONAL_projects/recommender/django-scholarec/scholarec_web/scholarec_web/key.txt','rb').readline().strip('\n')
-#os.environ.get('mongo_scholarec_p')  
+_MONGODB_PASSWD = os.environ.get('mongo_scholarec_p')  
+#open(os.path.join(BASE_ROOT,'key.txt'),'rb').read()
+#open('/home/arcolife/temp/A_PERSONAL_projects/recommender/django-scholarec/scholarec_web/scholarec_web/key.txt','rb').readline().strip('\n')
 _MONGODB_HOST = 'localhost'
 _MONGODB_NAME = 'scholarec'
 _MONGODB_DATABASE_HOST = \

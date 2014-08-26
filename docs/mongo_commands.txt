@@ -1,0 +1,32 @@
+------------------------------------------------------------------------------
+
+				=======================
+				DB interaction commands
+				=======================
+
+> show dbs
+> use <db_name>
+> db.<collection_name>.find()
+> db.<collection_name>.findOne()
+...
+..
+.
+
+------------------------------------------------------------------------------
+
+				===================
+				MapReduce commands
+				===================
+
+------------------------------------------------------------------------------
+
+1> mr = db.runCommand({   "mapreduce" : "users",   "map" : function() {     for (var key in this) { emit(key, null); }   },   "reduce" : function(key, stuff) { return null; },    "out": "users" + "_keys" })
+
+# This gives all key names withing that collection:
+# here 'users' is the collection name
+
+--
+
+2> db[mr.result].distinct("_id")
+
+# run distinct on the resulting collection so as to find all the keys:

@@ -21,7 +21,7 @@ class History(Document):
     fav_ratings = ListField()
     fav_keywords = ListField()
     # user's collection
-    collection = ListField()
+    collection = DictField() #ListField()
     # history metadata
     user_id = StringField(max_length=200)
     last_search = DateTimeField(help_text='last searched')

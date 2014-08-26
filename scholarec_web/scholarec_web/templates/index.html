@@ -44,9 +44,10 @@
 	      <li><a href="#home" class="scroll">Home</a></li>
 	      <li><a href="#searchbar" class="scroll">Search</a></li>
 	      <li><a href="#features" class="scroll">Documents</a></li>
+	      <li><a href="#analytics" class="scroll">Analytics</a></li>
+	      
 	      <li><a href="#dashboard" class="scroll">Sample</a></li>
 	      <li><a href="#about" class="scroll">About Us</a></li>
-	      
 	    </ul>
 	  </div>
 	  
@@ -67,51 +68,51 @@
 		  <button type="button" class="btn btn-primary btn-sm">Login Through FaceBook</button>
 		</a>
 	      </li>
-	      
 	      <li>
-		
-		<a href="#" id="loginButton">
+		<!-- <a href="/login/" id="loginButton">		 -->
+		<a href="/login/">
 		  <button type="button" id="loginButton" class="btn btn-primary btn-sm">
-		    Login
+		    Other Login
 		  </button>
 		</a>
-		<div id="loginContainer">
-		  <div id="loginBox">                
-		    <fieldset id="body">
-		      
-		      {% load url from future %}		    
-		      {% block content %}
-		      <form id="loginForm" action="{% url 'social:complete' "email" %}" method="post">
-			{% csrf_token %}
-                        <fieldset>
-			  <label for="email">Email address:</label>
-			  <input id="email" type="email" name="email" value="" />
-			</fieldset>	
-			<fieldset>
-			  <label for="password">Password:</label>
-			  <input id="password" type="password" name="password" value="" />
-			</fieldset>
-			<fieldset>
-			  <label for="fullname">Full name:</label>
-			  <input id="fullname" type="text" name="fullname" value="" />
-			</fieldset>
-			
-			<button id="login">Signup</button>
-			<label for="checkbox">
-			  <input type="checkbox" id="checkbox"> <i>Remember me</i>
-			</label>
-			<br><br>
-			<span><a href="#">Forgot your password?</a></span>
-		      </form>
-
-		      {% endblock %}
-		      <form action="/login/">
-			<input type="submit" id="login" value="Or Use OpenID">
-		      </form>
-		      
-		    </fieldset>
-		  </div>
-		</div>
+		
+		<!-- <div id="loginContainer"> -->
+		<!--   <div id="loginBox">                 -->
+		<!--     <fieldset id="body"> -->
+		
+		<!--       {% load url from future %} -->
+		<!--       {% block content %} -->
+		<!--       <form id="loginForm" action="{% url 'social:complete' "email" %}" method="post"> -->
+		<!-- 	{% csrf_token %} -->
+                <!--         <fieldset> -->
+		<!-- 	  <label for="email">Email address:</label> -->
+		<!-- 	  <input id="email" type="email" name="email" value="" /> -->
+		<!-- 	</fieldset>	 -->
+		<!-- 	<fieldset> -->
+		<!-- 	  <label for="password">Password:</label> -->
+		<!-- 	  <input id="password" type="password" name="password" value="" /> -->
+		<!-- 	</fieldset> -->
+		<!-- 	<fieldset> -->
+		<!-- 	  <label for="fullname">Full name:</label> -->
+		<!-- 	  <input id="fullname" type="text" name="fullname" value="" /> -->
+		<!-- 	</fieldset> -->
+		
+		<!-- 	<button id="login">Signup</button> -->
+		<!-- 	<label for="checkbox"> -->
+		<!-- 	  <input type="checkbox" id="checkbox"> <i>Remember me</i> -->
+		<!-- 	</label> -->
+		<!-- 	<br><br> -->
+		<!-- 	<span><a href="#">Forgot your password?</a></span> -->
+		<!--       </form> -->
+		<!--       {% endblock %} -->
+		<!--       <form action="/login/"> -->
+		<!-- 	<input type="submit" id="login" value="Or Use OpenID"> -->
+		<!--       </form> -->
+		
+		<!--     </fieldset> -->
+		<!--   </div> -->
+		<!-- </div> -->
+		
 	      </li>
 	      
 	      {% endif %}
@@ -160,7 +161,10 @@
               <img src="/static/img/scholarec_logo4.png" alt="ScholaRec Logo" style="display: right;"/>                  
 	      <h1>Recommender System for <br><span>Scientific Documents</span></h1>  
               <h3>ScholaRec provides everything you need to research<br /></h3>
-	      <h3>Start searching <a href="#searchbar" class="scroll"><span>here</span></a></h3>
+	      <a href="#searchbar" class="scroll">
+		<button type="button" class="btn btn-success btn-lg">
+		  Get Started 
+	      </button></a>
 	      <!-- Codes by HTML.am -->
 	      <!--<marquee behavior="scroll" direction="down">
 		  <img src="http://www.html.am/images/html-codes/marquees/arrow-down.gif" width="32" height="32" alt="Arrow pointing down" />
@@ -183,10 +187,14 @@
 		  Search
 		</button>
 	      </form>
-	      <a href="/search/" alt="Clutter-Free">Want Clutter-Free Search?</a>
+	      <a href="/search/" alt="Clutter-Free"><button type="button" class="btn btn-info btn-sm">Want Clutter-Free Search?</button></a>
 	      <br><br>
 	      <div id='search_stats'>
-		100,000's of <a href="#features" class="scroll"> thesis, authors, papers, and articles </a>
+		<a href="#features" class="scroll">	
+		  <button type="button" class="btn btn-success btn-sm">
+		    100,000's of thesis, authors, papers, and articles 
+		  </button>
+		</a>		
               </div>          
 	    </div>
 	  </div>
@@ -200,8 +208,12 @@
             <h2>Articles, Reports and Research Papers</h2>
             <h4>Search thousands of scientific documents within minutes, <br>
 	      including Computer Science, Quantitative Biology, AstroPhysics and many more:</h4>
-	    <a href="#dashboard" class="scroll">Discover interesting patterns and connections..</a>
-            <div class="features_grids">
+	    <a href="#analytics" class="scroll">	
+	      <button type="button" class="btn btn-success btn-sm">
+		Discover interesting patterns and connections..
+	      </button>
+	    </a>
+	    <div class="features_grids">
 	      <div class="section group">
 		<div class="grid_1_of_4 images_1_of_4">
 		  <h3>Physics</h3>
@@ -252,6 +264,30 @@
 	</div>
       </div>
       
+      <div class="dashborder_img" id="analytics">
+        <div class="wrap">
+	  <br><br>
+          <h2>Insightful <span>Analytics</span></h2>
+          <h4>NoSQL based Analytics and Visualization</h4>
+	  <br><br>
+	  <table class="table table-striped table-hover ">
+	    <tbody>	      
+	      <tr class="info">
+		<td>1</td>
+		<td>Visualization</td>
+		<td>Published Document Count</td>
+		<td><a href="/visualize">View</a></td>
+	      </tr>
+	    </tbody>
+	  </table> 
+	  <a href="#dashboard" class="scroll">	
+	    <button type="button" class="btn btn-success btn-sm">
+	      Sample Results
+	    </button>
+	  </a>
+	  <br><br>
+        </div>
+      </div>      
       <div class="dashborder_img" id="dashboard">
         <div class="wrap">
 	  <br><br>
@@ -286,10 +322,11 @@
 	      </tr>
 	    </tbody>
 	  </table> 
-
-	  <br><br>
-	  -------------<br>
-	  <a href="#about" class="scroll" style="text-decoration: underline; color:#156B04;">About Us</a>
+	  <a href="#about" class="scroll">	
+	    <button type="button" class="btn btn-success btn-sm">
+	      About Us
+	    </button>
+	  </a>
 	  <br><br>
         </div>
       </div>

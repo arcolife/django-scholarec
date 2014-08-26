@@ -54,31 +54,33 @@ def add_rating(username, paper_id, rating, query, keyword):
     s_history.save()
     return ''
 
-def add_to_collection(username, paper_id):
+def add_to_collection(username, doc_id, paper_id, title):
     try:
         s_history = History.objects.get(user_id__contains=username)
     except:
         add_to_history(query, username)
         s_history = History.objects.get(user_id__contains=username)
-    if paper_id not in s_history.collection:
-        s_history.collection.append(paper_id)
-        print "%s added to %s's collection!\n" % (paper_id, username)
+    if doc_id not in s_history.collection:
+        #s_history.collection.append(doc_id)
+        s_history.collection[doc_id] = [title, paper_id]
+        print "%s added to %s's collection!\n" % (doc_id, username)
     else:
-        print "%s is already in %s's collection!\n" % (paper_id, username)
+        print "%s is already in %s's collection!\n" % (doc_id, username)
     s_history.save()
     return ''
     
-def remove_from_collection(username, paper_id):
+def remove_from_collection(username, doc_id):
     try:
         s_history = History.objects.get(user_id__contains=username)
     except:
         add_to_history(query, username)
         s_history = History.objects.get(user_id__contains=username)
-    if paper_id in s_history.collection:        
-        s_history.collection.remove(paper_id)
-        print "%s removed from %s's collection!\n" % (paper_id, username)
+    if doc_id in s_history.collection:        
+        #s_history.collection.remove(doc_id)
+        s_history.collection.pop(doc_id)
+        print "%s removed from %s's collection!\n" % (doc_id, username)
     else:
-        print "%s isn't already present in %s's collection!\n" % (paper_id, username)
+        print "%s isn't already present in %s's collection!\n" % (doc_id, username)
     s_history.save()
     return ''
         
@@ -105,7 +107,7 @@ def get_collection(username):
 def get_recommendations(username):
     try:
         s_history = History.objects.get(user_id__contains=username)
-        keywords = s_history.fav_keywords
+        topics = s_history.fav_keywords
     except:
         s_history = History( user_id=username, last_search=timezone.now())
         s_history.save()
@@ -113,12 +115,13 @@ def get_recommendations(username):
         return [], []
     recos = []
     try:
-        for fav in set(keywords):
+        print "favorited: ", topics
+        for fav in set(topics):
             temp = es_query.__run_query(fav, search_size=1, fields='title,ID')
             recos.append(temp['hits']['hits'][0]['fields'])
         if len(recos) > 3:
-            return recos[:3], list(set(keywords))
+            return recos[:3], list(set(topics))
         else:
-            return recos, list(set(keywords))
+            return recos, list(set(topics))
     except:
         return [], []

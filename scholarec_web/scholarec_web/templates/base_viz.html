@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>ScholaRec stats</title>
+    <link rel="stylesheet" href="/static/viz/styles.css">
+    <link rel="stylesheet" href="/static/viz/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    {% block header%}
+    {% endblock %}
+    <script src="/static/viz/scale.fix.js"></script>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <center>
+	<a href="/">
+	  <img class="muted" src="/static/img/scholarec_icon.png"></a><strong style="color: #B11C46;">Analytics</strong>
+      </center>
+    </div>
+    <hr />    
+    {% block content %}{% endblock %}    
+  </body>
+  {% block footer %}{% endblock %}
+</html>

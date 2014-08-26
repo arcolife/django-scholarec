@@ -123,14 +123,14 @@
 			  console.log(csrftoken);
 			  </script>
 
-    <script type="text/javascript">
-      $('#example').popover({
-      placement: 'right',
-      title: 'Like this paper?',
-      html: true,
-      content: "<button class='btn'><a href='#'>Like</a></button>"
-      });
-    </script>
+    <!-- <script type="text/javascript"> -->
+    <!--   $('#example').popover({ -->
+    <!--   placement: 'right', -->
+    <!--   title: 'Like this paper?', -->
+    <!--   html: true, -->
+    <!--   content: "<button class='btn'><a href='#'>Like</a></button>" -->
+    <!--   }); -->
+    <!-- </script> -->
     
     {% load search_tags %}
     
@@ -166,12 +166,12 @@
       </ul>
 
       <p>
-	{{ item.authors|join:"; " }}<br />
-	{{ item.published |date:"M d, Y (D)" }}	
+	<strong>Authors:</strong> {{ item.authors|join:"; " }}<br />
+	<strong>Date:</strong> {{ item.published }}	
       </p>
       <div>
 	<p>
-	  {{ item.summary }}
+	  <strong>Summary:</strong> {{ item.summary }}
 	</p>
       </div>
       <div class="panel-group" id="record_detail">

@@ -5,6 +5,7 @@ from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect, HttpResponse
 # app specific
 import datetime
+from dateutil.parser import parse
 #from haystack.query import SearchQuerySet
 from search import es_query
 from users import control
@@ -14,6 +15,7 @@ from django_facebook.api import get_persistent_graph
 #import string
 import json
 from urllib import urlopen
+import grequests
 
 def home(request):    
     c = {}
@@ -24,18 +26,20 @@ def home(request):
     
 def add(request):
     username = request.GET.get('username', None)
-    paper = request.GET.get('id', None)
+    p_id = request.GET.get('p_id', None)
+    col_id = request.GET.get('col_id', None)
+    title = request.GET.get('title', None)
     current = request.GET.get('current', None)
     q = request.GET.get('q', None)
-    control.add_to_collection(username, paper)
+    control.add_to_collection(username, col_id, p_id, title)
     return HttpResponseRedirect('/results/' + current + '?q=' + q)
 
 def remove(request):
     username = request.GET.get('username', None)
-    paper = request.GET.get('id', None)
+    col_id = request.GET.get('col_id', None)
     current = request.GET.get('current', None)
     q = request.GET.get('q', None)
-    control.remove_from_collection(username, paper)
+    control.remove_from_collection(username, col_id)
     return HttpResponseRedirect('/results/' + current + '?q=' + q)
 
 def fav(request):
@@ -119,14 +123,14 @@ def results(request, page):
             
             keywords.append(_sources[i]['_source']['keyword'])
             resp.append(temp)
-        
+            
         return render_to_response('results.html', 
                                   { 'items' : resp, 
                                     'history' : history, 
                                     'collection' : control.get_collection(str(request.user)),
                                     'username' : str(request.user),
                                     'recommendations' : recos,
-                                    'related' : favs,
+                                    'favorites' : favs,
                                     'total' : q_resp['hits']['total'],
                                     'took' : float(q_resp['took'])/1000, 
                                     'keywords' : list(set(keywords)),
@@ -145,12 +149,15 @@ def record(request):
     except:
         return HttpResponse('404: Not Found! Go back')
     result = json.loads(response.read())
+    temp = []
+    for a in result['authors']:
+        temp.append(a['name'])
+    result['authors'] = temp
+    result['published'] = datetime.datetime.strptime(
+        result['published'], "%Y-%m-%dT%H:%M:%SZ")
     return render_to_response('record.html', \
                               { 'item' : result,
                                 'q' : query })
-
-def results_mod(request):    
-    return render_to_response('results_mod.html', {})
 
 def authors(request):    
     return render_to_response('authors.html', {})
@@ -161,3 +168,25 @@ def citations(request):
 def references(request):    
     return render_to_response('references.html', {})
 
+def get_stats(request):    
+    URL = "http://localhost:9200/arxiv/docs/_search"
+    temp = """{
+    "size": 0,
+    "aggs": {
+    "publish_stats": {
+    "date_histogram": {
+    "field": "published",
+    "interval": "year"
+    }}}}"""
+    resp = grequests.map([grequests.post(URL, data=temp)])
+    data = json.loads(resp[0].content)
+    temp = data['aggregations']['publish_stats']['buckets']
+    l = [['key_as_string', 'doc_count']]
+    for i in temp:
+        l.append([i[l[0][0]][:4],
+                  #parse(i[l[0][0]]).strftime("%A,%e %B %G"),
+                  i[l[0][1]]])
+    return HttpResponse(json.dumps(l), content_type="application/json")
+
+def visualize(request):
+    return render_to_response('viz.html')
