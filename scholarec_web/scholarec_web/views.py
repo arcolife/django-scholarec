@@ -168,7 +168,7 @@ def citations(request):
 def references(request):    
     return render_to_response('references.html', {})
 
-def get_stats(request):    
+def publish_stats(request):    
     URL = "http://localhost:9200/arxiv/docs/_search"
     temp = """{
     "size": 0,
@@ -184,6 +184,28 @@ def get_stats(request):
     l = [['key_as_string', 'doc_count']]
     for i in temp:
         l.append([i[l[0][0]][:4],
+                  #parse(i[l[0][0]]).strftime("%A,%e %B %G"),
+                  i[l[0][1]]])
+    return HttpResponse(json.dumps(l), content_type="application/json")
+
+def keyword_stats(request):    
+    URL = "http://localhost:9200/arxiv/docs/_search"
+    temp = """{
+    "size":0,
+    "aggs":{
+    "keyword_stats":{
+    "terms":{
+    "field":"keyword",
+    "size": 200
+    }}}}"""
+    # "shard_size": 100 
+    # Refer docs: ES search aggregations bucket terms aggregation
+    resp = grequests.map([grequests.post(URL, data=temp)])
+    data = json.loads(resp[0].content)
+    temp = data['aggregations']['keyword_stats']['buckets']
+    l = [['key', 'doc_count']]
+    for i in temp:
+        l.append([i[l[0][0]],
                   #parse(i[l[0][0]]).strftime("%A,%e %B %G"),
                   i[l[0][1]]])
     return HttpResponse(json.dumps(l), content_type="application/json")
