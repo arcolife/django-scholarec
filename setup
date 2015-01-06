@@ -12,7 +12,7 @@ trap user_interrupt SIGTSTP
 
 install(){
     # install requirements from pip
-    sudo pip install -r requirements.txt --use-mirrors
+    sudo pip install -U -r requirements.txt --use-mirrors
     # install from package manager
     echo "What's your package manager?"
     echo "1. APT"

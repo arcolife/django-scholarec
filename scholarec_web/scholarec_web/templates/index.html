@@ -20,18 +20,18 @@
   </head>
 
   <script type="text/javascript">
-    function change_icon() {
-    $(".icon-search").hide();
-    $("#loading").show();
-    }
+   function change_icon() {
+     $(".icon-search").hide();
+     $("#loading").show();
+   }
   </script>
 
   <script type="text/javascript">
-    (function() {
-    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://apis.google.com/js/client:plusone.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-    })();
+   (function() {
+     var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+     po.src = 'https://apis.google.com/js/client:plusone.js';
+     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+   })();
   </script>
 
   <body>
@@ -54,67 +54,67 @@
 	  <div class="menu">
 	    <ul class="nav nav-pills">
 	      {% if user.username %}
-	      <li class="active">
-		<a href="/profile">Logged In as<span class="badge">{{ user.username }}</span></a>
-	      </li>
-	      <li class="">
-		<a href="/logout/">Log<span class="badge">Out</span></a>
-	      </li>
+		<li class="active">
+		  <a href="/profile">Logged In as<span class="badge">{{ user.username }}</span></a>
+		</li>
+		<li class="">
+		  <a href="/logout/">Log<span class="badge">Out</span></a>
+		</li>
 
 	      {% else %}
-	      
-	      <li>
-		<a href="/facebook/connect/">
-		  <button type="button" class="btn btn-primary btn-sm">Login Through FaceBook</button>
-		</a>
-	      </li>
-	      <li>
-		<!-- <a href="/login/" id="loginButton">		 -->
-		<a href="/login/">
-		  <button type="button" id="loginButton" class="btn btn-primary btn-sm">
-		    Other Login
-		  </button>
-		</a>
 		
-		<!-- <div id="loginContainer"> -->
-		<!--   <div id="loginBox">                 -->
-		<!--     <fieldset id="body"> -->
+		<li>
+		  <a href="/facebook/connect/">
+		    <button type="button" class="btn btn-primary btn-sm">Login Through FaceBook</button>
+		  </a>
+		</li>
+		<li>
+		  <!-- <a href="/login/" id="loginButton">		 -->
+		  <a href="/login/">
+		    <button type="button" id="loginButton" class="btn btn-primary btn-sm">
+		      Other Login
+		    </button>
+		  </a>
+		  
+		  <!-- <div id="loginContainer"> -->
+		  <!--   <div id="loginBox">                 -->
+		  <!--     <fieldset id="body"> -->
+		  
+		  <!--       {% load url from future %} -->
+		  <!--       {% block content %} -->
+		  <!--       <form id="loginForm" action="{% url 'social:complete' "email" %}" method="post"> -->
+		  <!-- 	{% csrf_token %} -->
+                  <!--         <fieldset> -->
+		  <!-- 	  <label for="email">Email address:</label> -->
+		  <!-- 	  <input id="email" type="email" name="email" value="" /> -->
+		  <!-- 	</fieldset>	 -->
+		  <!-- 	<fieldset> -->
+		  <!-- 	  <label for="password">Password:</label> -->
+		  <!-- 	  <input id="password" type="password" name="password" value="" /> -->
+		  <!-- 	</fieldset> -->
+		  <!-- 	<fieldset> -->
+		  <!-- 	  <label for="fullname">Full name:</label> -->
+		  <!-- 	  <input id="fullname" type="text" name="fullname" value="" /> -->
+		  <!-- 	</fieldset> -->
+		  
+		  <!-- 	<button id="login">Signup</button> -->
+		  <!-- 	<label for="checkbox"> -->
+		  <!-- 	  <input type="checkbox" id="checkbox"> <i>Remember me</i> -->
+		  <!-- 	</label> -->
+		  <!-- 	<br><br> -->
+		  <!-- 	<span><a href="#">Forgot your password?</a></span> -->
+		  <!--       </form> -->
+		  <!--       {% endblock %} -->
+		  <!--       <form action="/login/"> -->
+		  <!-- 	<input type="submit" id="login" value="Or Use OpenID"> -->
+		  <!--       </form> -->
+		  
+		  <!--     </fieldset> -->
+		  <!--   </div> -->
+		  <!-- </div> -->
+		  
+		</li>
 		
-		<!--       {% load url from future %} -->
-		<!--       {% block content %} -->
-		<!--       <form id="loginForm" action="{% url 'social:complete' "email" %}" method="post"> -->
-		<!-- 	{% csrf_token %} -->
-                <!--         <fieldset> -->
-		<!-- 	  <label for="email">Email address:</label> -->
-		<!-- 	  <input id="email" type="email" name="email" value="" /> -->
-		<!-- 	</fieldset>	 -->
-		<!-- 	<fieldset> -->
-		<!-- 	  <label for="password">Password:</label> -->
-		<!-- 	  <input id="password" type="password" name="password" value="" /> -->
-		<!-- 	</fieldset> -->
-		<!-- 	<fieldset> -->
-		<!-- 	  <label for="fullname">Full name:</label> -->
-		<!-- 	  <input id="fullname" type="text" name="fullname" value="" /> -->
-		<!-- 	</fieldset> -->
-		
-		<!-- 	<button id="login">Signup</button> -->
-		<!-- 	<label for="checkbox"> -->
-		<!-- 	  <input type="checkbox" id="checkbox"> <i>Remember me</i> -->
-		<!-- 	</label> -->
-		<!-- 	<br><br> -->
-		<!-- 	<span><a href="#">Forgot your password?</a></span> -->
-		<!--       </form> -->
-		<!--       {% endblock %} -->
-		<!--       <form action="/login/"> -->
-		<!-- 	<input type="submit" id="login" value="Or Use OpenID"> -->
-		<!--       </form> -->
-		
-		<!--     </fieldset> -->
-		<!--   </div> -->
-		<!-- </div> -->
-		
-	      </li>
-	      
 	      {% endif %}
 	    </ul>
 	  </div>							
@@ -124,34 +124,34 @@
     </div>		
 
     <!-- GOOGLE+  Sign in Button
-	 <div>
-	   <span id="signinButton">
-	     <span
-		class="g-signin"
-		data-callback="signinCallback"
-		data-clientid="CLIENT_ID_HERE"
-		data-cookiepolicy="single_host_origin"
-		data-requestvisibleactions="http://schemas.google.com/AddActivity"
-		data-scope="https://www.googleapis.com/auth/plus.login">
-	     </span>
-	   </span>    
-	   <script type="text/javascript">
-	     function signinCallback(authResult) {
-	     if (authResult['status']['signed_in']) {
-	     // Update the app to reflect a signed in user
-	     // Hide the sign-in button now that the user is authorized, for example:
-	     document.getElementById('signinButton').setAttribute('style', 'display: none');
-	     } else {
-	     // Update the app to reflect a signed out user
-	     // Possible error values:
-	     //   "user_signed_out" - User is signed-out
-	     //   "access_denied" - User denied access to your app
-	     //   "immediate_failed" - Could not automatically log in the user
-	     console.log('Sign-in state: ' + authResult['error']);
-	     }
-	     }
-	   </script>
-	 </div> -->
+    <div>
+    <span id="signinButton">
+    <span
+    class="g-signin"
+    data-callback="signinCallback"
+    data-clientid="CLIENT_ID_HERE"
+    data-cookiepolicy="single_host_origin"
+    data-requestvisibleactions="http://schemas.google.com/AddActivity"
+    data-scope="https://www.googleapis.com/auth/plus.login">
+    </span>
+    </span>    
+    <script type="text/javascript">
+    function signinCallback(authResult) {
+    if (authResult['status']['signed_in']) {
+    // Update the app to reflect a signed in user
+    // Hide the sign-in button now that the user is authorized, for example:
+    document.getElementById('signinButton').setAttribute('style', 'display: none');
+    } else {
+    // Update the app to reflect a signed out user
+    // Possible error values:
+    //   "user_signed_out" - User is signed-out
+    //   "access_denied" - User denied access to your app
+    //   "immediate_failed" - Could not automatically log in the user
+    console.log('Sign-in state: ' + authResult['error']);
+    }
+    }
+    </script>
+    </div> -->
     
     <div class="main">
       <div class="content">	
@@ -164,11 +164,11 @@
 	      <a href="#searchbar" class="scroll">
 		<button type="button" class="btn btn-success btn-lg">
 		  Get Started 
-	      </button></a>
+		</button></a>
 	      <!-- Codes by HTML.am -->
-	      <!--<marquee behavior="scroll" direction="down">
-		  <img src="http://www.html.am/images/html-codes/marquees/arrow-down.gif" width="32" height="32" alt="Arrow pointing down" />
-	      </marquee>-->
+		<!--<marquee behavior="scroll" direction="down">
+		<img src="http://www.html.am/images/html-codes/marquees/arrow-down.gif" width="32" height="32" alt="Arrow pointing down" />
+		</marquee>-->
             </div>
 	  </div>
 	</div>
@@ -240,24 +240,24 @@
 	      </div>
 	      
 	      <script>
-		$(document).ready(function() {
-		$('.popup-with-zoom-anim').magnificPopup({
-		type: 'inline',
-		
-		fixedContentPos: false,
-		fixedBgPos: true,
-		
-		overflowY: 'auto',
-		
-		closeBtnInside: true,
-		preloader: false,
-		
-		midClick: true,
-		removalDelay: 300,
-		mainClass: 'my-mfp-zoom-in'
-		});
-		
-		});
+	       $(document).ready(function() {
+		 $('.popup-with-zoom-anim').magnificPopup({
+		   type: 'inline',
+		   
+		   fixedContentPos: false,
+		   fixedBgPos: true,
+		   
+		   overflowY: 'auto',
+		   
+		   closeBtnInside: true,
+		   preloader: false,
+		   
+		   midClick: true,
+		   removalDelay: 300,
+		   mainClass: 'my-mfp-zoom-in'
+		 });
+		 
+	       });
 	      </script>
 	    </div>
 	  </div>
@@ -364,10 +364,10 @@
 	      <h3>Stay in touch</h3>
 	      <ul>
 		<li class="googleplus"><a href="https://plus.google.com/+ArchitSharma1337/" target="_blank">
-		    <img src="/static/img/googleplus.png" alt="" /> Google+</a>
+		  <img src="/static/img/googleplus.png" alt="" /> Google+</a>
 		</li>
 		<li class="twitter"><a href="http://twitter.com/arcolife" target="_blank"> 
-		    <img src="/static/img/twitter.png" alt="" /> Twitter</a>
+		  <img src="/static/img/twitter.png" alt="" /> Twitter</a>
 		</li>
 		<li><a href="http://www.facebook.com/caftlegs/" target="_blank"> <img src="/static/img/facebook.png" alt="" /> Facebook</a></li>
 		<div class="clear"></div>

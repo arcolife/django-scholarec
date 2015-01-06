@@ -30,12 +30,12 @@ DATABASES = {
 '''
 SESSION_ENGINE = 'mongoengine.django.sessions' # optional
 
-_MONGODB_USER = 'arco'
-_MONGODB_PASSWD = os.environ.get('mongo_scholarec_p')  
+_MONGODB_USER = os.environ.get('U_USER')
+_MONGODB_PASSWD = os.environ.get('U_PASS')  
 #open(os.path.join(BASE_ROOT,'key.txt'),'rb').read()
 #open('/home/arcolife/temp/A_PERSONAL_projects/recommender/django-scholarec/scholarec_web/scholarec_web/key.txt','rb').readline().strip('\n')
 _MONGODB_HOST = 'localhost'
-_MONGODB_NAME = 'scholarec'
+_MONGODB_NAME = os.environ.get('U_DB')
 _MONGODB_DATABASE_HOST = \
                          'mongodb://%s:%s@%s/%s' \
                          % (_MONGODB_USER, _MONGODB_PASSWD, _MONGODB_HOST, _MONGODB_NAME)
@@ -146,7 +146,7 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(os.path.abspath(os.path.dirname(os.path.dirname(__file__))), \
-                 'scholarec_web/templates')
+                 'scholarec_web/templates'),
 )
 
 INSTALLED_APPS = (
