@@ -47,3 +47,7 @@ A. Simply include "-e git+https://github.com/arcolife/scholarec.git#egg=scholare
 
 **REFERENCES**
 - Python Social Auth - http://psa.matiasaguirre.net/docs/index.html
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/arcolife/django-scholarec/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
